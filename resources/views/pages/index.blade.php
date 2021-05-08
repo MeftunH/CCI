@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('title')
-Index
+    Index
 @endsection
 
 @section('css')
@@ -12,23 +12,18 @@ Index
     <section class="intro home">
         <div class="container">
             <div class="row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12">
-                            <div class="intro_text">
-                                <h1 class="intro_IT">IT Consulting Services For Your Business</h1>
-                                <p class="intro_work intro_work-home">Work with a Nifty consultants to plan for future of your business</p>
-                                <a href="file:///Users/cemile/Desktop/VisualStudio%20code/work%20practise/CCI%20Technology/about.html" class="intro_link intro_link-home intro_btn intro_btn-home" >Read More</a>
-                            </div>
-                        </div>
+                <div class="col-lg-12 col-12">
+                    <div class="intro_text">
+                        <h1 class="intro_IT">IT Consulting Services For Your Business</h1>
+                        <p class="intro_work intro_work-home">Work with a Nifty consultants to plan for future of your business</p>
+                        <a href="file:///Users/cemile/Desktop/VisualStudio%20code/work%20practise/CCI%20Technology/about.html" class="intro_link intro_link-home intro_btn intro_btn-home" >Read More</a>
                     </div>
                 </div>
-            </div>            </div>
+            </div>
         </div>
-
+        </div>
         <div class="header_bottom_img">
-
-            <img class="img-fluid" src="{{asset('./frontend/img/bottom_left_grey.png')}}">
+            <img class="img-fluid" src="{{asset('./frontend/img/bottom_left_grey.png')}}" >
         </div>
     </section>
     <!-- Innovation -->
@@ -47,7 +42,8 @@ Index
                         <a href="services.html"
                            class="innovation_btn innovation-btn">Our Services</a>
                         <div class="floating_left_img">
-                            <img class="floating-left-img img-fluid" src="{{asset('./frontend/img/floating_image_left.png')}}" width="400"
+                            <img class="floating-left-img img-fluid"
+                                 src="{{asset('./frontend/img/floating_image_left.png')}}" width="400"
                                  height="400">
                         </div>
                     </div>
@@ -56,7 +52,8 @@ Index
                     <div class="row innovation_cards">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="tech_card  innovation_card">
-                                <img class="img-fluid" src="{{asset('./frontend/img/solution.svg')}}" width="100" height="100">
+                                <img class="img-fluid" src="{{asset('./frontend/img/solution.svg')}}" width="100"
+                                     height="100">
                                 <div class="innovation_card_text">
                                     <p class="card_top_text">Strategic Consulting</p>
                                 </div>
@@ -64,7 +61,8 @@ Index
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="tech_card  innovation_card">
-                                <img class="img-fluid" src="{{asset('./frontend/img/global-services.svg')}}" width="100" height="100">
+                                <img class="img-fluid" src="{{asset('./frontend/img/global-services.svg')}}" width="100"
+                                     height="100">
                                 <div class="innovation_card_text">
                                     <p class="card_top_text">Project Scoping and Planning</p>
                                 </div>
@@ -142,7 +140,8 @@ Index
                     </div>
                 </div>
                 <div class="floating_unlocking">
-                    <img src="{{asset('./frontend/img/floating_image_12.png')}}" class="img-fluid" width="285" height="260">
+                    <img src="{{asset('./frontend/img/floating_image_12.png')}}" class="img-fluid" width="285"
+                         height="260">
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="unlocking_img">
@@ -263,7 +262,7 @@ Index
     </section>
     <!-- Technology -->
     <section class="technology">
-        <div class="top_left_img" >
+        <div class="top_left_img">
             <img class="img-fluid" src="{{asset('./frontend/img/top_right_grey.png')}}" height="195">
         </div>
         <div class="container">
@@ -274,14 +273,16 @@ Index
                             <div class="technology_card">
                                 <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
                                 <h3 class="cards_text"><span class="innovation_color">Product</span> Ideation</h3>
-                                <p class="cards-text">Our expert staff is well experienced, trained and IT industry certified.</p>
+                                <p class="cards-text">Our expert staff is well experienced, trained and IT industry
+                                    certified.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="technology_card">
                                 <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
                                 <h3 class="cards_text"><span class="innovation_color">System</span> Design</h3>
-                                <p class="cards-text">Our CoE leads work directly with customers in this large and first phase.</p>
+                                <p class="cards-text">Our CoE leads work directly with customers in this large and first
+                                    phase.</p>
                             </div>
                         </div>
                     </div>
@@ -290,14 +291,16 @@ Index
                             <div class="technology_card">
                                 <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
                                 <h3 class="cards_text"><span class="innovation_color">Technology</span> Services</h3>
-                                <p class="cards-text">Award winning Technology Services to fit and scale with any size of your business.</p>
+                                <p class="cards-text">Award winning Technology Services to fit and scale with any size
+                                    of your business.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="technology_card">
                                 <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
-                                <h3 class="cards_text"><span class="innovation_color">Network</span>  Infrastructure</h3>
-                                <p class="cards-text">Nifty offers four broad categories of services in its best Network.</p>
+                                <h3 class="cards_text"><span class="innovation_color">Network</span> Infrastructure</h3>
+                                <p class="cards-text">Nifty offers four broad categories of services in its best
+                                    Network.</p>
                             </div>
                         </div>
                     </div>

@@ -17,20 +17,20 @@
                                 <div class="line line-3"></div>
                             </div>
                             <ul class="navbar_items">
-                                <div class="nav_items"><a class="nav_link active active-home" href="/index.html">Home</a></div>
+                                <div class="nav_items"><a class="nav_link active active-home" href="{{route('index')}}">Home</a></div>
 
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">About Us</a>
                                     <ul class="dropdown">
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/about.html">Our Story</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/academy.html">Academy</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/industries.html">Industries</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/services.html">Services and Solutions</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">Our Story</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">Academy</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">Industries</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">Services and Solutions</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav_items"><a class="nav_link" href="/careers.html">Vacancies</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/events.html">Events</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/connect.html">Connect</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/partners.html">Partners</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">Vacancies</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('events')}}">Events</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">Connect</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('partners')}}">Partners</a></li>
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">EN</a>
                                     <ul class="dropdown">
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="/about.html">AZ</a></li>
@@ -86,20 +86,20 @@
                                 <div class="line line-3"></div>
                             </div>
                             <ul class="navbar_items">
-                                <div class="nav_items"><a class="nav_link active active-home" href="/index.html">Home</a></div>
+                                <div class="nav_items"><a class="nav_link active active-home" href="{{route('index')}}">Home</a></div>
 
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">About Us</a>
                                     <ul class="dropdown">
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/about.html">Our Story</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/academy.html">Academy</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/industries.html">Industries</a></li>
-                                        <li class="dropdown_items"><a class="down_link down_link-home" href="/services.html">Services and Solutions</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">Our Story</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">Academy</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">Industries</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">Services and Solutions</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav_items"><a class="nav_link" href="/careers.html">Vacancies</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/events.html">Events</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/connect.html">Connect</a></li>
-                                <li class="nav_items"><a class="nav_link" href="/partners.html">Partners</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">Vacancies</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('events')}}">Events</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">Connect</a></li>
+                                <li class="nav_items"><a class="nav_link" href="{{route('partners')}}">Partners</a></li>
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">EN</a>
                                     <ul class="dropdown">
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="/about.html">AZ</a></li>
