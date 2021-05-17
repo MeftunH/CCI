@@ -22,6 +22,7 @@
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">About Us</a>
                                     <ul class="dropdown">
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">Our Story</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('case_studies')}}">Case Studies</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">Academy</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">Industries</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">Services and Solutions</a></li>
@@ -91,6 +92,7 @@
                                 <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">About Us</a>
                                     <ul class="dropdown">
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">Our Story</a></li>
+                                        <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('case_studies')}}">Case Studies</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">Academy</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">Industries</a></li>
                                         <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">Services and Solutions</a></li>
