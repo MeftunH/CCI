@@ -1,7 +1,10 @@
 <?php 
 return [ 
-"previous" => "&laquo; Preavious",  
-"next" => "Next &raquo;",  
+"reset" => "Your password has been reset!",  
+"sent" => "We have emailed your password reset link!",  
+"throttled" => "Please wait before retrying.",  
+"token" => "This password reset token is invalid.",  
+"user" => "We can't find a user with that email address.",  
 'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',

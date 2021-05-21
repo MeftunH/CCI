@@ -77,17 +77,33 @@
             {{---------------------------------------------------------------------------------------------------------}}
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="flag"></i><span
-                        class="menu-title text-truncate" data-i18n="Languages">Languages</span><span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.languages')}}</span><span
                         class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="layout-collapsed-menu.html"><i
+                    <li><a class="d-flex align-items-center" href="{{route('languages.index')}}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
-                                                             data-i18n="Collapsed Menu">All Langauges</span></a>
+                                                             data-i18n="Collapsed Menu">{{trans('back.all_languages')}}</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="{{route('language.create')}}"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="Layout Boxed">Add Language</span></a>
+                    <li><a class="d-flex align-items-center" href="{{route('languages.create')}}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Layout Boxed">{{trans('back.add_languages')}}</span></a>
                     </li>
+
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span
+                        class="menu-title text-truncate" data-i18n="Info">{{trans('back.about_us')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+
 
                 </ul>
             </li>

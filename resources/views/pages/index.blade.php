@@ -7,6 +7,9 @@
 
 @endsection
 
+@section('navbar')
+    @include('layouts.navbar.index_navbar')
+@stop
 <!-- Intro -->
 @section('content')
     <section class="intro home">

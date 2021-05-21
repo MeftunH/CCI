@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $languages = \Illuminate\Support\Facades\DB::table('languages')->get();
+        View::share('languages',$languages);
         Fortify::loginView('auth.login');
     }
 }

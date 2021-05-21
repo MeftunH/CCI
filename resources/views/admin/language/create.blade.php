@@ -61,7 +61,6 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <form class="form">
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
@@ -100,7 +99,7 @@
                                                     </div>
                                                     <label>
                                                         <select class="form-control" name="status">
-                                                            <option>Status</option>
+                                                            <option value={{null}}>Status</option>
                                                             <option value="1">Active</option>
                                                             <option value="0">Passive</option>
                                                         </select>
@@ -149,7 +148,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 <?php 
 return [ 
-"previous" => "&laquo; Preavious",  
-"next" => "Next &raquo;",  
+"previous" => "df",  
+"next" => "Next &raqucxco;d",  
 'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',

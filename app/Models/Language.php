@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+    public function aboutUs()
+    {
+        return $this->hasOne(AboutUsTranslation::class);
+    }
 }

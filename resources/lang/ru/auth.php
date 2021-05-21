@@ -1,7 +1,8 @@
 <?php 
 return [ 
-"previous" => "&laquo; Preavious",  
-"next" => "Next &raquo;",  
+"failed" => "zxc",  
+"password" => "Theg provided password is incorrect.",  
+"throttle" => "Too many login attempts. Please try again in :seconds seconds.",  
 'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',

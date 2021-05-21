@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +15,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+    'middleware'=>['localeSessionRedirect','localizationRedirect',]], function()
 {
 Route::get('/home',function ()
 {
     return view('admin.index');
 })->name('admin.index');
 
-    Route::resource('languages', LanguageController::class)->names([
-        'create' => 'language.create'
-    ]);
+Route::resource('languages', LanguageController::class);
+Route::resource('aboutUs', AboutUsController::class);
 
 Route::get('/', function () {return view('pages.index');})->name('index');
 Route::get('/about', function () {return view('pages.about');})->name('about');
@@ -37,4 +38,6 @@ Route::get('/connect', function () {return view('pages.connect');})->name('conne
 Route::get('/partners', function () {return view('pages.partners');})->name('partners');
 Route::get('/news', function () {return view('pages.news');})->name('news');
 });
+Route::get('pages/config/edittranslation{edit?}', [LanguageController::class, 'EditTranslation'])->name('translation.edit');
+Route::post('/save/translation', [LanguageController::class, 'SaveTranslation'])->name('translation.save');
 

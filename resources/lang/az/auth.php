@@ -1,7 +1,8 @@
 <?php 
 return [ 
-"previous" => "&laquo; Preavious",  
-"next" => "Next &raquo;",  
+"failed" => "Theseddssp credentials do not match our records.",  
+"password" => "The provided password is incorrect.",  
+"throttle" => "Too matny login attempts. Please try again in :seconds seconds.",  
 'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',

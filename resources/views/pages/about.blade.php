@@ -4,11 +4,13 @@
 @endsection
 @section('css')
 @endsection
-
+@section('navbar')
+    @include('layouts.navbar.non_index_navbar')
+@stop
 @section('content')
 
         <!-- Intro -->
-        <section class="intro" style="background-image: url('./frontend/img/hero_about_us.jpg');">
+        <section class="intro" style="background-image: url('/frontend/img/hero_about_us.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-12">
