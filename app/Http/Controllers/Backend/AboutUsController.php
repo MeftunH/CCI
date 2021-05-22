@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Stichoza\GoogleTranslate\GoogleTranslate;
-
+use App\Helpers\SiteHelper;
 
 class AboutUsController extends Controller
 {
@@ -26,6 +26,7 @@ class AboutUsController extends Controller
 //        dd($aboutUs);
 //        $aboutUs=AboutUsTranslation::languages();
         return view('admin.aboutUs.intro.intro', compact('aboutUs'));
+
     }
 
 
@@ -79,53 +80,8 @@ class AboutUsController extends Controller
         } else {
             $about_us_data['background_image'] = $old_image;
         }
-
-        foreach ($request->title as $language => $title) {
-            $translation = AboutUsTranslation::where('aboutUs_id', $id)->where('language_id', $language)->first();
-            $currLang = Language::where('id', $language)->first();
-            $description = $request->description[$language];
-            $init_description = strip_tags($request->input("description.1"));
-            $result = "";
-            //Google translate API max limit is 4999 characters
-            if (strlen($request->input("description.1")) > 2999) {
-                $init_description = str_split($request->input("description.1"), 2999);
-            }
-
-//            dd($description);
-            $tr = new GoogleTranslate();
-            $tr->setSource();
-            $tr->setTarget($currLang->code);
-            ////title
-            if (!isset($title) && isset($description)) {
-                $title = $tr->translate($request->input("title.1"));
-            } else if (isset($title) && !isset($description)) {
-                if (is_array($init_description)) {
-
-                    foreach ($init_description as $key => $item) {
-                        $result .= $tr->translate($item);
-                    }
-                    $description = $result;
-                } else {
-                    $description = $tr->translate($init_description);
-                }
-            } else if (!(isset($title) && isset($description))) {
-                $title = $tr->translate($request->input("title.1"));
-                if (is_array($init_description)) {
-
-                    foreach ($init_description as $key => $item) {
-                        $result .= $tr->translate($item);
-                    }
-                    $description = $result;
-                } else {
-                    $description = $tr->translate($init_description);
-                }
-            }
-            $translation->title = $title;
-            $translation->description = $description;
-            if ($translation->isDirty()) {
-                $translation->save();
-            }
-        }
+        $sh=new SiteHelper();
+        $sh->translate_and_save($request,$id);
         return Redirect::route('aboutUs.index');
     }
 

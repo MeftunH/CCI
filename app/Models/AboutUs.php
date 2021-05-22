@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class AboutUs extends Model
 {
@@ -27,5 +28,9 @@ class AboutUs extends Model
         return $query
             ->join('about_us_translations','aboutUs_id','about_us.id')
             ->join('languages','language_id','languages.id')->where('about_us_translations.aboutUs_id',$id)->first();
+    }
+    public function limit($val): string
+    {
+        return Str::limit($val);
     }
 }

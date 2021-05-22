@@ -42,12 +42,13 @@
                                         @foreach($aboutUs as $au)
                                         <td>{{$i++}}</td>
                                         <td>{{$au->title}}</td>
-                                        <td>{{$au->description}}</td>
+                                        <td>{{$au->limit(strip_tags($au->description))}}</td>
                                         <td><img src="{{$au->background_image}}" class="img-fluid" style="width: 30px"> </td>
                                             <td>
                                                 <a href="{{ URL::route('aboutUs.edit',$au->aboutUs_id) }}"
                                                    class="btn btn-primary" style="position: relative;"> Edit </a>
-
+                                                <a href="{{ URL::route('aboutUs.edit',$au->aboutUs_id) }}"
+                                                   class="btn btn-primary" style="position: relative;"> Edit </a>
                                             </td>
                                         @endforeach
 

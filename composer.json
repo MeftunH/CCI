@@ -34,11 +34,16 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
+
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+        "app/Helpers/SiteHelper.php"
+        ]
     },
+
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
