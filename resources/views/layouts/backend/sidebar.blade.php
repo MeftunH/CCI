@@ -104,6 +104,38 @@
                                                                 data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
                     </li>
 
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.long_term.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.long_term')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.operational.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.operational')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.future.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.future')}}</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-briefcase style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.case_studies')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('caseStudies.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('clients.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.clients')}}</span></a>
+                    </li>
 
                 </ul>
             </li>

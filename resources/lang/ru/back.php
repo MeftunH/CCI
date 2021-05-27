@@ -21,4 +21,8 @@ return [
     'all_languages' => 'Все языки',
     'add_languages' => 'добавить язык',
     'languages'=> 'язык',
+    'warn_code'=>'Rusca You will find all countries locales in this link:',
+    'codes'=>'Rusca Olke kodlari:',
+    'warn_locales'=>'Rusca You will find all countries locales in this link:',
+    'locales'=>'Rusca Locales:',
 ];

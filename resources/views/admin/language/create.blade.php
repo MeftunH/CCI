@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="code">Code</label>
+                                                        <label for="code">Code *</label>
                                                         <input
                                                             type="text"
                                                             id="code"
@@ -88,7 +88,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="locale">Locale</label>
+                                                        <label for="locale">Locale **</label>
                                                         <input
                                                             type="text"
                                                             id="locale"
@@ -148,8 +148,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p>*{{trans('back.warn_code')}}<a target="_blank" href="https://cloud.google.com/translate/docs/languages">{{trans('back.codes')}}</a> </p>
+                                            <p>*{{trans('back.warn_locales')}}<a target="_blank" href="https://github.com/mcamara/laravel-localization/blob/master/src/config/config.php">{{trans('back.locales')}}</a> </p>
+
                                     </div>
                                 </div>
+
                             </div>
                         </form>
 

@@ -30,10 +30,10 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Background Image</th>
-                                        <th>Action</th>
+                                        <th>{{trans('back.title')}}</th>
+                                        <th>{{trans('back.description')}}</th>
+                                        <th>{{trans('back.background_image')}}</th>
+                                        <th>{{trans('back.action')}}</th>
                                     </tr>
                                     </thead>
                                     @php($i=1)
@@ -46,9 +46,9 @@
                                         <td><img src="{{$au->background_image}}" class="img-fluid" style="width: 30px"> </td>
                                             <td>
                                                 <a href="{{ URL::route('aboutUs.edit',$au->aboutUs_id) }}"
-                                                   class="btn btn-primary" style="position: relative;"> Edit </a>
-                                                <a href="{{ URL::route('aboutUs.edit',$au->aboutUs_id) }}"
-                                                   class="btn btn-primary" style="position: relative;"> Edit </a>
+                                                   class="btn btn-primary" style="position: relative;"> {{trans('back.edit')}} </a>
+                                                <a href="{{ URL::route('aboutUs.show',$au->aboutUs_id) }}"
+                                                   class="btn btn-primary" style="position: relative;"> {{trans('back.show')}} </a>
                                             </td>
                                         @endforeach
 

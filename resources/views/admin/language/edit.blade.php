@@ -152,7 +152,7 @@
 
                                                 <label>Old Image: </label>
 
-                                                <img src="{{$language->flag}}" class="img-fluid" style="width: 32px">
+                                                <img src="{{$language->flag}}" name="old_flag" class="img-fluid" style="width: 32px">
 
                                             </div>
 

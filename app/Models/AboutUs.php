@@ -33,4 +33,9 @@ class AboutUs extends Model
     {
         return Str::limit($val);
     }
+
+    public function scopeGet_first($query)
+    {
+        return $query->first();
+    }
 }

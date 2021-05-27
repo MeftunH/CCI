@@ -21,4 +21,8 @@ return [
     'all_languages' => 'All Languages',
     'add_languages' => 'Add Languages',
     'languages'=> 'Languages',
+    'warn_code'=>'You will find all countries codes in this link:',
+    'warn_locales'=>'You will find all countries locales in this link:',
+    'codes'=>'Country codes:',
+    'locales'=>'Locales:',
 ];

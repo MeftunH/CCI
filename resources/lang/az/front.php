@@ -22,4 +22,6 @@ return [
     'add_languages'=> 'Dil elave et',
     'about_us'=>'Haqqimizda',
     'home'=>'Ana Sehife',
+    'Our Clients'=>'Musterilerimiz',
+    'We explore some of the latest trends and strategies'=>'Bəzi son trendləri və strategiyaları araşdırırıq'
 ];

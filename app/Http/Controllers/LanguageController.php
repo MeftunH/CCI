@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LanguageHelper;
+use App\Models\AboutUsTranslation;
 use App\Models\AreaTranslation;
 use App\Models\CategoryTranslation;
 use App\Models\Language;
+use App\Models\LongTermItemTranslation;
+use App\Models\LongTermTranslation;
 use App\Models\PostTranslation;
 use App\Models\SubCategoryTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Mcamara\LaravelLocalization\LaravelLocalization;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 
 class LanguageController extends Controller
@@ -20,13 +27,14 @@ class LanguageController extends Controller
     public function index()
     {
         $languages = Language::paginate(5);
-        return view('admin.language.index',compact('languages'));
+        return view('admin.language.index', compact('languages'));
     }
 
     public function show()
     {
 
     }
+
     public function create()
     {
         return view('admin.language.create');
@@ -34,6 +42,7 @@ class LanguageController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'code' => 'required',
@@ -42,41 +51,79 @@ class LanguageController extends Controller
         ]);
 
         $input = $request->all();
-
         //If status is default then gimme status to active
         if ($request->get('status') == null) {
             $input['status'] = 1;
         }
+        $arr_locales = new LaravelLocalization();
+        if (in_array($request->get('locale'), $arr_locales->getSupportedLanguagesKeys())) {
 
-        if ($request->hasFile('flag')) {
-            $destination_path = 'public/images/flag_img/';
-            $image = $request->file('flag');
-            $image_name = uniqid().$image->getClientOriginalName();
-            $path = $image->storeAs($destination_path, $image_name);
 
-            $input['flag'] = "/storage/public/images/flag_img/".$image_name;
-        }
-        $temp = base_path();
-        $uploads_dir = $temp . '/resources/lang/' . $request->get('locale');
-        $chmod = 0777;
-        if (!file_exists($uploads_dir)) {
-            File::makeDirectory($uploads_dir, $chmod, true, true);
-        } else {
-            return Redirect::back()->withErrors(['This language already exist']);
-        }
-        $info = json_encode(['name' =>  $request->get('name'), 'locale' => $request->get('locale')]);
-        $fopen = fopen($temp . '/resources/lang/' .$request->get('locale') . '/info.json', 'w+');
-        fwrite($fopen, $info);
-        fclose($fopen);
-        $files = scandir($temp . '/resources/lang/en');
-        foreach ($files as $file) {
-            if ($file != '.' && $file !== '..' && $file != 'info.json') {
-                $copy = copy($temp . '/resources/lang/en/' . $file, $temp . '/resources/lang/' . $request->get('locale') . '/' . $file);
+            if ($request->hasFile('flag')) {
+                $destination_path = 'public/images/flag_img/';
+                $image = $request->file('flag');
+                $image_name = uniqid() . $image->getClientOriginalName();
+                $path = $image->storeAs($destination_path, $image_name);
+
+                $input['flag'] = "/storage/public/images/flag_img/" . $image_name;
             }
-        }
+            $temp = base_path();
+            $uploads_dir = $temp . '/resources/lang/' . $request->get('locale');
+            $chmod = 0777;
+            if (!file_exists($uploads_dir)) {
+                File::makeDirectory($uploads_dir, $chmod, true, true);
+            } else {
+                return Redirect::back()->withErrors(['This language already exist']);
+            }
+            $info = json_encode(['name' => $request->get('name'), 'locale' => $request->get('locale')]);
+            $fopen = fopen($temp . '/resources/lang/' . $request->get('locale') . '/info.json', 'w+');
+            fwrite($fopen, $info);
+            fclose($fopen);
+            $files = scandir($temp . '/resources/lang/en');
+            foreach ($files as $file) {
+                if ($file != '.' && $file !== '..' && $file != 'info.json') {
+                    $copy = copy($temp . '/resources/lang/en/' . $file, $temp . '/resources/lang/' . $request->get('locale') . '/' . $file);
+                }
+            }
 
-        if ($copy) {
-            Language::create($input);
+            if ($copy) {
+                $language_first = Language::all()->first();
+                $new_lang = Language::create($input);
+                $about_us_intro = AboutUsTranslation::where('language_id', $language_first->id)->first();
+                $code = $request->get('code');
+                $tr = new GoogleTranslate();
+                $tr->setSource();
+                $tr->setTarget($code);
+
+                $title = $tr->translate($about_us_intro->title);
+                $init_description = $about_us_intro->descipriton;
+                $result = "";
+                if (strlen($about_us_intro->descipriton) > 2999) {
+                    $init_description = str_split($about_us_intro->descipriton, 2999);
+                    if (is_array($init_description)) {
+                        foreach ($init_description as $key => $val) {
+                            $result .= strip_tags($tr->translate($val));
+                        }
+                        $description = $result;
+
+                    } else {
+                        $description = $tr->translate($init_description);
+
+                    }
+                } else {
+                    $description = $tr->translate($about_us_intro->description);
+
+                }
+
+                $translation = $about_us_intro->replicate();
+                $translation->title = $title;
+                $translation->description = $description;
+                $translation->language_id = $new_lang->id;
+                $translation->save();
+                $lh = New LanguageHelper();
+                $lh->translate_and_save_long_term($code, $language_first,$new_lang);
+                $lh->translate_and_save_long_term_items($code, $language_first,$new_lang);
+                $lh->translate_and_save_time_line($code, $language_first,$new_lang);
 //            $post = PostTranslation::where('language_id', $defaultLanguage->id)->get();
 //            $category = CategoryTranslation::where('language_id', $defaultLanguage->id)->get();
 //            $subcategory = SubCategoryTranslation::where('language_id', $defaultLanguage->id)->get();
@@ -102,8 +149,13 @@ class LanguageController extends Controller
 //                $rep->language_id = $language->id;
 //                $rep->save();
 //            }
-        } else {
-            return Redirect::back()->withErrors(['This language already exist']);
+            } else {
+                return Redirect::back()->withErrors(['This language already exist']);
+            }
+        }
+        else
+        {
+            return Redirect::back()->withErrors([trans('back.local_value_is_wrong')]);
         }
 
 
@@ -112,11 +164,11 @@ class LanguageController extends Controller
 
     public function edit($id)
     {
-        $language = Language::where('id',$id)->first();
-        return view('admin.language.edit',compact('language'));
+        $language = Language::where('id', $id)->first();
+        return view('admin.language.edit', compact('language'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'code' => 'required|max:255',
@@ -146,7 +198,7 @@ class LanguageController extends Controller
             Image::make($image)->resize(50, 50)->save('storage/public/images/flag_img/' . $image_uni);
             $language->flag = '/storage/public/images/flag_img/' . $image_uni;
             $language->save();
-            if (isset($oldflag))   unlink($oldflag);
+            if (isset($oldflag)) unlink($oldflag);
             $notification = array(
                 'message' => 'Language Edited successfully',
                 'alert-type' => 'success'
@@ -164,6 +216,7 @@ class LanguageController extends Controller
         }
         return Redirect()->route('languages.index');
     }
+
     public function destroy($id)
     {
         $language = Language::find($id);
@@ -185,7 +238,7 @@ class LanguageController extends Controller
         }
 
 
-       $q= Language::where('id', $id)->delete();
+        $q = Language::where('id', $id)->delete();
 
         $notification = array(
             'message' => 'Language Deleted successfully',
@@ -195,26 +248,28 @@ class LanguageController extends Controller
 
         return Redirect()->route('languages.index')->with($notification);
     }
+
     public function EditTranslation(Request $request)
     {
 
 
-            $locale_req = $request->input('edit');
-            $language = DB::table('languages')->where('locale', $locale_req)->first();
-            $folder = $language->locale;
-            $file = (!is_null($request->input('file')) ? $request->input('file') : 'auth.php');
-            $files = scandir(base_path() . '/resources/lang/' . $folder . '/');
+        $locale_req = $request->input('edit');
+        $language = DB::table('languages')->where('locale', $locale_req)->first();
+        $folder = $language->locale;
+        $file = (!is_null($request->input('file')) ? $request->input('file') : 'auth.php');
+        $files = scandir(base_path() . '/resources/lang/' . $folder . '/');
 //        dd($file);
-            $str = File::getRequire(base_path() . '/resources/lang/' . $folder . '/' . $file);
-            $data = [
-                'file' => $file,
-                'files' => $files,
-                'lang' => $language->locale,
-                'stringLangs' => $str,
-            ];
-            return view('admin.translations.edit', compact('language', 'data'));
+        $str = File::getRequire(base_path() . '/resources/lang/' . $folder . '/' . $file);
+        $data = [
+            'file' => $file,
+            'files' => $files,
+            'lang' => $language->locale,
+            'stringLangs' => $str,
+        ];
+        return view('admin.translations.edit', compact('language', 'data'));
 
     }
+
     public function SaveTranslation(Request $request)
     {
 

@@ -84,6 +84,4 @@
         </div>
     </nav>
 </header>
-<div class="floating_img">
-    <img class="img-fluid floating-img" src="{{asset('./frontend/img/floating_image.png')}}" width="680" height="58">
-</div>
+

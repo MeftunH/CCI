@@ -21,4 +21,8 @@ return [
     'all_languages'=> 'Butun Diller',
     'add_languages'=> 'Dil elave et',
     'languages'=> 'Diller',
+    'warn_code'=>'Butun dillerin kodlarini bu linkde tapacaqsan:',
+    'warn_locales'=>'Butun dillerin lokallarini bu linkde tapacaqsan:',
+    'codes'=>'Olke kodlari:',
+    'locales'=>'Lokallar:',
 ];

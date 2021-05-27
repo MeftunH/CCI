@@ -22,4 +22,6 @@ return [
     'add_languages' => 'Add Languages',
     'about_us'=>'About Us',
     'home'=>'Home',
+    'Our Clients'=>'Our Clients',
+    'We explore some of the latest trends and strategies'=>'We explore some of the latest trends and strategies'
 ];

@@ -16,8 +16,11 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Langauges</h2>
+                        <div class="col-6">
+                            <h2 class="content-header-title float-left mb-0">Languages</h2>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" onclick="window.location='{{route('languages.create')}}'" class="btn btn-success" style="position: relative;"> {{trans('back.add_languages')}} </button>
                         </div>
                     </div>
                 </div>
