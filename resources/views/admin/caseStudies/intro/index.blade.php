@@ -73,6 +73,59 @@
                 </section>
             </div>
         </div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-6">
+                            <h2 class="content-header-title float-left mb-0">{{trans('back.slider_content')}}</h2>
+                        </div>
+
+                        <div class="col-6">
+                            <a type="button" class="btn btn-gradient-success"
+                               href="{{route('aboutUs.caseStudies.clients.add_to_slider')}}">{{trans('backend.add_to_slider')}}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content-body">
+                <!-- Basic table -->
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{trans('back.image')}}</th>
+                                    </tr>
+                                    </thead>
+                                    @php($i=1)
+                                    <tbody>
+
+                                        @if(isset($clients))
+                                            @foreach($clients as $cs)
+                                                <tr>
+                                                <td>{{$i++}}</td>
+                                                <td><img src="{{$cs->image}}" class="img-fluid"
+                                                         style="width: 30px"></td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
     </div>
 
 @endsection

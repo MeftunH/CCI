@@ -136,7 +136,10 @@
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="Collapsed Menu">{{trans('back.clients')}}</span></a>
                     </li>
-
+                    <li><a class="d-flex align-items-center" href="{{route('studies.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.studies')}}</span></a>
+                    </li>
                 </ul>
             </li>
             {{---------------------------------------------------------------------------------------------------------}}

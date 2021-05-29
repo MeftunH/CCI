@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Helpers\SiteHelper;
 use App\Http\Controllers\Controller;
 use App\Models\CaseStudy;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
@@ -14,7 +15,8 @@ class CaseStudyController extends Controller
     public function index()
     {
         $case_study = CaseStudy::languages(app()->getLocale());
-        return view('admin.caseStudies.intro.index',compact('case_study'));
+        $clients = Client::all();
+        return view('admin.caseStudies.intro.index',compact('case_study','clients'));
     }
 
     public function edit($id)
@@ -38,12 +40,12 @@ class CaseStudyController extends Controller
         ]);
 
         if (isset($image)) {
-            $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image_uni = uniqid('cs', true) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/case_study_images/' . $image_uni);
             $case_study_data['background_image'] = '/storage/public/images/case_study_images/' . $image_uni;
             $case_study->background_image = $case_study_data['background_image'];
             $case_study->save();
-//            unlink($old_image);
+            unlink($old_image);
         } else {
             $case_study_data['background_image'] = $old_image;
         }

@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    {{trans('back.show_items')}}
+    Edit Intro
 @endsection
 
 @section('css')
@@ -17,14 +17,20 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-12">
+                        <div class="col-6">
                             <h2 class="content-header-title float-left mb-0">{{trans('back.edit_long_term')}}</h2>
                         </div>
+                        <div class="col-6">
+                        <a href="{{ url()->previous() }}" type="button"
+                           class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
             <div class="col-12 grid-margin strecth  stretch-card">
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -35,79 +41,58 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.future.list.item.update',$future->id)}}" method="post" enctype="multipart/form-data">
-                    @csrf
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <ul class="nav nav-pills nav-pills-success" id="pills-tab" role="tablist">
-                                    @foreach(\App\Models\Language::all() as $key=> $value)
-                                        <li class="nav-item">
-                                            <a class="nav-link {{$loop->index == 0 ? 'active' : null}}"
-                                               id="pills-{{$value->id}}-tab" data-toggle="pill"
-                                               href="#pills-{{$value->id}}" role="tab"
-                                               aria-controls="pills-{{$value->id}}"
-                                               aria-selected="{{$loop->index == 0 ? 'true' : 'false'}}"><img
-                                                    src="{{ URL::to($value->flag)}}"
-                                                    style="width: 16px;height: 16px" alt=""></a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+
                                 <div class="col-12">
                                     <div class="tab-content" id="pills-tabContent">
 
-                                        @foreach($translations as $translation)
-                                            <div
-                                                class="tab-pane fade {{$loop->index == 0 ? 'active show' : null}}"
-                                                id="pills-{{$translation->language_id}}" role="tabpanel"
-                                                aria-labelledby="pills-{{$translation->language_id}}-tab">
-
-
-                                                <label>{{trans('back.title')}} </label>
-                                                <input type="text" class="form-control" id="exampleInputName1"
-                                                       name="title[{{$translation->language_id}}]"
-                                                       value="{{ $translation->title }}">
-                                                <label>{{trans('back.description')}} </label>
-                                                <div class="form-group">
-                                                    <textarea class="summernote"
-                                                              name="description[{{ $translation->language_id}}]"
-                                                              value="{{ $translation->description }}" rows="30"
-                                                              id="summernote">{{$translation->description}}</textarea>
+                                        <div class="col-md-6 col-6">
+                                            <div class="row">
+                                                <div class="col-md-6 col-6">
+                                                    <img id="preview-image-before-upload"
+                                                         src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
+                                                         alt="preview image" class="img-fluid"
+                                                         style="max-height: 100px;">
                                                 </div>
-                                                <br>
+                                                <div class="col-md-6 col-6">
 
+                                                    <label>Old Image: </label>
 
+                                                    <img src="{{$client->image}}" alt="{{$client->image}}"
+                                                         class="img-fluid">
+                                                    <input type="hidden" name="old_image" value="{{ $client->image }}">
+                                                </div>
                                             </div>
-
-                                        @endforeach
-
-                                        <label>
-                                            <select class="form-control" name="status">
-                                                <option>Status</option>
-                                                <option @if ($future->status ==1) selected @endif value="1">
-                                                    Active
-                                                </option>
-                                                <option @if ($future->status ==0)selected @endif  value="0">
-                                                    Passive
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Update</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                {{trans('back.status')}}
+                                            @if($client->status == 1)
+                                                    <span class="badge badge-success badge-pill"> {{trans('back.active')}} </span>
+                                                @else
+                                                    <span class="badge badge-danger badge-pill"> {{trans('back.passive')}}  </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-6">
+                                                {{trans('back.is_slide_content')}}
+                                            @if($client->is_slide_content == 1)
+                                                    <span class="badge badge-success badge-pill"> {{trans('back.yes')}} </span>
+                                                @else
+                                                    <span class="badge badge-danger badge-pill"> {{trans('back.no')}}  </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+
         </div>
     </div>
 
@@ -134,13 +119,6 @@
 
             });
 
-        });
-
-    </script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.summernote').summernote();
         });
 
     </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\FutureController;
 use App\Http\Controllers\Backend\OperationalController;
+use App\Http\Controllers\Backend\StudyController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FrontCaseStudyController;
 use App\Http\Controllers\LanguageController;
@@ -31,12 +32,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::resource('aboutUs', AboutUsController::class);
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
+    Route::resource('studies',StudyController::class);
 
     Route::name('aboutUs.')->group(function () {
 
         Route::resource('operational', OperationalController::class);
         Route::resource('future', FutureController::class);
 
+        Route::get('/addToSlider/',[ClientController::class,'add_to_slider'])->name('caseStudies.clients.add_to_slider');
+        Route::post('/updateSlider/',[ClientController::class,'update_slider'])->name('caseStudies.clients.update_slider');
         Route::get('/longTerm', [AboutUsController::class, 'longTerm'])->name('long_term.index');
         Route::get('/longTerm/{longTerm}', [AboutUsController::class, 'longTermShow'])->name('long_term.show');
         Route::get('/longTerm/{longTerm}/edit', [AboutUsController::class, 'longTermEdit'])->name('long_term.edit');
@@ -70,7 +74,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::post('/timeLine/{timeLine}', [AboutUsController::class, 'timeLineUpdate'])->name('long_term.timeline.update');
         Route::get('/timeLine/{timeLine}', [AboutUsController::class, 'timeLineShow'])->name('long_term.timeline.show');
         Route::delete('/timeLine/{timeLine}', [AboutUsController::class, 'timeLineDestroy'])->name('long_term.timeline.destroy');
-
 
     });
     Route::get('/', function () {

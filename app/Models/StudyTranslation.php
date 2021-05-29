@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FutureListTranslation extends Model
+class StudyTranslation extends Model
 {
     use HasFactory;
     protected $guarded=[];
-    public function futureList()
+    public function study()
     {
-        return $this->belongsTo(FutureList::class);
+        return $this->belongsTo(Study::class);
     }
     public function scopeLocalizedData($query)
     {
         return $query->where('language_locale',app()->getLocale())->first();
     }
+
 }

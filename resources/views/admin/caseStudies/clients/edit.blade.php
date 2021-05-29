@@ -35,99 +35,75 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.future.item.update',$future->id)}}" method="post" enctype="multipart/form-data">
+                <form method="POST" action="{{route('clients.update',$client->id)}}"  enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <ul class="nav nav-pills nav-pills-success" id="pills-tab" role="tablist">
-                                    @foreach(\App\Models\Language::all() as $key=> $value)
-                                        <li class="nav-item">
-                                            <a class="nav-link {{$loop->index == 0 ? 'active' : null}}"
-                                               id="pills-{{$value->id}}-tab" data-toggle="pill"
-                                               href="#pills-{{$value->id}}" role="tab"
-                                               aria-controls="pills-{{$value->id}}"
-                                               aria-selected="{{$loop->index == 0 ? 'true' : 'false'}}"><img
-                                                    src="{{ URL::to($value->flag)}}"
-                                                    style="width: 16px;height: 16px" alt=""></a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+
                                 <div class="col-12">
                                     <div class="tab-content" id="pills-tabContent">
+                                        <div class="col-md-6 col-6">
+                                            <label>Image</label>
+                                            <div class="form-group">
 
-                                        @foreach($translations as $translation)
-                                            <div
-                                                class="tab-pane fade {{$loop->index == 0 ? 'active show' : null}}"
-                                                id="pills-{{$translation->language_id}}" role="tabpanel"
-                                                aria-labelledby="pills-{{$translation->language_id}}-tab">
+                                                <label class="btn btn-primary mr-75 mb-0"
+                                                       for="image">
+                                                    <span class="d-none d-sm-block">Select Image</span>
+                                                    <input
+                                                        name="image"
+                                                        class="form-control-file"
+                                                        type="file"
+                                                        id="image"
+                                                        hidden
+                                                        accept="image/png, image/jpeg, image/jpg"
+                                                    />
 
-
-                                                <label>Title </label>
-                                                <input type="text" class="form-control" id="exampleInputName1"
-                                                       name="title[{{$translation->language_id}}]"
-                                                       value="{{ $translation->title }}">
-                                                <br>
-
-                                                <script type="text/javascript">
-
-                                                    $(document).ready(function() {
-                                                        $('#summernote{{ $translation->language_id}}').summernote();
-                                                    });
-
-                                                </script>
-                                            </div>
-
-                                        @endforeach
-                                            <div class="col-md-6 col-6">
-                                                <label>Image</label>
-                                                <div class="form-group">
-
-                                                    <label class="btn btn-primary mr-75 mb-0"
-                                                           for="image">
-                                                        <span class="d-none d-sm-block">Select Image</span>
-                                                        <input
-                                                            name="image"
-                                                            class="form-control-file"
-                                                            type="file"
-                                                            id="image"
-                                                            hidden
-                                                            accept="image/png, image/jpeg, image/jpg"
-                                                        />
-
-                                                        <span class="d-block d-sm-none">
+                                                    <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                    </label>
+                                                </label>
 
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-6 mb-2">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-6">
+                                            <div class="row">
+                                                <div class="col-md-6 col-6">
                                                     <img id="preview-image-before-upload"
                                                          src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
                                                          alt="preview image" class="img-fluid"
                                                          style="max-height: 100px;">
                                                 </div>
-                                                <div class="col-md-6 mb-2">
+                                                <div class="col-md-6 col-6">
 
-                                                <label>Old Image: </label>
+                                                    <label>Old Image: </label>
 
-                                                <img src="{{$future->image}}"  alt="{{$future->image}}" class="img-fluid" >
-                                                    <input type="hidden" name="old_image" value="{{ $future->image }}">
-                                                </div>
+                                                    <img src="{{$client->image}}" alt="{{$client->image}}"
+                                                         class="img-fluid">
+                                                    <input type="hidden" name="old_image" value="{{ $client->image }}">
                                                 </div>
                                             </div>
-                                            <label>
-                                                <select class="form-control" name="status">
-                                                    <option>Status</option>
-                                                    <option @if ($future->status ==1) selected @endif value="1">
-                                                        Active
-                                                    </option>
-                                                    <option @if ($future->status ==0)selected @endif  value="0">
-                                                        Passive
-                                                    </option>
-                                                </select>
-                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    <select class="form-control" name="status">
+                                                        <option>Status</option>
+                                                        <option @if ($client->status ==1) selected @endif value="1">
+                                                            {{trans('back.active')}}
+                                                        </option>
+                                                        <option @if ($client->status ==0)selected @endif  value="0">
+                                                            {{trans('back.passive')}}
+                                                        </option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="checkbox" name="is_slide_content" class="checkbox" value="1" {{  ($client->is_slide_content == 1 ? ' checked' : '') }}>
+                                                <label>{{trans('back.slider_content')}}</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="row">
