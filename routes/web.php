@@ -33,6 +33,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
     Route::resource('studies',StudyController::class);
+    Route::get('/allCaseStudies/',[FrontCaseStudyController::class,'all_case_studies'])->name('caseStudies.all');
+    Route::get('/read/{id}',[FrontCaseStudyController::class,'read_more'])->name('caseStudies.read_more');
 
     Route::name('aboutUs.')->group(function () {
 

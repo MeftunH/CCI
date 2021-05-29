@@ -48,7 +48,7 @@ class ClientController extends Controller
         }
 
         if (isset($image)) {
-            $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image_uni = uniqid('client', true) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/client_images/' . $image_uni);
             $client->image = '/storage/public/images/client_images/' . $image_uni;
             $client->status = $request->get('status');

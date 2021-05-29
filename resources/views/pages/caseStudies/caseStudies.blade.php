@@ -31,19 +31,19 @@
             <div class=" swiper-container">
                 <div class="swiper-wrapper">
                     @foreach($slider_clients as $sc)
-                    <div class="swiper-slide">
-                        <div class="slider">
-                            <div class="swiper-img">
-                                <img class="img-fluid" src="{{$sc->image}}">
+                        <div class="swiper-slide">
+                            <div class="slider">
+                                <div class="swiper-img">
+                                    <img class="img-fluid" src="{{$sc->image}}">
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
         <div class="header_bottom_img">
-            <img class="img-fluid" src="{{asset('./frontend/img/Wave_White_bottom_right_shape_03.png')}}" >
+            <img class="img-fluid" src="{{asset('./frontend/img/Wave_White_bottom_right_shape_03.png')}}">
         </div>
     </section>
     <!-- Our Clients -->
@@ -60,12 +60,14 @@
             </div>
             <div class="row logo">
                 @foreach($clients as $client)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="client-logo">
-                        <img src="{{$client->image}}">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="client-logo">
+                            <img src="{{$client->image}}">
+                        </div>
                     </div>
-                </div>
                 @endforeach
+
+            </div>
         </div>
     </section>
     <!-- Studies -->
@@ -74,27 +76,30 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="studies_text">
-                        <h1 class="studies_case">{{trans('caseStudyPage.Case')}} <span class="innovation_color innovation_color-case">{{trans('caseStudyPage.studies')}} </span></h1>
+                        <h1 class="studies_case">{{trans('caseStudyPage.Case')}} <span
+                                class="innovation_color innovation_color-case">{{trans('caseStudyPage.studies')}} </span>
+                        </h1>
                         <p class="studies_advice">{{trans('caseStudyPage.studies_advice')}}</p>
                     </div>
                 </div>
             </div>
             <div class="row studies_cards">
                 @foreach($last_studies as $ls)
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="studies-card">
-                        <div class="studies_card_01" style="background-image: url('{{url($ls->image)}}');">
-                        </div>
-                        <div class="studies_card_text">
-                            <h3 class="studies_coping studies_coping-case">{{$ls->title}}</h3>
-                            <span class="studies_bottom_text"><a class="studies_link" href="#">{{trans('back.read_more')}} <i class="fas fa-arrow-circle-right studies_icon"></i></a></span>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="studies-card">
+                            <div class="studies_card_01" style="background-image: url('{{url($ls->image)}}');">
+                            </div>
+                            <div class="studies_card_text">
+                                <a href="{{ URL::route('caseStudies.read_more',$ls->study_id) }}">    <h3 class="studies_coping studies_coping-case">{{$ls->title}}</h3> </a>
+                                <span class="studies_bottom_text"><a class="studies_link" href="{{ URL::route('caseStudies.read_more',$ls->study_id) }}">{{trans('back.read_more')}} <i
+                                            class="fas fa-arrow-circle-right studies_icon"></i></a></span>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <div class="studeis-btn">
-                <a href="#" class="intro_link intro_btn intro_btn-case" >All Case Studies</a>
+                <a href="{{route('caseStudies.all')}}" class="intro_link intro_btn intro_btn-case">All Case Studies</a>
             </div>
 
 

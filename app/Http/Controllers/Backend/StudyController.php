@@ -103,6 +103,7 @@ class StudyController extends Controller
     }
 
 
+
     public function destroy($id)
     {
 
