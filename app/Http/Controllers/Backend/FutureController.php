@@ -115,7 +115,8 @@ class FutureController extends Controller
             $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/future_images/' . $image_uni);
             $future_item->image = '/storage/public/images/future_images/' . $image_uni;
-//            unlink($old_image);
+            if ($request->hasFile($old_image))
+            unlink($old_image);
         } else {
             $future_item->image = $old_image;
         }

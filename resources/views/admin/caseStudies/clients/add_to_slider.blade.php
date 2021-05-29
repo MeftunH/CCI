@@ -30,34 +30,29 @@
                 <section id="basic-datatable">
                     <div class="row">
                         <div class="col-12">
+                            <form method="POST" action="{{route('aboutUs.caseStudies.clients.update_slider')}}">
+                                @csrf
                             <div class="card">
+
                                 <table class="datatables-basic table">
                                     <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>{{trans('back.image')}}</th>
-                                        <th>{{trans('back.status')}}</th>
                                         <th>{{trans('back.slider_content')}}</th>
-                                        <th>{{trans('back.actions')}}</th>
+                                        <th>{{trans('back.add_to_slider')}}</th>
                                     </tr>
                                     </thead>
                                     @php($i=1)
                                     <tbody>
 
-                                    @if(isset($client))
+                                    @if(isset($clients))
 
-                                        @foreach($client as $cs)
+                                        @foreach($clients as $cs)
                                             <tr>
                                                 <td>{{$i++}}</td>
                                                 <td><img src="{{$cs->image}}" class="img-fluid"
                                                          style="width: 30px"></td>
-                                                <td>
-                                                  @if($cs->status == 1)
-                                                        <span class="badge badge-success badge-pill"> {{trans('back.active')}} </span>
-                                                    @else
-                                                        <span class="badge badge-danger badge-pill"> {{trans('back.passive')}}  </span>
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     @if($cs->is_slide_content == 1)
                                                         <span class="badge badge-success badge-pill"> {{trans('back.yes')}} </span>
@@ -66,23 +61,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    <input type="checkbox" name="is_slide_content[{{ $cs->id }}]" @if($cs->is_slide_content == 1) checked @endif class="checkbox">
+                                                    <label>{{trans('back.add')}}</label>
 
-                                                    <div class="demo-inline-spacing">
-                                                    <a href="{{ URL::route('clients.edit',$cs->id) }}"
-                                                       class="btn btn-primary"
-                                                       style="position: relative;"> {{trans('back.edit')}} </a>
-                                                    <a href="{{ URL::route('clients.show',$cs->id) }}"
-                                                       class="btn btn-warning"
-                                                       style="position: relative;"> {{trans('back.show')}} </a>
-                                                        <form method="POST" class="buttons-group"
-                                                              action="{{ URL::route('clients.destroy',$cs->id) }}">
-                                                            {{ csrf_field() }}
-                                                            {{ method_field('DELETE') }}
-                                                            <button type="submit"
-                                                                    class="btn btn-gradient-danger delete-item"
-                                                                    style="position: relative;"> {{trans('back.delete')}} </button>
-                                                        </form>
-                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -91,8 +72,17 @@
 
                                     </tbody>
                                 </table>
-                                {{$client->links()}}
+
                             </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
 

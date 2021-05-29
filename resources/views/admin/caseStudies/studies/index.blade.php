@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-6">
                             <a type="button" class="btn btn-gradient-success"
-                               href="{{route('clients.create')}}">{{trans('backend.create_client')}}</a>
+                               href="{{route('studies.create')}}">{{trans('backend.create_study')}}</a>
                         </div>
                     </div>
                 </div>
@@ -35,47 +35,44 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>{{trans('back.title')}}</th>
+                                        <th>{{trans('back.description')}}</th>
                                         <th>{{trans('back.image')}}</th>
                                         <th>{{trans('back.status')}}</th>
-                                        <th>{{trans('back.slider_content')}}</th>
                                         <th>{{trans('back.actions')}}</th>
                                     </tr>
                                     </thead>
                                     @php($i=1)
                                     <tbody>
 
-                                    @if(isset($client))
-
-                                        @foreach($client as $cs)
+                                    @if(isset($studies))
+                                        @foreach($studies as $cs)
                                             <tr>
                                                 <td>{{$i++}}</td>
+                                                <td>{{$cs->title}}</td>
+                                                <td>{{$cs->limit(strip_tags($cs->description))}}</td>
                                                 <td><img src="{{$cs->image}}" class="img-fluid"
                                                          style="width: 30px"></td>
                                                 <td>
-                                                  @if($cs->status == 1)
-                                                        <span class="badge badge-success badge-pill"> {{trans('back.active')}} </span>
+                                                    @if($cs->status == 1)
+                                                        <span
+                                                            class="badge badge-success badge-pill"> {{trans('back.active')}} </span>
                                                     @else
-                                                        <span class="badge badge-danger badge-pill"> {{trans('back.passive')}}  </span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if($cs->is_slide_content == 1)
-                                                        <span class="badge badge-success badge-pill"> {{trans('back.yes')}} </span>
-                                                    @else
-                                                        <span class="badge badge-danger badge-pill"> {{trans('back.no')}}  </span>
+                                                        <span
+                                                            class="badge badge-danger badge-pill"> {{trans('back.passive')}}  </span>
                                                     @endif
                                                 </td>
                                                 <td>
 
                                                     <div class="demo-inline-spacing">
-                                                    <a href="{{ URL::route('clients.edit',$cs->id) }}"
-                                                       class="btn btn-primary"
-                                                       style="position: relative;"> {{trans('back.edit')}} </a>
-                                                    <a href="{{ URL::route('clients.show',$cs->id) }}"
-                                                       class="btn btn-warning"
-                                                       style="position: relative;"> {{trans('back.show')}} </a>
+                                                        <a href="{{ URL::route('studies.edit',$cs->study_id) }}"
+                                                           class="btn btn-primary"
+                                                           style="position: relative;"> {{trans('back.edit')}} </a>
+                                                        <a href="{{ URL::route('studies.show',$cs->study_id) }}"
+                                                           class="btn btn-warning"
+                                                           style="position: relative;"> {{trans('back.show')}} </a>
                                                         <form method="POST" class="buttons-group"
-                                                              action="{{ URL::route('clients.destroy',$cs->id) }}">
+                                                              action="{{ URL::route('studies.destroy',$cs->study_id) }}">
                                                             {{ csrf_field() }}
                                                             {{ method_field('DELETE') }}
                                                             <button type="submit"
@@ -91,7 +88,7 @@
 
                                     </tbody>
                                 </table>
-                                {{$client->links()}}
+                                {{$studies->links()}}
                             </div>
                         </div>
                     </div>

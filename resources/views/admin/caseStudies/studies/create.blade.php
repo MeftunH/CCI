@@ -35,23 +35,78 @@
                     </div>
                 @endif
 
-                <form action="{{route('clients.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('studies.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
+                                <ul class="nav nav-pills nav-pills-success" id="pills-tab" role="tablist">
+                                    @foreach(\App\Models\Language::all() as $key=> $value)
+                                        <li class="nav-item">
+                                            <a class="nav-link {{$loop->index == 0 ? 'active' : null}}"
+                                               id="pills-{{$value->id}}-tab" data-toggle="pill"
+                                               href="#pills-{{$value->id}}" role="tab"
+                                               aria-controls="pills-{{$value->id}}"
+                                               aria-selected="{{$loop->index == 0 ? 'true' : 'false'}}"><img
+                                                    src="{{ URL::to($value->flag)}}"
+                                                    style="width: 16px;height: 16px" alt=""></a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="col-12">
+                                    <div class="tab-content" id="pills-tabContent">
+
+                                        @foreach(\App\Models\Language::all() as $key=> $value)
+                                            <div
+                                                class="tab-pane fade {{$loop->index == 0 ? 'active show' : null}}"
+                                                id="pills-{{$value->id}}" role="tabpanel"
+                                                aria-labelledby="pills-{{$value->id}}-tab">
+                                                <label>Title {{$value['name']}} </label>
+                                                <input type="text" class="form-control" id="exampleInputName1"
+                                                       name="title[{{$value['id']}}]">
+                                            <!--                                                        <img src="{{asset($value['flag'])}}"
+                                                             style="width: 16px; height: 16px;"
+                                                             alt="{{ $value['flag']}}">-->
+                                                <br>
+                                                <label>Description </label>
+                                                <div class="form-group">
+                                                    <textarea class="summernote"
+                                                              name="description[{{$value['id']}}]"
+                                                              rows="30"
+                                                              id="summernote"></textarea>
+                                                </div>
+                                                <br>
+
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+                                                        $('.summernote').summernote();
+                                                    });
+                                                </script>
+                                            </div>
+                                        @endforeach
+
+                                                <div class="col-xs-12">
+                                                    <label>
+                                                        <select class="form-control" name="status">
+                                                            <option value={{null}}>{{trans('back.status')}}</option>
+                                                            <option value="1">{{trans('back.active')}}</option>
+                                                            <option value="0">{{trans('back.passive')}}</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+
                                         <div class="row">
                                             <div class="col">
                                                 <label>Image</label>
                                                 <div class="form-group">
+
                                                     <label class="btn btn-primary mr-75 mb-0"
                                                            for="image">
                                                         <span class="d-none d-sm-block">Select Image</span>
                                                         <input
                                                             name="image"
-                                                            class="form-control"
+                                                            class="form-control-file"
                                                             type="file"
                                                             id="image"
                                                             hidden
@@ -76,23 +131,6 @@
                                         </div>
 
                                         <br>
-                                        <div class="col-md-6">
-                                            <label>
-                                                <select class="form-control" name="status">
-                                                    <option value={{null}}>{{trans('back.status')}}</option>
-                                                    <option value="1">{{trans('back.active')}}</option>
-                                                    <option value="0">{{trans('back.passive')}}</option>
-                                                </select>
-                                            </label>
-                                            <br/>
-                                            <br/>
-                                            <br/>
-                                            <br/>
-
-                                            <input type="checkbox" name="is_slide_content" class="checkbox" value="1">
-                                            <label>{{trans('back.slider_content')}}</label>
-                                        </div>
-                                        <br/>
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div class="text-right">
@@ -101,7 +139,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                 </div>
                             </div>
