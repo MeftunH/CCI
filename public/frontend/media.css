@@ -1,0 +1,1534 @@
+@media screen and (max-width: 700px){
+    nav.desk {
+        display: none;
+    }
+    nav.mob {
+        display: block;
+    }
+}
+@media screen and (max-width: 1024) {
+    .logo_img{
+        width: 47px;
+        height: 60px;
+    }
+    .burger_black
+.header_top{
+    display: none;
+}
+.header_nav{
+    background-color: black;
+    position: fixed;
+}
+.header_logo a{
+    color: black;
+}
+.header_logo:hover .active{
+    color: black;
+}
+    .header_nav{
+        background-color: black;
+    }
+    .intro_IT{
+        font-size: 64px;
+    }
+    .unlocking-img{
+        height: 300px;
+        border-radius: 5px;
+    }
+    .unlocking_img{
+        padding-top: 42px;  
+    }
+    .footer_link{
+        font-size: 13px;
+        padding: 5px 0;
+    }
+    .social{
+        margin: 6px 0;
+    }
+    .footer_connection{
+        padding-top: 90px;
+    }
+    .intro_btn{
+    align-items: center;
+    justify-content: center;
+    background-color: #E64209;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    margin-inline: 42px;
+    border: none;
+    z-index: 20;
+    padding: 13px 0;
+    position: relative;
+    }
+    .intro_link{
+        border: 1px solid orangered;
+    }
+    .future-left{
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .innovation_icon{
+        bottom: 4px;
+    }
+    .line_lg{
+        left: 480px;
+    }
+}
+@media screen and (max-width: 960px) {
+    .studies-card{
+        margin: 10px 10px;
+    }
+    .news_intro{
+        margin-top: 0;
+        padding-bottom: 80px;
+    }
+    .intro_text{
+        margin-top: 30px;
+    }
+    .news-input{
+        margin-top: 20px;
+    }
+    .card-office-post{
+        font-size: 20.5px;
+    }
+    .post_img{
+        width: 180px;
+        height: 130px;
+    }
+    .hamburger-menu{
+        top: 10px;
+        z-index: 999;
+    }
+    .navbar_items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    }
+    .nav_items{
+        margin: 0;
+        color: white;
+    }
+    .nav_items:hover{
+        color: white;
+    }
+    .open:hover{
+        color: white;
+    }
+    .clients{
+        padding-top: 82px;
+    }
+    .header_bottom_img{
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+    }
+    .nav_open:hover{
+        color: white;
+    }
+    .nav_links:hover{
+        color: white;
+    }
+    .active::before{
+        display: none;
+    }
+    .open::after{
+        left: 31px; 
+        color: white;
+    }
+    .dropdown{
+        left: -42px;
+        z-index: 999;
+    }
+    .open::before{
+        display: none;
+    }
+    .navbar{
+        width: 250px;
+        height: 100%;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        transition: all 0.8s cubic-bezier(1, 0, 0, 1);
+        }
+
+    .list:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        transition: ease-in-out .3s all;
+    }
+
+    .change:before {
+        content: '';
+        visibility: visible;
+        opacity: 0.7;
+    }
+   .change{
+            right: 0;
+        }
+ .line{
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.8s;
+        }
+        .change .line-1{
+            transform: rotateZ(-45deg) translate(-8px, 6px);
+        }
+        .change  .line-2{
+            opacity: 0;
+        }
+        .change .line-3{
+            transform: rotateZ(45deg) translate(-6px, -3px);
+        }
+    .head{
+        background: #191919;
+        justify-content: flex-start;
+    }
+    .logo_img{
+        display: none;
+    }
+    .innovation_left{
+        padding-top: 0;
+    }
+    .intro{
+        padding-bottom: 130px;
+    }
+    .intro_IT{
+        font-size: 66px;
+        font-weight: 600;
+        padding-top: 20px;
+    }
+    .intro_work{
+        font-size: 26px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .btn{
+        width: 170px;
+        height: 45px;
+        font-size: 15px;
+    }
+   .floating_img{
+       display: none;
+   }
+   .floating_left_img{
+     display: none;
+   }
+   .innovation_BF{
+       font-size: 64px;
+       padding-right: 97px;
+   }
+   .innovation_inform{
+       padding-right: 100px;
+   }
+   .innovation-btn{
+    padding-top: 10px;
+    padding-bottom: 10px;
+   }
+   .company{
+       padding-top: 105px;
+   }
+   .floating_unlocking{
+       display: none;
+   }
+   .studies_text{
+       padding-top: 34px;
+   }
+   .floating_unlock_img{
+       display: none;
+   }
+   .floating_right_top{
+       display: none;
+   }
+   .floating_right_img{
+       display: none;
+   }
+   .innovation_cards{
+       padding-top: 40px;
+   }
+   .technology_card{
+       padding-top: 50px;
+   }
+   .technology_img{
+       text-align: center;
+   }
+   .tech_card{
+       margin-top: 26px;
+   }
+   .innovation-cards{
+       padding-top: 0;
+   }
+   .innovation{
+       padding-top: 90px;
+   }
+   .intro_text{
+       margin-top: 115px;
+   }
+   .floating-img-top{
+    display: none;
+}
+.floating-img-bottom{
+    display: none;
+}
+.lg-cards_card_01, .lg-cards_card_02, .lg-cards_card_03, .lg-cards_card_04, .lg-cards_card_05{
+    margin: 8px 0px;
+padding: 9px 38px;
+margin-right: 75px;
+}
+.lg-cards_card_01::after, .lg-cards_card_02::after, .lg-cards_card_03::after, .lg-cards_card_04::after, .lg-cards_card_05::after{
+   display: none;
+}
+.lg-cards_card_01::before, .lg-cards_card_02::before, .lg-cards_card_03::before, .lg-cards_card_04::before, .lg-cards_card_05::before{
+    display: none;
+}
+.lg-circle_2018{
+    top: 270px;
+}
+.lg-cards_02{
+    margin-top: 122px;
+}
+.lg-circle_2019{
+    bottom: 175px;
+}
+.lg-cards_03{
+    margin-top: 132px;
+}
+.future-left_future{
+    font-size: 44px;
+}
+.future-cards{
+    padding-top: 65px;
+}
+.future_bottom_card{
+    padding: 40px 10px;
+}
+.create-text{
+    padding-top: 50px;
+    padding-right: 0;
+}
+.subscribe-text{
+    font-size: 34px;
+    padding-top: 0;
+}
+.email{
+    padding-right: 350px;
+    margin-top: 20px;
+}
+.subscribe{
+    top: 21px;
+    left: 0;
+}
+.footer-black_right{
+    text-align: center;
+}
+.footer-black_left{
+    text-align: center;
+}
+.lg-circle_2016{
+    width: 75px;
+height: 75px;
+top: 10px;
+right: 0px;
+}
+.lg-circle_2018{
+    right: 0;
+    width: 75px;
+    height: 75px;
+}
+.lg-circle_2019{
+    right: 0;
+    width: 75px;
+    height: 75px;
+}
+.lg-circle-number{
+    font-size: 15px;
+margin: 0;
+}
+.lg-circle_2016{
+    width: 75px;
+height: 75px;
+position: absolute;
+top: 10px;
+right: 0px;
+}
+.card-month{
+    font-size: 13.5px;
+}
+.card-month-post{
+    font-size: 14.5px;
+}
+.card-office{
+    font-size: 22.5px;
+    font-weight: 600;
+}
+.card-office-post{
+    font-size: 20.5px;
+}
+.intro{
+    margin-top: 0px;
+}
+.top_fixed{
+    display: none;
+}
+.header_nav{
+    top: 0;
+}
+.long-term_list::after{
+    width: 100%;
+}
+.line_lg{
+display: none;
+}
+.intro_about{
+    font-size: 64px;
+}
+.intro_work{
+    font-size: 24px;
+    padding-right: 166px;
+}
+.HR{
+    padding: 0;
+}
+.copy-line{
+    padding: 0;
+}
+.footer-black_left{
+    text-align: center;
+    display: block;
+}
+.subscribe-text{
+    padding-left: 0;
+}
+.open:hover a.nav_links{
+    color: white;
+}
+.footer-black_right{
+    text-align: center;
+}
+.header_bottom_img{
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+}
+.long-term_left{
+    padding-top: 0;
+}
+.card-top-04{
+    margin-top: 0;
+}
+.card-top-01{
+    margin-top: 0;
+}
+.studeis-btn{
+    padding-top: 0;
+}
+.HR{
+    padding-right: 0;
+}
+.text{
+    padding-right: 0;
+}
+.card-top-04{
+    margin-top: 0;
+}
+.card-top-01{
+    margin-top: 0;
+}
+form{
+    padding-top: 40px;
+}
+.studeis-btn{
+    padding-top: 0;
+}
+.HR{
+    padding-right: 0;
+}
+.text{
+    padding-right: 0;
+}
+}
+@media screen and (max-width: 768px){
+    .studies_coping_news{
+        font-size: 30px;
+    }
+    .studies-card{
+        height: 547px;
+        margin: 10px 10px;
+    }
+    .clients{
+        padding-top: 60px;
+    }
+    i.fa.fa-quote-right{
+        font-size: 80px;
+    }
+    .right-help{
+        font-size: 24px;
+    }
+    .experience_text{
+        font-size: 40px;
+    }
+    .experience-trends{
+        font-size: 21px;
+    }
+    h3{
+        font-size: 20px;
+    }
+    .agile{
+        font-size: 14px;
+    }
+    .card_bottom_text{
+        font-size: 12px;
+    }
+    .innovation_icon{
+        font-size: 15px;
+        top: -1px;
+    }
+    .intro_btn{
+    align-items: center;
+    justify-content: center;
+    background-color: #E64209;
+    color: white;
+    font-size: 14px;
+    border-radius: 30px;
+    border: none;
+    z-index: 20;
+    padding: 14px 45px;
+    position: relative;
+    }
+    .intro_btn-case{
+        background-color: #057485;
+    }
+    .logo_img{
+        width: 45px;
+    height: 65px;
+    }
+    .footer-black_link{
+        font-size: 12px;
+    }
+    .copy-line{
+        font-size: 12px;
+    }
+    .innovation_BF{
+        font-size: 46px;
+        padding: 0;
+    }
+    .innovation_inform{
+        padding: 0;
+        font-size: 24px;
+    }
+    .future-left{
+        padding-right: 0;
+    }
+    .intro_IT{
+        font-size: 46px;
+    }
+    .reach-text_out{
+        font-size: 30px;
+    }
+    .form_leave{
+        font-size: 30px;
+        padding: 0;
+    }
+    .email{
+        padding-right: 289px;
+        padding: 12px 18px;
+    }
+    .subscribe-text{
+        font-size: 30px;
+    }
+    .subscribe{
+        padding: 13px 34px;
+    }
+    .intro_work{
+        font-size: 24px;
+    }
+    .unlock_unlock{
+        font-size: 46px;
+    }
+    .unlock_bring{
+        font-size: 24px;
+    }
+    .studies_case{
+        font-size: 46px;
+    }
+    .studies_advice{
+        font-size: 24px;
+    }
+    .unlocking_text{
+        padding-top: 80px;
+    }
+    .innovation_left{
+        padding-top: 0;
+    }
+    .company{
+        padding-top: 60px;
+    }
+    .unlocking-img{
+        height: 270px;
+    }
+    .logo_img{
+        width: 100px;
+        height: 50px;
+    }
+    .home-logo{
+        width: 38px;
+    }
+    .intro_work{
+        padding: 0;
+        font-size: 20px;
+    }
+    .intro_about{
+        font-size: 46px;
+    }
+    .line_lg{
+        display: none;
+    }
+    .operational_process{
+        font-size: 46px;
+    }
+    .operational_robot{
+        font-size: 20px;
+    }
+    .lg-circle_2019{
+        bottom: 181px;
+    }
+    .operational{
+        padding: 180px 0;
+    }
+    .future-left_future{
+        font-size: 40px;
+    }
+    .future-left_help{
+        font-size: 20px;
+    }
+    .future_btn{
+        padding: 12px 10px;
+    }
+    .subscribe-text{
+        padding-left: 0;
+    }
+    .intro{
+        padding: 110px 0;
+    }
+    .intro_text{
+        margin-top: 25px;
+    }
+    .intro_about{
+        font-size: 55px;
+    }
+    .intro_work{
+        font-size: 22px;
+    }
+    .long_term{
+        font-size: 40px;
+    }
+    .HR{
+        font-size: 22px;
+    }
+    .career{
+        padding: 67px 0;
+    }
+    h3{
+        font-size: 20px;
+    }
+    .card_bottom_text{
+        font-size: 12px;
+    }
+    .innovation_icon{
+        font-size: 15px;
+    }
+    .text-work{
+        font-size: 40px;
+    }
+    .upload-best{
+        font-size: 26px;
+    }
+    .email{
+        padding: 14px 14px;
+    }
+    .subscribe{
+        padding: 14px 35px;
+    }
+    .subscribe-text{
+        font-size: 36px;
+    }
+    .card_bottom_text{
+        font-size: 12px;
+    }
+    .innovation_icon{
+        font-size: 15px;
+    }
+    .text-work{
+        font-size: 40px;
+    }
+    .upload-best{
+        font-size: 26px;
+    }
+    .upload-text{
+        padding-top: 70px;
+    }
+    label{
+        font-size: 20px;
+    }
+    .email{
+        padding: 14px 14px;
+    }
+    .subscribe{
+        padding: 14px 35px;
+    }
+    .subscribe-text{
+        font-size: 36px;
+    }
+}
+@media screen and (max-width: 576px){
+    .studies_coping_news{
+        font-size: 28px;
+        padding: 10px 0;
+    }
+
+    .clients-text{
+        padding: 40px 0;
+    }
+    .our-clients{
+        font-size: 40px;
+    }
+    .clients-explore{
+        font-size: 20px;
+    }
+    .news_icon{
+        font-size: 24px;
+        padding-top: 24px;
+    }
+    .news_intro{
+        padding-bottom: 0px;
+    }
+    .post_img{
+        height: 115px;
+        width: 170px;
+    }
+    .studies_consulting_news{
+        font-size: 30px;
+    }
+    .studies_recruitment-news{
+        font-size: 15px;
+    }
+    .studies_consulting-news::after{
+        left: 81px;
+    }
+    .studies_consulting-news{
+        font-size: 15px;
+    }
+    .reach-text_help{
+        font-size: 14px;
+    }
+    .reach-text_out{
+        font-size: 26px;
+    }
+    .reach-text{
+        padding-top: 0;
+    }
+    i.fa.fa-quote-right{
+        font-size: 70px;
+    }
+    .right-help{
+        font-size: 20px;
+    }
+    .text{
+        font-size: 15px;
+        padding-top: 20px;
+    }
+    .reach-card{
+        padding: 25px 0;
+    }
+    .reach-card_adress{
+        font-size: 14px;
+    }
+    .reach-card_city{
+        font-size: 18px;
+    }
+    .reach-card_street{
+        font-size: 16px;
+    }
+    .reach-social_media{
+        font-size: 20px;
+    }
+    .social-link{
+        width: 35px;
+        height: 35px;
+    }
+    .form_leave{
+        font-size: 25px;
+    }
+    .form-btn{
+        font-size: 14px;
+    }
+    input{
+        padding-right: 0px;
+        padding: 8px 5px;
+    }
+    label{
+        font-size: 14px;
+    }
+    .intro_IT{
+        font-size: 30px;
+    }
+    .intro_work{
+        font-size: 16px;
+    }
+    .intro_btn{
+        font-size: 13px;
+        padding: 12px 38px;
+    }
+    .innovation_BF{
+        font-size: 30px;
+        padding: 0;
+    }
+    .innovation_inform{
+      
+            padding: 0;
+            font-size: 16px;
+    }
+    .unlock_unlock{
+        font-size: 30px;
+    }
+    .unlock_bring{
+        font-size: 16px;
+    }
+    .unlocking-btn{
+        font-size: 12px;   
+         padding: 9px 10px;
+    }
+    .studies_case{
+        font-size: 30px;
+    }
+    .studies_advice{
+        font-size: 16px;
+    }
+    .intro_about{
+        font-size: 35px;
+    }
+    .intro_work{
+        padding: 0;
+        font-size: 18px;
+    }
+    .long_term{
+        font-size: 30px;
+    }
+    .lg_young{
+        font-size: 20px;
+    }
+    .text{
+        font-size: 15px;
+    }
+    .long-text{
+    font-size: 15px;
+    }
+    .long-icon{
+        width: 19px;
+        height: 19px;
+    }
+    .line_lg{
+       display: none;
+    }
+    .operational_text{
+        padding: 0;
+    }
+    .operational{
+        padding: 125px 0;
+    }
+    .operational_process{
+        font-size: 30px;
+    }
+    .operational_robot{
+        font-size: 17px;
+    }
+    .future-cards{
+        text-align: center;
+        padding: 0;
+    }
+    .operational_btn{
+        font-size: 14px;
+    padding: 12px 20px;
+    }
+    .future-left_future{
+        font-size: 30px;
+    }
+    .future-left_help{
+        font-size: 17px;
+    }
+    .future_btn{
+        font-size: 12px;
+    }
+    .card-office{
+        font-size: 20px;
+    }
+    .card-office-post{
+        font-size: 17px;
+    }
+    .lg-circle_2019{
+        bottom: 188px;
+    }
+    .future_able{
+        font-size: 20px;
+    }
+    .future_low{
+        font-size: 14px;
+    }
+    .create-text_leads{
+        font-size: 30px;
+    }
+    .create-text_help{
+        font-size: 20px;
+    }
+    .create-text_company{
+        font-size: 14px;
+    }
+    .card_bottom_text{
+        font-size: 11px;
+    }
+    .innovation_icon{
+        left: 86px;
+        font-size: 14px;
+    }
+    .create{
+        padding: 80px 0;
+    }
+    .subscribe-text{
+        font-size: 30px;
+    padding-top: 0;
+    }
+    .email{
+        padding: 8px 15px;
+        /* padding-right: 308px; */
+    }
+    .subscribe{
+        /* left: 394px; */
+        padding: 9px 27px;
+    }
+    .intro_about{
+        font-size: 45px;
+    }
+    .intro_work{
+        font-size: 18px;
+    }
+    .career{
+        padding: 62px 0;
+    }
+    .long_term{
+        font-size: 35px;
+    }
+    .HR{
+        font-size: 18px;
+    }
+    .text{
+        font-size: 15px;
+    }
+    .long-text{
+        font-size: 15px;
+    }
+    .careers-img-01{
+        height: 200px;
+    }
+    h3{
+        font-size: 18px;
+    }
+    .card_bottom_text{
+        font-size: 11px;
+    }
+    .text-work{
+        font-size: 35px;
+    }
+    .intro_btn{
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 425px){
+    .studies_coping_news{
+        font-size: 24px;
+    }
+    .upload-text{
+        padding-top: 15px;
+    }
+    .upload-best{
+        font-size: 20px;
+    }
+    .label-careers{
+        font-size: 20px;
+    }
+    .form-carrers{
+        padding: 0;
+    }
+    form{
+        padding: 0;
+    }
+    .our-clients{
+        font-size: 35px;
+    }
+    .clients-explore {
+        font-size: 17px;
+    }
+    .news_card_01{
+        margin-top: 20px;
+        height: 300px;
+    }
+    /* .future{
+        height: 300px;
+    } */
+    .clients-text{
+        padding: 0;
+    }
+    .post_img{
+        width: 158px;
+        height: 100px;
+    }
+    .studies_consulting_news{
+        font-size: 24px;
+    }
+    .studies_consulting-news{
+        font-size: 14px;
+    }
+    .studies_recruitment-news{
+        font-size: 14px;
+    }
+    .studies_consulting-news::after{
+        left: 77px;
+    }
+    .logo_img{
+        width: 35px;
+        height: 50px;
+    }
+    .innovation{
+        padding-top: 70px;
+    }
+    .intro{
+        padding-bottom: 100px;
+    }
+    .intro_IT{
+        font-size: 30px;
+    }
+    .intro_btn{
+        font-size: 12px;
+        padding: 10px 38px;
+    }
+    .reach-text_help{
+        font-size: 12px;
+    }
+    .reach-text_out{
+        font-size: 20px;
+    }
+    i.fa.fa-quote-right{
+        font-size: 60px;
+    }
+    .right-help{
+        font-size: 18px;
+    }
+    .right-name{
+        font-size: 14px;
+    }
+    .experience_text{
+        font-size: 30px;
+    }
+    .experience-trends{
+        font-size: 18px;
+    }
+    h3{
+        font-size: 18px;
+    }
+    .card_bottom_text{
+        font-size: 11px;
+    }
+    .innovation_icon{
+        font-size: 14px;
+    }
+    .experience-card{
+        margin: 10px 0;
+    }
+    .form_leave{
+        font-size: 17px;
+    }
+    .intro_work{
+        font-size: 16px;
+    }
+    .innovation_inform{
+        font-size: 16px;
+        padding-inline: 0;
+    }
+    .copy-line{
+        font-size: 11px;
+    }
+    .footer-black_link{
+        font-size: 11px;
+        padding: 0 10px;
+    }
+    .studies-card{
+        padding: 15px 0;
+    }
+    .innovation{
+        padding-bottom: 60px;
+    }
+    /* .intro_btn{
+        width: 180px;
+    height: 45px;
+    } */
+    .innovation_BF{
+        font-size: 30px;
+    }
+    .unlock_bring{
+        font-size: 16px;
+    }
+    .unlocking_text{
+        padding-top: 52px;
+    }
+    .unlocking-btn{
+        margin: 30px 0;
+    }
+    .innovation{
+        padding-top: 52px;
+    }
+    .innovation-btn{
+        width: 100px;
+        height: 20px;
+    }
+    .unlock_unlock{
+        font-size: 30px;
+    }
+    .unlocking_img{
+        margin-top: 20px;
+        height: 241px;
+    }
+    .studies_case{
+        font-size: 30px;
+    }
+    .studies_advice{
+        font-size: 16px;
+    }
+    .technology_card{
+        text-align: center;
+        padding-top: 15px;
+    }
+    .technology_cards{
+        padding: 0;
+    }
+
+    .footer-link{
+        margin-top: 30px;
+    }
+    .footer_text{
+        padding-top: 0;
+    }
+    .company{
+        padding-top: 30px;
+    }
+    .studies_text{
+        padding-top: 0px;
+        padding-bottom: 20px;
+    }
+    .logo_img {
+        width: 100px;
+        height: 50px;
+    }
+    .home-logo{
+        width: 40px;
+        height: 50px;
+    }
+    .intro_about{
+        font-size: 30px;
+    }
+    .intro_work{
+        font-size: 16px;
+        /* padding-right: 166px; */
+    }
+    .long_term{
+        font-size: 30px;
+    }
+    .lg_young{
+        font-size: 18px;
+    }
+    .HR{
+        font-size: 18px;
+    }
+    .long-terms_link{
+        font-size: 12px;
+    }
+    .text{
+        padding-right: 0;
+        font-size: 14px;
+    }
+    .lg_young{
+        font-size: 14px;
+    }
+    .long-icon{
+        top: 14px;
+    }
+    .lg-circle_2016, .lg-circle_2018, .lg-circle_2019{
+        width: 65px;
+        height: 65px;
+    }
+    .card-month{
+        font-size: 12px;
+    }
+    
+    .card-office{
+        font-size: 18px;
+    }
+    .card-office-post{
+        font-size: 15px;
+    }
+    .intro_about{
+        font-size: 40px;
+    }
+    .long_term{
+        font-size: 30px;
+    }
+    .careers-card{
+        margin: 15px 0;
+    }
+    .text-work{
+        font-size: 30px;
+    }
+    .subscribe-text {
+        font-size: 20px;
+        padding-top: 0;
+    }
+    .subscribe{
+        font-size: 14px;
+    }
+    .email{
+        padding: 7px 12px;
+    }
+    .footer-subscribe{
+        padding-top: 80px;
+    }
+    .subscribe-text{
+        font-size: 20px;
+    padding-top: 0;
+    }
+    .footer-black_link{
+        /* padding: 0 45px; */
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 375px){
+    .intro{
+        padding: 80px 0;
+    }
+    .studies_coping_news{
+        font-size: 20px;
+        padding: 5px 0;
+    }
+    .our-clients{
+        font-size: 30px;
+    }
+    .clients{
+        padding-top: 30px;
+    }
+    .clients-explore{
+        font-size: 15px;
+    }
+    .news_card_01{
+        height: 230px;
+    }
+    /* .future{
+        height: 230px;
+    } */
+    .post_img{
+        height: 80px;
+    }
+
+    .studies_consulting_news{
+        font-size: 20px;
+    }
+    .news-left_text p{
+        font-size: 14px;
+    }
+    .intro_work{
+        font-size: 14px;
+    }
+    .intro_btn {
+        font-size: 12px;
+        padding: 8px 33px;
+    }
+    .intro_IT{
+        font-size: 15px;
+    }
+    .innovation_BF{
+        font-size: 25px;
+    }
+    .innovation_inform{
+        font-size: 14px;
+    }
+    .unlock_unlock{
+        font-size: 25px;
+    }
+    .unlock_bring{
+        font-size: 14px;
+    }
+    .unlocking-btn{
+        font-size: 12px;
+        padding: 8px 33px;
+    }
+    .studies_case{
+        font-size: 25px;
+    }
+    .studies_advice{
+        font-size: 14px;
+    }
+    .innovation-btn{
+        font-size: 12px;
+        padding: 8px 33px;
+    }
+    .footer-black_link{
+        padding: 0 12px;
+        font-size: 10px;
+    }
+    .copy-line{
+        font-size: 10px;
+    }
+    .intro_about{
+        font-size: 40px;
+    }
+    .intro_work{
+        font-size: 14px;
+    }
+    .long_term{
+        font-size: 20px;
+    }
+    .HR{
+        font-size: 15px;
+    }
+    .text{
+        font-size: 12px;
+    }
+    .long-text{
+        font-size: 12px;
+    }
+    .long-icon{
+        top: 11px;
+    }
+    .card-month{
+        font-size: 10px;
+    }
+    .card-office{
+        font-size: 14px;
+    }
+    .lg-cards_card_01, .lg-cards_card_02, .lg-cards_card_03, .lg-cards_card_04, .lg-cards_card_05{
+        padding: 6px 38px;
+    }
+    .lg-circle_2016, .lg-circle_2018, .lg-circle_2019{
+        width: 55px;
+        height: 55px;
+    }
+    .lg-cards_01{
+        margin-top: 76px;
+    }
+    .lg-cards_02{
+        margin-top: 82px;
+    }
+    .lg-cards_03{
+        margin-top: 84px;
+    }
+    .lg-circle_2018{
+        top: 221px;
+    }
+    .lg-circle_2019{
+        bottom: 135px;
+    }
+    .operational_process{
+        font-size: 25px;
+    }
+    .operational_robot{
+        font-size: 14px;
+    }
+    .operational_btn{
+        font-size: 10px;
+    padding: 12px 18px;
+    }
+    .future-left_future{
+        font-size: 25px;
+    }
+    .future-left_help{
+        font-size: 14px;
+    }
+    .future_btn{
+        font-size: 10px;
+    }
+    .future_developing_text{
+        font-size: 14px;
+    }
+    .future_able{
+        font-size: 16px;
+    }
+    .future_low{
+        font-size: 12px;
+    }
+    .create-text_leads{
+        font-size: 20px;
+    }
+    .create-text_help{
+        font-size: 15px;
+    }
+    .create-text_company{
+        font-size: 11px;
+    }
+    .innovation_link{
+        font-size: 10px;
+    }
+    .innovation_icon{
+        font-size: 12px;
+    }
+    .innovation_icon-about{
+        top: 229px;
+    }
+    .footer-subscribe{
+        padding-top: 80px;
+    }
+    .subscribe-text{
+        font-size: 20px;
+    padding-top: 0;
+    }
+    .footer-black_link{
+        /* padding: 0 45px; */
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 320px){
+    .studies_coping_news{
+        font-size: 17px;
+        padding: 0;
+    }
+    .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+        width: 25px;
+        height: 25px;
+    }
+    .studies_consulting_news{
+        font-size: 17px;
+    }
+    .news-left_text p{
+        font-size: 13px;
+    }
+    .studies_consulting-news{
+        font-size: 12px;
+    }
+    .studies_recruitment-news{
+        font-size: 12px;
+    }
+    .studies_consulting-news::after{
+        left: 68px;
+    }
+    h4{
+        font-size: 20px;
+    }
+    .intro_news{
+        padding-bottom: 80px;
+        padding-bottom: 49px 0;
+    }
+    .intro_IT{
+        font-size: 28px;
+    }
+    .intro_work{
+        font-size: 16px;
+    }
+    .innovation_BF{
+        font-size: 28px;
+    }
+    .innovation_inform{
+        font-size: 16px;
+    }
+    .unlock_unlock{
+        font-size: 28px;
+    }
+    .unlock_bring{
+        font-size: 15px;
+    }
+    .experience_text{
+        font-size: 28px;
+    }
+    .experience-trends{
+        font-size: 16px;
+    }
+    .unlocking-btn{
+        font-size: 10px;
+    }
+    .studies_case{
+        font-size: 28px;
+    }
+    .studies_advice{
+        font-size: 15px;
+    }
+    .unlocking-img{
+        height: 230px;
+    }
+    .footer-black_link{
+        padding: 0 8px;
+        font-size: 9px;
+    }
+    .copy-line{
+        font-size: 8px;
+    }
+    i.fa.fa-quote-right{
+        font-size: 55px;
+    }
+    .right-help{
+        font-size: 16px;
+    }
+    .right-name{
+        font-size: 13px;
+    }
+    .text{
+        font-size: 14px;
+    }
+    .card-month{
+        font-size: 9px;
+    }
+    .card-office{
+        font-size: 12px;
+    }
+    .lg-cards_card_01, .lg-cards_card_02, .lg-cards_card_03, .lg-cards_card_04, .lg-cards_card_05{
+        padding: 6px 27px;
+        margin-right: 53px;
+    }
+    .lg-circle_2019{
+        bottom: 124px;
+    }
+    .lg-circle_2018{
+        top: 197px;
+    }
+    .long_term{
+        font-size: 28px;
+    }
+    .HR{
+        font-size: 16px;
+    }
+    .text{
+        font-size: 14px;
+    }
+    .long-text{
+        font-size: 14px;
+    }
+    .text-work{
+        font-size: 28px;
+    }
+    .intro_btn{
+        font-size: 11px;
+        padding: 11px 32px;
+    }
+}
+
+
