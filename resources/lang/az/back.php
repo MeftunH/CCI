@@ -24,5 +24,6 @@ return [
     'warn_code'=>'Butun dillerin kodlarini bu linkde tapacaqsan:',
     'warn_locales'=>'Butun dillerin lokallarini bu linkde tapacaqsan:',
     'codes'=>'Olke kodlari:',
+    'read_more'=>'Daha cox oxu',
     'locales'=>'Lokallar:',
 ];

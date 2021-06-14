@@ -35,7 +35,8 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.future.item.update',$future->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('aboutUs.future.item.update',$future->id)}}" method="post"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <div class="card">
@@ -71,37 +72,49 @@
 
                                                 <script type="text/javascript">
 
-                                                    $(document).ready(function() {
-                                                        $('#summernote{{ $translation->language_id}}').summernote();
-                                                    });
+                                                    $(document).ready(function () {
+                                                        $('#summernote{{ $translation->language_id}}').summernote({
+                                                            callbacks: {
+                                                                onPaste: function (e) {
+                                                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
+                                                                    e.preventDefault();
+
+                                                                    // Firefox fix
+                                                                    setTimeout(function () {
+                                                                        document.execCommand('insertText', false, bufferText);
+                                                                    }, 10);
+                                                                }
+                                                            }
+                                                        });
+                                                    });
                                                 </script>
                                             </div>
 
                                         @endforeach
-                                            <div class="col-md-6 col-6">
-                                                <label>Image</label>
-                                                <div class="form-group">
+                                        <div class="col-md-6 col-6">
+                                            <label>Image</label>
+                                            <div class="form-group">
 
-                                                    <label class="btn btn-primary mr-75 mb-0"
-                                                           for="image">
-                                                        <span class="d-none d-sm-block">Select Image</span>
-                                                        <input
-                                                            name="image"
-                                                            class="form-control-file"
-                                                            type="file"
-                                                            id="image"
-                                                            hidden
-                                                            accept="image/png, image/jpeg, image/jpg"
-                                                        />
+                                                <label class="btn btn-primary mr-75 mb-0"
+                                                       for="image">
+                                                    <span class="d-none d-sm-block">Select Image</span>
+                                                    <input
+                                                        name="image"
+                                                        class="form-control-file"
+                                                        type="file"
+                                                        id="image"
+                                                        hidden
+                                                        accept="image/png, image/jpeg, image/jpg"
+                                                    />
 
-                                                        <span class="d-block d-sm-none">
+                                                    <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                    </label>
+                                                </label>
 
-                                                </div>
-                                                <div class="row">
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6 mb-2">
                                                     <img id="preview-image-before-upload"
                                                          src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
@@ -110,24 +123,48 @@
                                                 </div>
                                                 <div class="col-md-6 mb-2">
 
-                                                <label>Old Image: </label>
+                                                    <label>Old Image: </label>
 
-                                                <img src="{{$future->image}}"  alt="{{$future->image}}" class="img-fluid" >
+                                                    <img src="{{$future->image}}" alt="{{$future->image}}"
+                                                         class="img-fluid">
                                                     <input type="hidden" name="old_image" value="{{ $future->image }}">
                                                 </div>
-                                                </div>
                                             </div>
-                                            <label>
+                                        </div>
+                                        <label>
+
+                                            @if($active_count<4)
                                                 <select class="form-control" name="status">
                                                     <option>Status</option>
+
                                                     <option @if ($future->status ==1) selected @endif value="1">
-                                                        Active
+                                                        {{trans('back.active')}}
                                                     </option>
+
                                                     <option @if ($future->status ==0)selected @endif  value="0">
-                                                        Passive
+                                                        {{trans('back.passive')}}
                                                     </option>
                                                 </select>
-                                            </label>
+                                            @else
+                                                @if($future->status ==1)
+                                                    <select class="form-control" name="status">
+                                                        <option>Status</option>
+
+                                                        <option @if ($future->status ==1) selected @endif value="1">
+                                                            {{trans('back.active')}}
+                                                        </option>
+
+                                                        <option @if ($future->status ==0)selected @endif  value="0">
+                                                            {{trans('back.passive')}}
+                                                        </option>
+                                                    </select>
+                                                @else
+                                                    <span
+                                                        class="badge badge-light-danger">{{trans('active_item count')}} {{$active_count}}/4 {{trans('back.u_have_max_active_item')}} </span>
+                                                @endif
+                                            @endif
+
+                                        </label>
                                     </div>
                                     <br>
                                     <div class="row">

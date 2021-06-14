@@ -17,12 +17,14 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-8">
+                        <div class="col-6">
                             <h2 class="content-header-title float-left mb-0">Edit Intro</h2>
+                        </div>
+                        <div class="col-6">
+                            <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
                         </div>
                     </div>
                 </div>
-                <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
 
             </div>
             <div class="col-12 grid-margin strecth  stretch-card">
@@ -35,6 +37,7 @@
                         </ul>
                     </div>
                 @endif
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -68,25 +71,34 @@
                                                 <br>
                                                 <label>Description </label>
                                                 <div class="form-group">
-                                                    <textarea class="form-control is-valid"
+                                                    <textarea class="summernote"
                                                               name="description[{{ $translation->language_id}}]"
-                                                              value="{{ $translation->description }}" rows="15" readonly
-                                                              >{{$translation->description}}</textarea>
+                                                              value="{{ $translation->description }}" rows="30" readonly
+                                                              id="summernote">{{$translation->description}}</textarea>
                                                 </div>
                                                 <br>
 
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+                                                        $('.summernote').summernote();
+
+                                                    });
+                                                </script>
                                             </div>
                                         @endforeach
 
-                                            <div class="row">
-                                                <div class="col">
+                                        <div class="row">
+                                            <div class="col">
 
-                                                    <label>Image: </label>
+                                            <div class="col">
 
-                                                    <img name="old_image" src="{{$futureItem->image}}" class="img-fluid"
-                                                         style="width: 150px" alt="{{$futureItem->background_image}}">
-                                                </div>
+                                                <label>Old Image: </label>
+
+                                                <img name="old_image" src="{{$translation->background_image}}" class="img-fluid"
+                                                     style="width: 150px" alt="{{$translation->background_image}}">
                                             </div>
+                                        </div>
 
                                     </div>
                                     <br>

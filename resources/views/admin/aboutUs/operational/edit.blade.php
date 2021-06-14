@@ -35,7 +35,8 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.operational.update',$operational->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('aboutUs.operational.update',$operational->id)}}" method="post"
+                      enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="col-md-12">
@@ -81,51 +82,66 @@
                                                 <script type="text/javascript">
 
                                                     $(document).ready(function () {
-                                                        $('.summernote').summernote();
+                                                        $('.summernote').summernote({
+                                                            callbacks: {
+                                                                onPaste: function (e) {
+                                                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+                                                                    e.preventDefault();
+
+                                                                    // Firefox fix
+                                                                    setTimeout(function () {
+                                                                        document.execCommand('insertText', false, bufferText);
+                                                                    }, 10);
+                                                                }
+                                                            }
+                                                        });
                                                     });
                                                 </script>
                                             </div>
                                         @endforeach
 
-                                            <div class="row">
-                                                <div class="col">
-                                                    <label>Image</label>
-                                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Image</label>
+                                                <div class="form-group">
 
-                                                        <label class="btn btn-primary mr-75 mb-0"
-                                                               for="background_image">
-                                                            <span class="d-none d-sm-block">Select Image</span>
-                                                            <input
-                                                                name="background_image"
-                                                                class="form-control-file"
-                                                                type="file"
-                                                                id="background_image"
-                                                                hidden
-                                                                accept="image/png, image/jpeg, image/jpg"
-                                                            />
+                                                    <label class="btn btn-primary mr-75 mb-0"
+                                                           for="background_image">
+                                                        <span class="d-none d-sm-block">Select Image</span>
+                                                        <input
+                                                            name="background_image"
+                                                            class="form-control-file"
+                                                            type="file"
+                                                            id="background_image"
+                                                            hidden
+                                                            accept="image/png, image/jpeg, image/jpg"
+                                                        />
 
-                                                            <span class="d-block d-sm-none">
+                                                        <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                        </label>
-
-                                                    </div>
-
-                                                    <img id="preview-image-before-upload"
-                                                         src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                                         alt="preview image" class="img-fluid"
-                                                         style="max-height: 100px;">
-
+                                                    </label>
 
                                                 </div>
-                                                <div class="col">
 
-                                                    <label>Old Image: </label>
+                                                <img id="preview-image-before-upload"
+                                                     src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
+                                                     alt="preview image" class="img-fluid"
+                                                     style="max-height: 100px;">
 
-                                                    <img name="old_image" src="{{$operational->first()->background_image}}" class="img-fluid"
-                                                         style="width: 150px" alt="{{$operational->first()->background_image}}">
-                                                </div>
+
                                             </div>
+                                            <div class="col">
+
+                                                <label>Old Image: </label>
+
+                                                <img name="old_image" src="{{$operational->first()->background_image}}"
+                                                     class="img-fluid"
+                                                     style="width: 150px"
+                                                     alt="{{$operational->first()->background_image}}">
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <br>

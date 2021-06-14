@@ -9,13 +9,14 @@
     @include('layouts.navbar.non_index_navbar')
 @stop
 @section('content')
-    <section class="intro" style="background-image: url('/frontend/img/hero_clients.jpg');">
+    <section class="intro" style="background-image: url({{$case_study->background_image}});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="intro_text">
                         <h1 class="intro_about">{{$case_study->title}}</h1>
-                        <p class="intro_work">{{$case_study->description}}</p>
+
+                        <p class="intro_work"> {!! $case_study->description!!}</p>
                     </div>
                 </div>
             </div>
@@ -33,7 +34,7 @@
                     @foreach($slider_clients as $sc)
                         <div class="swiper-slide">
                             <div class="slider">
-                                <div class="swiper-img">
+                                <div class="swiper-img" style="filter: invert(54%) sepia(7%) saturate(10%) hue-rotate(45deg) brightness(92%) contrast(89%);">
                                     <img class="img-fluid" src="{{$sc->image}}">
                                 </div>
                             </div>

@@ -11,6 +11,7 @@ use App\Models\FutureList;
 use App\Models\FutureListTranslation;
 use App\Scopes\ActiveScope;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
@@ -67,7 +68,7 @@ class FutureController extends Controller
                 $future_item->status = 1;
             }
             if (isset($image)) {
-                $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
+                $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
                 Image::make($image)->save('storage/public/images/future_images/' . $image_uni);
                 $future_item->background_image = '/storage/public/images/future_images/' . $image_uni;
                 $future_item->status = $request->get('status');
@@ -92,9 +93,10 @@ class FutureController extends Controller
     }
     public function futureItemEdit($id)
     {
+        $active_count = FutureItem::all()->count();
         $future = FutureItem::select('*')->withoutGlobalScope(ActiveScope::class)->where('id', $id)->first();
         $translations = FutureItemTranslation::where('future_item_id', $id)->get();
-        return view('admin.aboutUs.future.items.edit', compact('translations', 'future'));
+        return view('admin.aboutUs.future.items.edit', compact('translations', 'active_count','future'));
     }
     public function futureItemUpdate($id, Request $request)
     {
@@ -112,11 +114,12 @@ class FutureController extends Controller
         ]);
 
         if (isset($image)) {
-            $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/future_images/' . $image_uni);
             $future_item->image = '/storage/public/images/future_images/' . $image_uni;
             if ($request->hasFile($old_image))
-            unlink($old_image);
+                File::delete('storage/public/images/future_images/'.$old_image);
+
         } else {
             $future_item->image = $old_image;
         }
@@ -181,7 +184,8 @@ class FutureController extends Controller
     {
         $future = FutureList::select('*')->withoutGlobalScope(ActiveScope::class)->where('id', $id)->first();
         $translations = FutureListTranslation::where('future_list_id', $id)->get();
-        return view('admin.aboutUs.future.list_items.edit', compact('translations', 'future'));
+        $active_count = FutureList::all()->count();
+        return view('admin.aboutUs.future.list_items.edit', compact('translations', 'future','active_count'));
     }
     public function futureListItemUpdate($id, Request $request)
     {
@@ -207,9 +211,5 @@ class FutureController extends Controller
     {
         FutureList::find($id)->delete();
         return back()->with('success', trans('back.deleted_successfully'));
-    }
-    public function destroy($id)
-    {
-        //
     }
 }

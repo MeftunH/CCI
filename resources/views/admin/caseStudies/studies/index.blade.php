@@ -72,6 +72,7 @@
                                                            class="btn btn-warning"
                                                            style="position: relative;"> {{trans('back.show')}} </a>
                                                         <form method="POST" class="buttons-group"
+                                                              onclick="return confirm('{{trans('back.r_u_sure')}}')"
                                                               action="{{ URL::route('studies.destroy',$cs->study_id) }}">
                                                             {{ csrf_field() }}
                                                             {{ method_field('DELETE') }}

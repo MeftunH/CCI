@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use App\Models\Operational;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
@@ -50,12 +51,13 @@ class OperationalController extends Controller
         ]);
 
         if (isset($image)) {
-            $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/about_us_intro_images/' . $image_uni);
             $operational_data['background_image'] = '/storage/public/images/about_us_intro_images/' . $image_uni;
             $operational->background_image = $operational_data['background_image'];
             $operational->save();
-//            unlink($old_image);
+            File::delete('storage/public/images/about_us_intro_images/'.$old_image);
+
         } else {
             $operational_data['background_image'] = $old_image;
         }

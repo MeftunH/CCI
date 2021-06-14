@@ -71,10 +71,23 @@
 
                                                 <script type="text/javascript">
 
-                                                    $(document).ready(function() {
-                                                        $('#summernote{{ $translation->language_id}}').summernote();
-                                                    });
 
+                                                    $(document).ready(function () {
+                                                        $('#summernote{{ $translation->language_id}}').summernote({
+                                                            callbacks: {
+                                                                onPaste: function (e) {
+                                                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+                                                                    e.preventDefault();
+
+                                                                    // Firefox fix
+                                                                    setTimeout(function () {
+                                                                        document.execCommand('insertText', false, bufferText);
+                                                                    }, 10);
+                                                                }
+                                                            }
+                                                        });
+                                                    });
                                                 </script>
                                             </div>
                                         @endforeach

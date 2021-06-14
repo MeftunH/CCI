@@ -10,12 +10,12 @@
 @stop
 @section('content')
 
-    <section class="intro intro_news" style="background-image: url('{{$study->image}}');">
+    <section class="intro intro_news"  style="background-image: url({{$study->image}});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="intro_text news_intro">
-                        <h1 class="intro_about">{{$study->title}}</h1>
+                        <h1 class="intro_about">{!! $study->title!!}</h1>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="details-text">
-                        <h5>{{$study->description}}</h5>
+                        <h5>{!! $study->description!!}</h5>
                     </div>
                 </div>
             </div>

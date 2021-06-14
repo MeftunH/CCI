@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CaseStudy;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
@@ -45,7 +46,8 @@ class CaseStudyController extends Controller
             $case_study_data['background_image'] = '/storage/public/images/case_study_images/' . $image_uni;
             $case_study->background_image = $case_study_data['background_image'];
             $case_study->save();
-            unlink($old_image);
+            File::delete('storage/public/images/case_study_images/'.$old_image);
+
         } else {
             $case_study_data['background_image'] = $old_image;
         }

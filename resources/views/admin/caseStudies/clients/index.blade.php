@@ -75,10 +75,11 @@
                                                        class="btn btn-warning"
                                                        style="position: relative;"> {{trans('back.show')}} </a>
                                                         <form method="POST" class="buttons-group"
+                                                              onclick="return confirm('{{trans('back.r_u_sure')}}')"
                                                               action="{{ URL::route('clients.destroy',$cs->id) }}">
                                                             {{ csrf_field() }}
                                                             {{ method_field('DELETE') }}
-                                                            <button type="submit"
+                                                            <button type="submit" onclick="return confirm('{{trans('back.r_u_sure')}}')"
                                                                     class="btn btn-gradient-danger delete-item"
                                                                     style="position: relative;"> {{trans('back.delete')}} </button>
                                                         </form>
@@ -99,6 +100,7 @@
                 </section>
             </div>
         </div>
+
     </div>
 
 @endsection

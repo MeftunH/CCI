@@ -12,6 +12,7 @@ use App\Models\TimeLine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Stichoza\GoogleTranslate\GoogleTranslate;
@@ -79,11 +80,6 @@ class AboutUsController extends Controller
         return view('admin.aboutUs.longTerm.items.show', compact('long_term', 'translations'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function longTermItemDestroy($id)
     {
         LongTermItem::find($id)->delete();
@@ -127,7 +123,7 @@ class AboutUsController extends Controller
             $about_us_data['background_image'] = '/storage/public/images/about_us_intro_images/' . $image_uni;
             $about_us->background_image = $about_us_data['background_image'];
             $about_us->save();
-//            unlink($old_image);
+            File::delete('storage/public/images/about_us_intro_images/'.$old_image);
         } else {
             $about_us_data['background_image'] = $old_image;
         }
@@ -136,11 +132,6 @@ class AboutUsController extends Controller
         return Redirect::route('aboutUs.index');
     }
 
-
-    public function destroy($id)
-    {
-        //
-    }
 
     public function longTerm()
     {

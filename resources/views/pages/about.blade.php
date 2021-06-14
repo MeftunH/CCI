@@ -140,7 +140,7 @@
                     <div class="operational_text">
                         <h1 class="operational_process">{{$operational->localized_data->first()->title}}</h1>
                         <p class="operational_robot">{{$operational->localized_data->first()->description}}</p>
-                        <a href="file:///Users/cemile/Desktop/VisualStudio%20code/work%20practise/CCI%20Technology/caseStudies.html"
+                        <a href="{{route('case_studies')}}"
                            class="operational_link operational_btn">{{trans('front.case_studies')}}</a>
                     </div>
                 </div>

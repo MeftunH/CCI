@@ -24,5 +24,6 @@ return [
     'warn_code'=>'Rusca You will find all countries locales in this link:',
     'codes'=>'Rusca Olke kodlari:',
     'warn_locales'=>'Rusca You will find all countries locales in this link:',
+    'read_more'=>'Rusca Read More',
     'locales'=>'Rusca Locales:',
 ];

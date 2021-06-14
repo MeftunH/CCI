@@ -81,16 +81,50 @@
 
                                         @endforeach
 
+{{--                                            <label>--}}
+{{--                                                <select class="form-control" name="status">--}}
+{{--                                                    <option>Status</option>--}}
+{{--                                                    <option @if ($future->status ==1) selected @endif value="1">--}}
+{{--                                                        Active--}}
+{{--                                                    </option>--}}
+{{--                                                    <option @if ($future->status ==0)selected @endif  value="0">--}}
+{{--                                                        Passive--}}
+{{--                                                    </option>--}}
+{{--                                                </select>--}}
+{{--                                            </label>--}}
                                             <label>
-                                                <select class="form-control" name="status">
-                                                    <option>Status</option>
-                                                    <option @if ($future->status ==1) selected @endif value="1">
-                                                        Active
-                                                    </option>
-                                                    <option @if ($future->status ==0)selected @endif  value="0">
-                                                        Passive
-                                                    </option>
-                                                </select>
+
+                                                @if($active_count<4)
+                                                    <select class="form-control" name="status">
+                                                        <option>Status</option>
+
+                                                        <option @if ($future->status ==1) selected @endif value="1">
+                                                            {{trans('back.active')}}
+                                                        </option>
+
+                                                        <option @if ($future->status ==0)selected @endif  value="0">
+                                                            {{trans('back.passive')}}
+                                                        </option>
+                                                    </select>
+                                                @else
+                                                    @if($future->status ==1)
+                                                        <select class="form-control" name="status">
+                                                            <option>Status</option>
+
+                                                            <option @if ($future->status ==1) selected @endif value="1">
+                                                                {{trans('back.active')}}
+                                                            </option>
+
+                                                            <option @if ($future->status ==0)selected @endif  value="0">
+                                                                {{trans('back.passive')}}
+                                                            </option>
+                                                        </select>
+                                                    @else
+                                                        <span
+                                                            class="badge badge-light-danger">{{trans('active_item count')}} {{$active_count}}/4 {{trans('back.u_have_max_active_item')}} </span>
+                                                    @endif
+                                                @endif
+
                                             </label>
                                     </div>
                                     <br>
@@ -140,7 +174,20 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('.summernote').summernote();
+            $('.summernote').summernote({
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+                        e.preventDefault();
+
+                        // Firefox fix
+                        setTimeout(function () {
+                            document.execCommand('insertText', false, bufferText);
+                        }, 10);
+                    }
+                }
+            });
         });
 
     </script>

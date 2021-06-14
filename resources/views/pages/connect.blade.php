@@ -126,7 +126,7 @@
         <div class="container">
             <div class="row">
                 <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24312.361427427222!2d49.820303700000004!3d40.3856913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2s!4v1615270564548!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d24305.017247604497!2d49.822575!3d40.4060338!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2s!4v1622414329736!5m2!1str!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\Console\Input\Input;
@@ -112,7 +113,7 @@ class ClientController extends Controller
             $image_uni = uniqid('client', true) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('storage/public/images/future_images/' . $image_uni);
             $client->image = '/storage/public/images/future_images/' . $image_uni;
-            if ($request->hasFile($old_image)) unlink($old_image);
+            if ($request->hasFile($old_image))             File::delete('storage/public/images/future_images/'.$old_image);
         }
         else
         {

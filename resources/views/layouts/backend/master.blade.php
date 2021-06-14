@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('./backend/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('./backend/app-assets/css/plugins/forms/pickers/form-flat-pickr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('./backend/app-assets/css/plugins/forms/pickers/form-pickadate.css')}}">
-    <link rel="stylesheet" href="sweetalert2.min.css">
 
 @yield('css')
 <!-- BEGIN: Page CSS-->
@@ -108,7 +107,6 @@
 <!-- BEGIN: Page JS-->
 <!-- END: Page JS-->
 <script src="{{asset('./edit.js')}}" type="text/javascript"></script>
-<script src="sweetalert2.all.min.js"></script>
 
 <script>
     $(window).on('load', function () {

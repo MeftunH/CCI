@@ -143,6 +143,84 @@
                 </ul>
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
+
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-hurricane style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.academy')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('academy.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.academyCareer.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.career')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-building style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.industries')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('industry.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.industry.client.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.industryClient')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-plug-fill style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.services')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('service.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.service')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.services.innovation.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.service_innovation')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-columns-gap style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.career')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('career.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('careerConsulting.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.career')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
         </ul>
     </div>
 </div>
