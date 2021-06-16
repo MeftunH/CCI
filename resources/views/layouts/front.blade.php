@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('frontend/media.css')}}">
     @yield('css')
     <title>@yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 <!-- Header -->

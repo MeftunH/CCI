@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\IndustryController;
 use App\Http\Controllers\Backend\OperationalController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FrontAcademyController;
 use App\Http\Controllers\Frontend\FrontCareerController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Frontend\FrontCaseStudyController;
 use App\Http\Controllers\Frontend\FrontendIndustryController;
 use App\Http\Controllers\Frontend\FrontServiceController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MailController;
 use App\Models\Academy;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +38,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/home', function () {
         return view('admin.index');
     })->name('admin.index');
+    Route::get('/send-email', [MailController::class, 'sendEmail']);
 
     Route::resource('languages', LanguageController::class);
     Route::resource('aboutUs', AboutUsController::class);
@@ -49,9 +52,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/allCaseStudies/',[FrontCaseStudyController::class,'all_case_studies'])->name('caseStudies.all');
     Route::get('/read/{id}',[FrontCaseStudyController::class,'read_more'])->name('caseStudies.read_more');
     Route::get('/readService/{id}',[FrontServiceController::class,'read_more'])->name('services.read_more');
+    Route::get('/readCareer/{id}',[FrontCareerController::class,'read_more'])->name('career.read_more');
     Route::get('/academyDetails/{id}',[FrontAcademyController::class,'read_more'])->name('academy.read_more');
     Route::get('/industryDetails/{id}',[FrontendIndustryController::class,'read_more'])->name('industry.read_more');
-
+    Route::post('/uploadCv',[FrontCareerController::class,'upload_cv'])->name('career.upload_cv');
     Route::name('aboutUs.')->group(function () {
 
         Route::resource('operational', OperationalController::class);
@@ -164,11 +168,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/careerConsultingItem/{item}', [CareerController::class, 'careerConsultingItemShow'])->name('item.show');
         Route::delete('/careerConsultingItem/{item}/destroy', [CareerController::class, 'careerConsultingItemDestroy'])->name('item.destroy');
     });
+
     Route::name('careerConsultingCard.')->group(function () {
         Route::get('/careerConsultingCard/create', [CareerController::class, 'careerConsultingCardCreate'])->name('card.create');
         Route::post('/careerConsultingCard/create', [CareerController::class, 'careerConsultingCardSave'])->name('card.save');
         Route::get('/careerConsultingCard/{card}/edit', [CareerController::class, 'careerConsultingCardEdit'])->name('card.edit');
-        Route::post('/careerConsultingCard/{card}', [CareerController::class, 'careerConsultingCardUpdate'])->name('card.update');
+        Route::post('/careerConsultingCard/{card}/edit', [CareerController::class, 'careerConsultingCardUpdate'])->name('card.update');
         Route::get('/careerConsultingCard/{card}', [CareerController::class, 'careerConsultingCardShow'])->name('card.show');
         Route::delete('/careerConsultingCard/{card}/destroy', [CareerController::class, 'careerConsultingCardDestroy'])->name('card.destroy');
     });
@@ -196,4 +201,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 });
 Route::get('pages/config/edittranslation{edit?}', [LanguageController::class, 'EditTranslation'])->name('translation.edit');
 Route::post('/save/translation', [LanguageController::class, 'SaveTranslation'])->name('translation.save');
-
+//Route::get('/resume/send',[EmailController::class, 'sendEmailResume'])->name('email.resume.send');
+//Route::get('sendattachmentemail', [MailController::class, 'resume_email']);

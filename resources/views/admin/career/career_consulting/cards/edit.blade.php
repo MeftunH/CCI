@@ -35,8 +35,9 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.academy.card.update',$academy_card->id)}}" method="POST" enctype="multipart/form-data">
-                 @csrf
+                <form action="{{route('careerConsultingCard.card.update',$card->id)}}" method="post"
+                      enctype="multipart/form-data">
+                    @csrf
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -68,7 +69,7 @@
                                                        name="title[{{$translation->language_id}}]"
                                                        value="{{ $translation->title }}">
                                                 <br>
-                                                <label>Description </label>
+                                                <label>{{trans('back.description')}} </label>
                                                 <div class="form-group">
                                                     <textarea class="summernote"
                                                               name="description[{{ $translation->language_id}}]"
@@ -76,11 +77,10 @@
                                                               id="summernote">{{$translation->description}}</textarea>
                                                 </div>
                                                 <br>
-
                                                 <script type="text/javascript">
 
                                                     $(document).ready(function () {
-                                                        $('#summernote{{ $translation->language_id}}').summernote({
+                                                        $('.summernote').summernote({
                                                             callbacks: {
                                                                 onPaste: function (e) {
                                                                     var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
@@ -95,34 +95,33 @@
                                                             }
                                                         });
                                                     });
-
                                                 </script>
                                             </div>
 
                                         @endforeach
-                                            <div class="col-md-6 col-6">
-                                                <label>Image</label>
-                                                <div class="form-group">
+                                        <div class="col-md-6 col-6">
+                                            <label>Image</label>
+                                            <div class="form-group">
 
-                                                    <label class="btn btn-primary mr-75 mb-0"
-                                                           for="image">
-                                                        <span class="d-none d-sm-block">Select Image</span>
-                                                        <input
-                                                            name="image"
-                                                            class="form-control-file"
-                                                            type="file"
-                                                            id="image"
-                                                            hidden
-                                                            accept="image/png, image/jpeg, image/jpg"
-                                                        />
+                                                <label class="btn btn-primary mr-75 mb-0"
+                                                       for="image">
+                                                    <span class="d-none d-sm-block">Select Image</span>
+                                                    <input
+                                                        name="image"
+                                                        class="form-control-file"
+                                                        type="file"
+                                                        id="image"
+                                                        hidden
+                                                        accept="image/png, image/jpeg, image/jpg"
+                                                    />
 
-                                                        <span class="d-block d-sm-none">
+                                                    <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                    </label>
+                                                </label>
 
-                                                </div>
-                                                <div class="row">
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6 mb-2">
                                                     <img id="preview-image-before-upload"
                                                          src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
@@ -131,24 +130,48 @@
                                                 </div>
                                                 <div class="col-md-6 mb-2">
 
-                                                <label>Old Image: </label>
+                                                    <label>Old Image: </label>
 
-                                                <img src="{{$academy_card->image}}"  alt="{{$academy_card->image}}" class="img-fluid" >
-                                                    <input type="hidden" name="old_image" value="{{ $academy_card->image }}">
-                                                </div>
+                                                    <img src="{{$card->image}}" alt="{{$card->image}}"
+                                                         class="img-fluid">
+                                                    <input type="hidden" name="old_image" value="{{ $card->image }}">
                                                 </div>
                                             </div>
-                                            <label>
+                                        </div>
+                                        <label>
+
+                                            @if($active_count<4)
                                                 <select class="form-control" name="status">
                                                     <option>Status</option>
-                                                    <option @if ($academy_card->status ==1) selected @endif value="1">
-                                                        Active
+
+                                                    <option @if ($card->status ==1) selected @endif value="1">
+                                                        {{trans('back.active')}}
                                                     </option>
-                                                    <option @if ($academy_card->status ==0)selected @endif  value="0">
-                                                        Passive
+
+                                                    <option @if ($card->status ==0)selected @endif  value="0">
+                                                        {{trans('back.passive')}}
                                                     </option>
                                                 </select>
-                                            </label>
+                                            @else
+                                                @if($card->status ==1)
+                                                    <select class="form-control" name="status">
+                                                        <option>Status</option>
+
+                                                        <option @if ($card->status ==1) selected @endif value="1">
+                                                            {{trans('back.active')}}
+                                                        </option>
+
+                                                        <option @if ($card->status ==0)selected @endif  value="0">
+                                                            {{trans('back.passive')}}
+                                                        </option>
+                                                    </select>
+                                                @else
+                                                    <span
+                                                        class="badge badge-light-danger">{{trans('active_item count')}} {{$active_count}}/4 {{trans('back.u_have_max_active_item')}} </span>
+                                                @endif
+                                            @endif
+
+                                        </label>
                                     </div>
                                     <br>
                                     <div class="row">
@@ -193,12 +216,5 @@
 
         });
 
-    </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.summernote').summernote();
-        });
     </script>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\AcademyCareerItem;
 use App\Models\Career;
 use App\Models\CareerConsulting;
 use App\Models\CareerConsultingCard;
+use App\Models\CareerConsultingCardTranslation;
 use App\Models\CareerConsultingItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -195,5 +196,54 @@ class CareerController extends Controller
         }
         return Redirect::route('careerConsulting.index');
 
+    }
+
+    public function careerConsultingCardEdit($id)
+    {
+        $active_count = CareerConsultingCard::all()->where('status',1)->count();
+        $card = CareerConsultingCard::where('id', $id)->first();
+        $translations = CareerConsultingCardTranslation::where('cc_card_id', $id)->get();
+        return view('admin.career.career_consulting.cards.edit',compact('active_count','card','translations'));
+    }
+
+    public function careerConsultingCardUpdate($id,Request $request)
+    {
+        $card = new CareerConsultingCard();
+        $card->exists = true;
+        $card->id = $id;
+        $translations = CareerConsultingCardTranslation::where('cc_card_id', $id)->get();
+
+
+        $image = $request->image;
+        $old_image = $request->old_image;
+
+        $validateData = $request->validate([
+            'image' => 'mimes:jpeg,jpg,png,gif,svg|max:8192',
+            'title.1' => ['required', 'max:255'],
+            'description.1' => ['required'],
+        ]);
+
+        if (isset($image)) {
+            $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('storage/public/images/career_card_images/' . $image_uni);
+            $card->image = '/storage/public/images/career_card_images/' . $image_uni;
+            if ($request->hasFile($old_image))
+                File::delete('storage/public/images/career_card_images/'.$old_image);
+
+        } else {
+            $card->image = $old_image;
+        }
+
+        if ($request->get('status') == null) {
+            $status = 0;
+        } else {
+            $status = request('status');
+        }
+        $card->status = $status;
+        $card->save();
+        $sh = new SiteHelper();
+        $sh->career_consulting_card_translate_and_update($request, $id);
+
+        return Redirect::route('careerConsulting.index');
     }
 }
