@@ -107,6 +107,7 @@
 <!-- BEGIN: Page JS-->
 <!-- END: Page JS-->
 <script src="{{asset('./edit.js')}}" type="text/javascript"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(window).on('load', function () {

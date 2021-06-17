@@ -218,6 +218,10 @@
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="Collapsed Menu">{{trans('back.career')}}</span></a>
                     </li>
+                    <li><a class="d-flex align-items-center" href="{{route('resumeUp.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.resume')}}</span></a>
+                    </li>
                 </ul>
             </li>
             {{---------------------------------------------------------------------------------------------------------}}

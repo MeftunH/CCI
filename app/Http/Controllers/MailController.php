@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class MailController extends Controller
 {
 
-    public function sendEmail(): \Illuminate\Http\RedirectResponse
+    public function sendEmail($file): \Illuminate\Http\RedirectResponse
     {
         $email = 'stfincos@gmail.com';
 
@@ -19,7 +19,7 @@ class MailController extends Controller
             'title' => 'Demo Email',
             'url' => 'https://www.positronx.io'
         ];
-        Mail::to($email)->send(new ResumeMail($mailData));
+        Mail::to($email)->send(new ResumeMail($mailData,$file));
 //        $data = array('name'=>"Virat Gandhi");
 //        Mail::send('mail', $data, function($message) {
 //            $message->to('abc@gmail.com', 'Tutorials Point')->subject

@@ -36,6 +36,8 @@ use App\Models\ServiceTranslation;
 use App\Models\Study;
 use App\Models\StudyTranslation;
 use App\Models\TimeLineTranslation;
+use App\Models\UploadResume;
+use App\Models\UploadResumeTranslation;
 use App\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
 use Stichoza\GoogleTranslate\GoogleTranslate;
@@ -96,6 +98,67 @@ class SiteHelper
             }
             $translation->title = $title;
             $translation->description = $description;
+            if ($translation->isDirty()) {
+                $translation->save();
+            }
+        }
+    }
+    public function resume_intro_translate_and_save($request, $id)
+    {
+        foreach ($request->title as $language => $title) {
+            $translation = UploadResumeTranslation::where('item_id', $id)->where('language_id', $language)->first();
+
+            $currLang = Language::where('id', $language)->first();
+            $footer = $request->footer[$language];
+            $description = ($request->description[$language]);
+            $init_description = ($request->input("description.1"));
+            $result = "";
+            //Google translate API max limit is 4999 characters
+            if (strlen($request->input("description.1")) > 2999) {
+                $init_description = str_split($request->input("description.1"), 2999);
+            }
+
+//            dd($description);
+            $tr = new GoogleTranslate();
+            $tr->setSource();
+            $tr->setTarget($currLang->code);
+            $tr->setUrl('http://translate.google.cn/translate_a/t');
+            ////title
+
+
+            if (!isset($title) && isset($description)) {
+                $title = $tr->translate($request->input("title.1"));
+            } else if ($title != null && $description == null) {
+                if (is_array($init_description)) {
+
+                    foreach ($init_description as $key => $item) {
+                        $result .= ($tr->translate($item));
+                    }
+                    $description = $result;
+
+                } else {
+                    $description = ($tr->translate($init_description));
+                }
+            } else if ($title == null && $description == null) {
+                $title = $tr->translate($request->input("title.1"));
+                if (is_array($init_description)) {
+
+                    foreach ($init_description as $key => $item) {
+                        $result .= $tr->translate($item);
+                    }
+                    $description = $result;
+                } else {
+                    $description = $tr->translate($init_description);
+                }
+            }
+            if ($footer == null) {
+                $footer = $tr->translate($request->input("footer.1"));
+            }
+
+            $translation->title = $title;
+            $translation->description = $description;
+            $translation->footer = $footer;
+            $translation->item_id = $id;
             if ($translation->isDirty()) {
                 $translation->save();
             }
@@ -595,8 +658,8 @@ class SiteHelper
             ]);
             $currLang = Language::where('id', $language)->first();
             $footer = $request->footer[$language];
-            $description = ($request->description[$language]);
-            $init_description = ($request->input("description.1"));
+            $description = $request->description[$language];
+            $init_description = $request->input("description.1");
             $result = "";
             //Google translate API max limit is 4999 characters
             if (strlen($request->input("description.1")) > 2999) {

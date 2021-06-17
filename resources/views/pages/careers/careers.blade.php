@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="header_bottom_img">
-            <img class="img-fluid" src="{{asset('./frontend/img/bottom_wave_02_gray (1).png')}}">
+            <img class="img-fluid" src="{{asset('/frontend/img/bottom_wave_02_gray (1).png')}}">
         </div>
     </section>
     <!-- Career Consulting -->
@@ -139,15 +139,15 @@
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="upload-left">
-                        <img class="img-fluid" src="{{asset('./frontend/img/team_03.png')}}">
+                        <img class="img-fluid" src="{{asset($resume_up->image)}}">
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="upload-right">
                         <div class="upload-text">
-                            <h1 class="text-work">Let’s work together</h1>
+                            <h1 class="text-work">{{$resume_up_translations->title}}</h1>
                             <div class="best">
-                                <span class="upload-best">The Best Financial Consulting Firm You Can Count On!</span>
+                                <span class="upload-best">{!! $resume_up_translations->description !!}</span>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                         <div class="col-lg-6 col-12">
                             <form class="form-carrers" id="resume_form" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label class="label-careers" for="cv">Upload Your CV (required)</label>
+                                <label class="label-careers" for="cv">{{$resume_up_translations->footer}}</label>
                                 <div class="form-send">
                                     <input onchange="doAfterSelectImage(this)" class="input-careers" id="cv" name="cv"
                                            type="file" accept=".pdf,.doc">

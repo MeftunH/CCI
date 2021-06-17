@@ -11,7 +11,9 @@ use App\Models\CareerConsulting;
 use App\Models\CareerConsultingCard;
 use App\Models\CareerConsultingItem;
 use App\Models\Resume;
+use App\Models\UploadResume;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\Console\Input\Input;
 
@@ -24,7 +26,10 @@ class FrontCareerController extends Controller
         $career_consulting = CareerConsulting::languages(app()->getLocale())->first();
         $career_consulting_items = CareerConsultingItem::languages(app()->getLocale())->get();
         $cc_cards = CareerConsultingCard::languages(app()->getLocale());
-        return view('pages.careers.careers', compact('career', 'cc_cards', 'career_consulting', 'career_consulting_items'));
+        $resume_up = UploadResume::all()->first();
+        $resume_up_translations = UploadResume::Lang()->first();
+
+        return view('pages.careers.careers', compact('career', 'resume_up','resume_up_translations','cc_cards', 'career_consulting', 'career_consulting_items'));
     }
 
     public function read_more($id)
@@ -48,11 +53,11 @@ class FrontCareerController extends Controller
             $extension = $request->file('cv')->getClientOriginalExtension();
             $file = str_replace(' ', '_', $fileNameOnly).'-'. rand() .'_'.time().'.'.$extension;
             $path = $request->file('cv')->storeAs('public/resumes', $file);
-            $resume->resume = 'resumes/'.$file;
+            $resume->resume = 'public/resumes/'.$file;
         }
         if($resume->save()){
             $resume_mail = new MailController();
-            $resume_mail->sendEmail();
+            $resume_mail->sendEmail(Storage::url($resume->resume));
             echo 200;
         }else{
             echo 700;

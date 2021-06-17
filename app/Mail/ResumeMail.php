@@ -12,15 +12,17 @@ class ResumeMail extends Mailable
     use Queueable, SerializesModels;
 
     public $mailData;
+    public $file;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($mailData,$file)
     {
         $this->mailData = $mailData;
+        $this->file = $file;
     }
 
     /**
@@ -28,9 +30,9 @@ class ResumeMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): ResumeMail
     {
         return $this->markdown('emails.resumeMail')
-            ->with('mailData', $this->mailData);
+            ->with('mailData', $this->mailData)->attach($this->file);
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\FutureController;
 use App\Http\Controllers\Backend\IndustryController;
 use App\Http\Controllers\Backend\OperationalController;
+use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
 use App\Http\Controllers\EmailController;
@@ -46,6 +47,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::resource('career', CareerController::class);
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
+    Route::resource('resumeUp',ResumeController::class);
+    Route::get('resume/{uuid}/download',[ResumeController::class,'download'])->name('resume.download');
     Route::resource('studies',StudyController::class);
     Route::resource('industry',IndustryController::class);
     Route::resource('service',ServiceController::class);
@@ -173,6 +176,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/careerConsultingCard/create', [CareerController::class, 'careerConsultingCardCreate'])->name('card.create');
         Route::post('/careerConsultingCard/create', [CareerController::class, 'careerConsultingCardSave'])->name('card.save');
         Route::get('/careerConsultingCard/{card}/edit', [CareerController::class, 'careerConsultingCardEdit'])->name('card.edit');
+        Route::get('/careerConsultingCard/{card}/show', [CareerController::class, 'careerConsultingCardShow'])->name('card.show');
         Route::post('/careerConsultingCard/{card}/edit', [CareerController::class, 'careerConsultingCardUpdate'])->name('card.update');
         Route::get('/careerConsultingCard/{card}', [CareerController::class, 'careerConsultingCardShow'])->name('card.show');
         Route::delete('/careerConsultingCard/{card}/destroy', [CareerController::class, 'careerConsultingCardDestroy'])->name('card.destroy');

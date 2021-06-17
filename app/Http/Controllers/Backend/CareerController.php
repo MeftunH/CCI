@@ -206,6 +206,12 @@ class CareerController extends Controller
         return view('admin.career.career_consulting.cards.edit',compact('active_count','card','translations'));
     }
 
+    public function careerConsultingCardShow($id)
+    {
+        $card = CareerConsultingCard::where('id', $id)->first();
+        $translations = CareerConsultingCardTranslation::where('cc_card_id', $id)->get();
+        return view('admin.career.career_consulting.cards.show',compact('card','translations'));
+    }
     public function careerConsultingCardUpdate($id,Request $request)
     {
         $card = new CareerConsultingCard();
@@ -245,5 +251,15 @@ class CareerController extends Controller
         $sh->career_consulting_card_translate_and_update($request, $id);
 
         return Redirect::route('careerConsulting.index');
+    }
+
+    public function careerConsultingCardDestroy($id)
+    {
+        $cci = CareerConsultingCard::find($id);
+        if (File::exists(public_path($cci->image))) {
+            File::delete(public_path($cci->image));
+        }
+        $cci->delete();
+        return back()->with('success', trans('back.deleted_successfully'));
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Show Intro
+    {{trans('back.show')}}
 @endsection
 
 @section('css')
@@ -17,15 +17,12 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-6">
-                            <h2 class="content-header-title float-left mb-0">{{trans('back.edit_long_term')}}</h2>
-                        </div>
-                        <div class="col-6">
-                            <a href="{{ url()->previous() }}" type="button"
-                               class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
+                        <div class="col-8">
+                            <h2 class="content-header-title float-left mb-0">   {{trans('back.show_cs')}}</h2>
                         </div>
                     </div>
                 </div>
+                <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
 
             </div>
             <div class="col-12 grid-margin strecth  stretch-card">
@@ -38,7 +35,6 @@
                         </ul>
                     </div>
                 @endif
-
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -68,70 +64,73 @@
                                             <label>Title </label>
                                             <input type="text" class="form-control" id="exampleInputName1"
                                                    name="title[{{$translation->language_id}}]"
-                                                   value="{{ $translation->title }}">
+                                                   value="{{ $translation->title }}" disabled>
                                             <br>
                                             <label>Description </label>
-                                            <div class="form-group">
-                                                    <textarea class="summernote"
-                                                              name="description[{{ $translation->language_id}}]"
-                                                              value="{{ $translation->description }}" rows="30"
-                                                              id="summernote">{{$translation->description}}</textarea>
-                                            </div>
+                                            <textarea class="summernote"
+                                                      name="description[{{ $translation->language_id}}]"
+                                                      value="{{ $translation->description }}" rows="30" readonly
+                                                      id="summernote">{{$translation->description}}</textarea>
                                             <br>
-
                                             <script type="text/javascript">
 
                                                 $(document).ready(function () {
-                                                    $('#summernote{{ $translation->language_id}}').summernote();
+                                                    $('.summernote').summernote();
+
                                                 });
-
                                             </script>
+                                            <label>Footer </label>
+                                            <input type="text" class="form-control" id="exampleInputName1"
+                                                   name="footer[{{$translation->language_id}}]"
+                                                   value="{{ $translation->footer }}" disabled>
+                                            <br>
                                         </div>
-
                                     @endforeach
-                                    <div class="col-md-6 col-6">
-                                        <div class="col-md-6 mb-2">
 
-                                            <label>Old Image: </label>
+                                    <div class="row">
+                                        <div class="col">
 
-                                            <img src="{{$card->image}}" alt="{{$card->image}}"
-                                                 class="img-fluid">
-                                            <input type="hidden" name="old_image" value="{{ $card->image }}">
+                                            <label>Image: </label>
+
+                                            <img name="old_image" src="{{$translation->image}}" class="img-fluid"
+                                                 style="width: 150px" alt="{{$translation->image}}">
                                         </div>
                                     </div>
-                                </div>
-                                <label>
-                                    {{trans('back.status')}}
-                                    @if($card->status == 1)
-                                        <span
-                                            class="badge badge-success badge-pill"> {{trans('back.active')}} </span>
-                                    @else
-                                        <span
-                                            class="badge badge-danger badge-pill"> {{trans('back.passive')}}  </span>
-                                    @endif
-                                </label>
-                            </div>
-                            <br>
-                        </div>
 
+                                </div>
+                                <br>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
 @endsection
 @section('js')
-    <script src="{{asset('./backend/assets/js/summernote-ext-addclass.js')}}"></script>
-
     <script src="{{asset('./backend/assets/js/summernote-bs4.min.js')}}"></script>
-
 
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            $('.summernote').summernote();
+        $(document).ready(function (e) {
+
+
+            $('#background_image').change(function () {
+
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+
+                    $('#preview-image-before-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+
+            });
+
         });
+
     </script>
 @endsection

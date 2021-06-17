@@ -8,7 +8,7 @@
 
 @section('content')
     <!-- Intro -->
-    <section class="intro" style="background-image: url('./frontend/img/featured_image_blog.jpg');">
+    <section class="intro" style="background-image: url('/frontend/img/featured_image_blog.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">

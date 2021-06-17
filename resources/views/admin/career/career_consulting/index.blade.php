@@ -164,7 +164,11 @@
                         </div>
                     </div>
                 </div>
-
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
             </div>
             <div class="content-body">
                 <!-- Basic table -->
@@ -208,18 +212,19 @@
                                                            class="btn btn-primary"
                                                            style="position: relative;"> {{trans('back.edit')}} </a>
 
-{{--                                                        <a href="{{ URL::route('aboutUs.academy.card.show',$lt->academy_card_id) }}"--}}
-{{--                                                           class="btn btn-warning"--}}
-{{--                                                           style="position: relative;"> {{trans('back.show')}} </a>--}}
+                                                        <a href="{{ URL::route('careerConsultingCard.card.show',$lt->cc_card_id) }}"
+                                                           class="btn btn-warning"
+                                                           style="position: relative;"> {{trans('back.show')}} </a>
 
-{{--                                                        <form method="POST" class="buttons-group"--}}
-{{--                                                              action="{{ URL::route('aboutUs.academy.card.destroy',$lt->academy_card_id) }}">--}}
-{{--                                                            {{ csrf_field() }}--}}
-{{--                                                            {{ method_field('DELETE') }}--}}
-{{--                                                            <button type="submit"--}}
-{{--                                                                    class="btn btn-gradient-danger delete-item"--}}
-{{--                                                                    style="position: relative;"> {{trans('back.delete')}} </button>--}}
-{{--                                                        </form>--}}
+                                                        <form method="POST" class="buttons-group"
+                                                              onclick="return confirm('{{trans('back.r_u_sure')}}')"
+                                                              action="{{ URL::route('careerConsultingCard.card.destroy',$lt->cc_card_id) }}">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('DELETE') }}
+                                                            <button type="submit"
+                                                                    class="btn btn-gradient-danger delete-item"
+                                                                    style="position: relative;"> {{trans('back.delete')}} </button>
+                                                        </form>
                                                     </div>
                                                 </td>
 
