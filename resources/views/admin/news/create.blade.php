@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Edit Intro
+{{trans('back.create_news')}}
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">{{trans('back.edit_long_term')}}</h2>
+                            <h2 class="content-header-title float-left mb-0">{{trans('back.news_create')}}</h2>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,9 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.industry.experience.update',$experience->id)}}" method="POST" enctype="multipart/form-data">
-                 @csrf
+                <form action="{{route('news.save')}}" method="post"
+                      enctype="multipart/form-data">
+                    @csrf
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -56,61 +57,52 @@
                                 <div class="col-12">
                                     <div class="tab-content" id="pills-tabContent">
 
-                                        @foreach($translations as $translation)
+                                        @foreach(\App\Models\Language::all() as $key=> $value)
                                             <div
                                                 class="tab-pane fade {{$loop->index == 0 ? 'active show' : null}}"
-                                                id="pills-{{$translation->language_id}}" role="tabpanel"
-                                                aria-labelledby="pills-{{$translation->language_id}}-tab">
+                                                id="pills-{{$value->id}}" role="tabpanel"
+                                                aria-labelledby="pills-{{$value->id}}-tab">
 
-
-                                                <label>Title </label>
+                                                <label for="exampleInputName1">Title {{$value['name']}} </label>
                                                 <input type="text" class="form-control" id="exampleInputName1"
-                                                       name="title[{{$translation->language_id}}]"
-                                                       value="{{ $translation->title }}">
+                                                       name="title[{{$value['id']}}]"
+                                                       value="{{old('title.'.$value['id']) }}">
                                                 <br>
-                                                <label>Description </label>
+                                                <label>Description {{$value['name']}}</label>
                                                 <div class="form-group">
                                                     <textarea class="summernote"
-                                                              name="description[{{ $translation->language_id}}]"
-                                                              value="{{ $translation->description }}" rows="30"
-                                                              id="summernote">{{$translation->description}}</textarea>
+                                                              name="description[{{$value['id']}}]"
+                                                              rows="30"
+                                                              id="summernote">{{old('description.'.$value['id']) }}</textarea>
                                                 </div>
-                                                <br>
 
-                                                <script type="text/javascript">
-
-                                                    $(document).ready(function () {
-                                                        $('.summernote').summernote({
-                                                            callbacks: {
-                                                                onPaste: function (e) {
-                                                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-
-                                                                    e.preventDefault();
-
-                                                                    // Firefox fix
-                                                                    setTimeout(function () {
-                                                                        document.execCommand('insertText', false, bufferText);
-                                                                    }, 10);
-                                                                }
-                                                            }
-                                                        });
-                                                    });
-                                                </script>
                                             </div>
-
                                         @endforeach
-                                            <div class="col-md-6 col-6">
+                                        <div class="col-xs-12">
+                                            <label>
+                                                <select class="form-control" name="status">
+                                                    <option value={{null}}>{{trans('back.status')}}</option>
+                                                    <option value="1"
+                                                            @if (old('status') == '1') selected="selected" @endif>{{trans('back.active')}}</option>
+                                                    <option value="0"
+                                                            @if (old('status') == '0') selected="selected" @endif>{{trans('back.passive')}}</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
                                                 <label>Image</label>
                                                 <div class="form-group">
 
                                                     <label class="btn btn-primary mr-75 mb-0"
-                                                           for="image">
+                                                           for="background_image">
                                                         <span class="d-none d-sm-block">Select Image</span>
                                                         <input
-                                                            name="image"
+                                                            name="background_image"
                                                             class="form-control-file"
                                                             type="file"
-                                                            id="image"
+                                                            id="background_image"
+                                                            value="{{old('background_image') }}"
                                                             hidden
                                                             accept="image/png, image/jpeg, image/jpg"
                                                         />
@@ -121,39 +113,20 @@
                                                     </label>
 
                                                 </div>
-                                                <div class="row">
-                                                <div class="col-md-6 mb-2">
-                                                    <img id="preview-image-before-upload"
-                                                         src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                                         alt="preview image" class="img-fluid"
-                                                         style="max-height: 100px;">
-                                                </div>
-                                                <div class="col-md-6 mb-2">
 
-                                                <label>Old Image: </label>
+                                                <img id="preview-image-before-upload"
+                                                     src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
+                                                     alt="preview image" class="img-fluid"   value="{{old('image') }}"
+                                                     style="max-height: 100px;">
 
-                                                <img src="{{$experience->image}}"  alt="{{$experience->image}}" class="img-fluid" >
-                                                    <input type="hidden" name="old_image" value="{{ $experience->image }}">
-                                                </div>
-                                                </div>
                                             </div>
-                                            <label>
-                                                <select class="form-control" name="status">
-                                                    <option>Status</option>
-                                                    <option @if ($experience->status ==1) selected @endif value="1">
-                                                        Active
-                                                    </option>
-                                                    <option @if ($experience->status ==0)selected @endif  value="0">
-                                                        Passive
-                                                    </option>
-                                                </select>
-                                            </label>
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Update</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -169,15 +142,31 @@
 
 @endsection
 @section('js')
-    <script src="{{asset('./backend/assets/js/summernote-ext-addclass.js')}}"></script>
-
     <script src="{{asset('./backend/assets/js/summernote-bs4.min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+                        e.preventDefault();
+
+                        // Firefox fix
+                        setTimeout(function () {
+                            document.execCommand('insertText', false, bufferText);
+                        }, 10);
+                    }
+                }
+            });
+        });
+    </script>
     <script type="text/javascript">
 
         $(document).ready(function (e) {
 
 
-            $('#image').change(function () {
+            $('#background_image').change(function () {
 
                 let reader = new FileReader();
 
@@ -192,12 +181,5 @@
 
         });
 
-    </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.summernote').summernote();
-        });
     </script>
 @endsection

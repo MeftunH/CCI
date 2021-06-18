@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\FutureController;
 use App\Http\Controllers\Backend\IndustryController;
+use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\OperationalController;
 use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Frontend\FrontAcademyController;
 use App\Http\Controllers\Frontend\FrontCareerController;
 use App\Http\Controllers\Frontend\FrontCaseStudyController;
 use App\Http\Controllers\Frontend\FrontendIndustryController;
+use App\Http\Controllers\Frontend\FrontNewsController;
 use App\Http\Controllers\Frontend\FrontServiceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MailController;
@@ -48,6 +50,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
     Route::resource('resumeUp',ResumeController::class);
+    Route::resource('news',NewsController::class);
     Route::get('resume/{uuid}/download',[ResumeController::class,'download'])->name('resume.download');
     Route::resource('studies',StudyController::class);
     Route::resource('industry',IndustryController::class);
@@ -156,6 +159,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/service/{card}/card/show', [ServiceController::class, 'serviceCardShow'])->name('services.card.show');
         Route::post('/service/{card}/card/edit', [ServiceController::class, 'serviceCardUpdate'])->name('services.card.update');
         Route::delete('/service/{card}/destroy', [ServiceController::class, 'serviceCardDestroy'])->name('services.card.destroy');
+
+
+    });
+
+    Route::name('news.')->group(function () {
+        Route::get('/news/create', [NewsController::class, 'newsCreate'])->name('create');
+        Route::post('/news/create', [NewsController::class, 'newsSave'])->name('save');
+        Route::get('/news/edit/{id}', [NewsController::class, 'newsEdit'])->name('edit');
+        Route::post('/news/edit/{id}', [NewsController::class, 'newsUpdate'])->name('update');
     });
     Route::name('careerConsulting.')->group(function () {
         Route::get('/careerConsulting/', [CareerController::class, 'careerConsulting'])->name('index');
@@ -196,12 +208,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/connect', function () {
         return view('pages.connect');
     })->name('connect');
+    Route::get('/apply', function () {
+        return view('pages.apply.apply');
+    })->name('apply');
     Route::get('/partners', function () {
         return view('pages.partners');
     })->name('partners');
-    Route::get('/news', function () {
-        return view('pages.news');
-    })->name('news');
+    Route::get('/latest-news', [FrontNewsController::class, 'index'])->name('news');
 });
 Route::get('pages/config/edittranslation{edit?}', [LanguageController::class, 'EditTranslation'])->name('translation.edit');
 Route::post('/save/translation', [LanguageController::class, 'SaveTranslation'])->name('translation.save');

@@ -18,7 +18,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">{{trans('back.edit_long_term')}}</h2>
+                            <h2 class="content-header-title float-left mb-0">Edit Intro</h2>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,9 @@
                     </div>
                 @endif
 
-                <form action="{{route('aboutUs.industry.experience.update',$experience->id)}}" method="POST" enctype="multipart/form-data">
-                 @csrf
+                <form action="{{route('news.update',$intro->id)}}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -80,6 +81,8 @@
                                                 <script type="text/javascript">
 
                                                     $(document).ready(function () {
+
+
                                                         $('.summernote').summernote({
                                                             callbacks: {
                                                                 onPaste: function (e) {
@@ -97,57 +100,48 @@
                                                     });
                                                 </script>
                                             </div>
-
                                         @endforeach
-                                            <div class="col-md-6 col-6">
-                                                <label>Image</label>
-                                                <div class="form-group">
 
-                                                    <label class="btn btn-primary mr-75 mb-0"
-                                                           for="image">
-                                                        <span class="d-none d-sm-block">Select Image</span>
-                                                        <input
-                                                            name="image"
-                                                            class="form-control-file"
-                                                            type="file"
-                                                            id="image"
-                                                            hidden
-                                                            accept="image/png, image/jpeg, image/jpg"
-                                                        />
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label>Image</label>
+                                                    <div class="form-group">
 
-                                                        <span class="d-block d-sm-none">
+                                                        <label class="btn btn-primary mr-75 mb-0"
+                                                               for="background_image">
+                                                            <span class="d-none d-sm-block">Select Image</span>
+                                                            <input
+                                                                name="background_image"
+                                                                class="form-control-file"
+                                                                type="file"
+                                                                id="background_image"
+                                                                hidden
+                                                                accept="image/png, image/jpeg, image/jpg"
+                                                            />
+
+                                                            <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                    </label>
+                                                        </label>
 
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-6 mb-2">
+                                                    </div>
+
                                                     <img id="preview-image-before-upload"
                                                          src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
                                                          alt="preview image" class="img-fluid"
                                                          style="max-height: 100px;">
-                                                </div>
-                                                <div class="col-md-6 mb-2">
 
-                                                <label>Old Image: </label>
 
-                                                <img src="{{$experience->image}}"  alt="{{$experience->image}}" class="img-fluid" >
-                                                    <input type="hidden" name="old_image" value="{{ $experience->image }}">
                                                 </div>
+                                                <div class="col">
+
+                                                    <label>Old Image: </label>
+
+                                                    <img name="old_image" src="{{$translation->background_image}}" class="img-fluid"
+                                                         style="width: 150px" alt="{{$translation->background_image}}">
                                                 </div>
                                             </div>
-                                            <label>
-                                                <select class="form-control" name="status">
-                                                    <option>Status</option>
-                                                    <option @if ($experience->status ==1) selected @endif value="1">
-                                                        Active
-                                                    </option>
-                                                    <option @if ($experience->status ==0)selected @endif  value="0">
-                                                        Passive
-                                                    </option>
-                                                </select>
-                                            </label>
+
                                     </div>
                                     <br>
                                     <div class="row">
@@ -169,15 +163,14 @@
 
 @endsection
 @section('js')
-    <script src="{{asset('./backend/assets/js/summernote-ext-addclass.js')}}"></script>
-
     <script src="{{asset('./backend/assets/js/summernote-bs4.min.js')}}"></script>
+
     <script type="text/javascript">
 
         $(document).ready(function (e) {
 
 
-            $('#image').change(function () {
+            $('#background_image').change(function () {
 
                 let reader = new FileReader();
 
@@ -192,12 +185,5 @@
 
         });
 
-    </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.summernote').summernote();
-        });
     </script>
 @endsection

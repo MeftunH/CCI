@@ -45,10 +45,12 @@
                                         <td>{{$row->limit(strip_tags($row->description))}}</td>
                                         <td><img src="{{$row->background_image}}" class="img-fluid" style="width: 30px" alt=""> </td>
                                             <td>
+                                                <div class="demo-inline-spacing">
                                                 <a href="{{ URL::route('industry.edit',$row->industry_id) }}"
                                                    class="btn btn-primary" style="position: relative;"> {{trans('back.edit')}} </a>
                                                 <a href="{{ URL::route('industry.show',$row->industry_id) }}"
                                                    class="btn btn-primary" style="position: relative;"> {{trans('back.show')}} </a>
+                                                </div>
                                             </td>
                                         @endforeach
 

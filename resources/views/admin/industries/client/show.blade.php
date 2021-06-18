@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Edit Intro
+    Show Intro
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-8">
-                            <h2 class="content-header-title float-left mb-0">Show LongTerm</h2>
+                            <h2 class="content-header-title float-left mb-0">Show</h2>
                         </div>
                     </div>
                 </div>

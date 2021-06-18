@@ -81,11 +81,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-6">
-                            <h2 class="content-header-title float-left mb-0">{{trans('back.items')}}</h2>
-                        </div>
-                        <div class="col-6">
-                            <a type="button" class="btn btn-gradient-success"
-                               href="{{route('careerConsultingItem.item.create')}}">{{trans('backend.create_item')}}</a>
+                            <h2 class="content-header-title float-left mb-0">{{trans('back.resumes')}}</h2>
                         </div>
                     </div>
                 </div>

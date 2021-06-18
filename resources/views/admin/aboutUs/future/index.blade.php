@@ -79,7 +79,8 @@
                                 <div class="col-6">
                                     <a type="button" class="btn btn-gradient-success"
                                        href="{{route('aboutUs.future.item.create')}}">{{trans('back.create_item')}}</a>
-                                    <span class="badge badge-light-warning">{{trans('active_item count')}} {{$active_count}}/4  </span>
+                                    <span
+                                        class="badge badge-light-warning">{{trans('active_item count')}} {{$active_count}}/4  </span>
                                     @else
                                         <span
                                             class="badge badge-light-danger">{{trans('active_item count')}} {{$active_count}}/4 {{trans('back.max_active_item_count_is_4')}} </span>
@@ -169,7 +170,8 @@
                                 <div class="col-6">
                                     <a type="button" class="btn btn-gradient-success"
                                        href="{{route('aboutUs.future.list.item.create')}}">{{trans('back.create_content_to_list')}}</a>
-                                    <span class="badge badge-light-warning">{{trans('active_item count')}} {{$list_active_count}}/3  </span>
+                                    <span
+                                        class="badge badge-light-warning">{{trans('active_item count')}} {{$list_active_count}}/3  </span>
                                     @else
                                         <span
                                             class="badge badge-light-danger">{{trans('active_item count')}} {{$list_active_count}}/3 {{trans('back.max_active_item_count_is_3')}} </span>
