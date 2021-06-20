@@ -3,9 +3,12 @@
 
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\AcademyController;
+use App\Http\Controllers\Backend\ApplyController;
 use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\ConnectController;
+use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\FutureController;
 use App\Http\Controllers\Backend\IndustryController;
 use App\Http\Controllers\Backend\NewsController;
@@ -13,12 +16,16 @@ use App\Http\Controllers\Backend\OperationalController;
 use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FrontAcademyController;
+use App\Http\Controllers\Frontend\FrontApplyController;
 use App\Http\Controllers\Frontend\FrontCareerController;
 use App\Http\Controllers\Frontend\FrontCaseStudyController;
+use App\Http\Controllers\Frontend\FrontConnectController;
 use App\Http\Controllers\Frontend\FrontendIndustryController;
+use App\Http\Controllers\Frontend\FrontEventController;
 use App\Http\Controllers\Frontend\FrontNewsController;
 use App\Http\Controllers\Frontend\FrontServiceController;
 use App\Http\Controllers\LanguageController;
@@ -42,15 +49,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         return view('admin.index');
     })->name('admin.index');
     Route::get('/send-email', [MailController::class, 'sendEmail']);
-
+    Route::post('contact-us', [ContactController::class,'saveContact']);
+    Route::post('apply-mail', [ApplyController::class,'saveApply']);
     Route::resource('languages', LanguageController::class);
     Route::resource('aboutUs', AboutUsController::class);
     Route::resource('academy', AcademyController::class);
     Route::resource('career', CareerController::class);
+    Route::resource('connects', ConnectController::class);
+    Route::resource('applies', ApplyController::class);
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
     Route::resource('resumeUp',ResumeController::class);
     Route::resource('news',NewsController::class);
+    Route::resource('events',EventController::class);
     Route::get('resume/{uuid}/download',[ResumeController::class,'download'])->name('resume.download');
     Route::resource('studies',StudyController::class);
     Route::resource('industry',IndustryController::class);
@@ -59,6 +70,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/read/{id}',[FrontCaseStudyController::class,'read_more'])->name('caseStudies.read_more');
     Route::get('/readService/{id}',[FrontServiceController::class,'read_more'])->name('services.read_more');
     Route::get('/readCareer/{id}',[FrontCareerController::class,'read_more'])->name('career.read_more');
+    Route::get('/readNews/{id}',[FrontNewsController::class,'read_more'])->name('news.read_more');
+    Route::get('/readEvent/{id}',[FrontEventController::class,'read_more'])->name('events.read_more');
     Route::get('/academyDetails/{id}',[FrontAcademyController::class,'read_more'])->name('academy.read_more');
     Route::get('/industryDetails/{id}',[FrontendIndustryController::class,'read_more'])->name('industry.read_more');
     Route::post('/uploadCv',[FrontCareerController::class,'upload_cv'])->name('career.upload_cv');
@@ -164,10 +177,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     });
 
     Route::name('news.')->group(function () {
-        Route::get('/news/create', [NewsController::class, 'newsCreate'])->name('create');
-        Route::post('/news/create', [NewsController::class, 'newsSave'])->name('save');
-        Route::get('/news/edit/{id}', [NewsController::class, 'newsEdit'])->name('edit');
-        Route::post('/news/edit/{id}', [NewsController::class, 'newsUpdate'])->name('update');
+        Route::get('slider/news/create', [NewsController::class, 'newsCreate'])->name('newsCreate');
+        Route::post('slider/news/create', [NewsController::class, 'newsSave'])->name('newsSave');
+        Route::get('slider/news/edit/{id}', [NewsController::class, 'newsEdit'])->name('newsEdit');
+        Route::get('slider/news/show/{id}', [NewsController::class, 'newsShow'])->name('newsShow');
+        Route::post('slider/news/edit/{id}', [NewsController::class, 'newsUpdate'])->name('newsUpdate');
+        Route::delete('slider/news/delete/{id}', [NewsController::class, 'newsDestroy'])->name('newsDestroy');
+    });
+    Route::name('events.')->group(function () {
+        Route::get('slider/events/create', [EventController::class, 'eventCreate'])->name('eventCreate');
+        Route::post('slider/events/create', [EventController::class, 'eventSave'])->name('eventSave');
+        Route::get('slider/events/edit/{id}', [EventController::class, 'eventEdit'])->name('eventEdit');
+        Route::get('slider/events/show/{id}', [EventController::class, 'eventShow'])->name('eventShow');
+        Route::post('slider/events/edit/{id}', [EventController::class, 'eventUpdate'])->name('eventUpdate');
+        Route::delete('slider/events/delete/{id}', [EventController::class, 'eventDestroy'])->name('eventDestroy');
     });
     Route::name('careerConsulting.')->group(function () {
         Route::get('/careerConsulting/', [CareerController::class, 'careerConsulting'])->name('index');
@@ -202,15 +225,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/industries',[FrontendIndustryController::class, 'index'])->name('industries');
     Route::get('/services', [FrontServiceController::class, 'index'])->name('services');
     Route::get('/careers', [FrontCareerController::class, 'index'])->name('careers');
-    Route::get('/events', function () {
-        return view('pages.events');
-    })->name('events');
-    Route::get('/connect', function () {
-        return view('pages.connect');
-    })->name('connect');
-    Route::get('/apply', function () {
-        return view('pages.apply.apply');
-    })->name('apply');
+    Route::get('/event', [FrontEventController::class, 'index'])->name('event');
+    Route::get('/connect',[FrontConnectController::class, 'index'])->name('connect');
+    Route::get('/apply', [FrontApplyController::class, 'index'])->name('apply');
     Route::get('/partners', function () {
         return view('pages.partners');
     })->name('partners');

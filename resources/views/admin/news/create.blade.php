@@ -35,7 +35,7 @@
                     </div>
                 @endif
 
-                <form action="{{route('news.save')}}" method="post"
+                <form action="{{route('news.newsSave')}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">

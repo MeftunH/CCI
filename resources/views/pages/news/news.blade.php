@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="studies_card_text">
                                             <h3 class="studies_coping studies_consulting-news">{!! $row->title !!}</h3>
-                                            <span class="studies_bottom_text"><a class="studies_link" href="#">{{trans('back.read_more')}} <i
+                                            <span class="studies_bottom_text"><a class="studies_link" href="{{route('news.read_more',$row->news_id)}}">{{trans('back.read_more')}} <i
                                                         class="fas fa-arrow-circle-right studies_icon"></i></a></span>
                                         </div>
                                     </div>

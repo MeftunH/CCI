@@ -228,24 +228,38 @@
 
             {{---------------------------------------------------------------------------------------------------------}}
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-journal-bookmark-fill style="color: currentColor"/>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('news.index')}}"><x-bi-journal-bookmark-fill style="color: currentColor"/>
                     <span
                         class="menu-title text-truncate" data-i18n="Languages">{{trans('back.news')}}</span><span
                         class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
-                <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{route('news.index')}}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="{{route('careerConsulting.index')}}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="Collapsed Menu">{{trans('back.career')}}</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="{{route('resumeUp.index')}}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="Collapsed Menu">{{trans('back.resume')}}</span></a>
-                    </li>
-                </ul>
+
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('events.index')}}"><x-bi-calendar-event style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.events')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('connects.index')}}"><x-bi-share-fill style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.connect')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('applies.index')}}"><x-bi-mailbox style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate"  data-i18n="Languages">{{trans('back.apply')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
         </ul>

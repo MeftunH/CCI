@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helpers\SiteHelper;
 use App\Http\Controllers\Controller;
+use App\Models\InnovationServiceItem;
 use App\Models\News;
 use App\Models\NewsIntro;
 use App\Models\NewsTranslation;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class NewsController extends Controller
@@ -64,7 +66,13 @@ class NewsController extends Controller
         return view('admin.news.edit', compact('translations', 'news'));
 
     }
+    public function newsShow($id)
+    {
+        $news = News::where('id',$id)->first();
+        $translations = NewsTranslation::where('news_id', $id)->get();
+        return view('admin.news.show', compact('translations', 'news'));
 
+    }
     public function newsUpdate(Request $request,$id)
     {
         $validatedData = $request->validate([
@@ -97,6 +105,16 @@ class NewsController extends Controller
         $sh = new SiteHelper();
         $sh->news_translate_and_update($request, $id);
         return Redirect::route('news.index');
+    }
+
+    public function newsDestroy($id)
+    {
+        $news = News::findOrFail($id);
+        if (File::exists(public_path($news->image))) {
+            File::delete(public_path($news->image));
+        }
+        $news->delete();
+        return back()->with('success', trans('back.deleted_successfully'));
     }
 
     public function show($id)

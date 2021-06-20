@@ -36,6 +36,13 @@ class News extends Model
             ->join('news_translations','news_id','news.id')
             ->join('languages','language_id','languages.id')->where('news_translations.news_id',$id)->first();
     }
+
+    public function scopeRead($query,$currentLang,$id)
+    {
+        return $query
+            ->join('news_translations','news_id','news.id')
+            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->where('news_translations.news_id',$id)->first();
+    }
     public function limit($val): string
     {
         return Str::limit($val);

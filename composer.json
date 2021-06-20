@@ -17,6 +17,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "mcamara/laravel-localization": "^1.6",
+        "realrashid/sweet-alert": "^4.0",
         "stichoza/google-translate-php": "^4.1",
         "wulfheart/pretty_routes": "^0.3.0"
     },

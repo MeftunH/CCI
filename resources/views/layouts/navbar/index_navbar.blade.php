@@ -29,7 +29,7 @@
                             </li>
                             <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">Vacancies</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('news')}}">News</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('events')}}">Events</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('event')}}">Events</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">Connect</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('apply')}}">Apply</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('partners')}}">Partners</a></li>

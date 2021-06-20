@@ -4,23 +4,26 @@
 @endsection
 @section('css')
 @endsection
-
+@include('sweetalert::alert')
+@section('navbar')
+    @include('layouts.navbar.non_index_navbar')
+@stop
 
 @section('content')
 
-    <section class="intro" style="background-image: url('./frontend/img/hero_contact.jpg');">
+    <section class="intro" style="background-image: url({{$intro->background_image}});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="intro_text">
-                        <h1 class="intro_about">Contact</h1>
-                        <p class="intro_work">Together we can create something all inspirational you need to build.</p>
+                        <h1 class="intro_about">{!! $intro->title !!}</h1>
+                        <p class="intro_work">{!! $intro->description !!}</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="header_bottom_img">
-            <img class="img-fluid" src="{{asset('./frontend/img/Wave_White_bottom_right_shape_03.png')}}" >
+            <img class="img-fluid" src="{{asset('./frontend/img/Wave_White_bottom_right_shape_03.png')}}">
         </div>
     </section>
     <!-- Reach -->
@@ -78,37 +81,63 @@
                             <h1 class="form_leave">Leave us a little info, and we'll be in touch.</h1>
                         </div>
                         <div class="row">
-                            <form>
+                            <form method="post" action="contact-us">
+                                {{csrf_field()}}
                                 <div class="col-lg-12">
                                     <div class="form-input">
                                         <label for="name">Name (required)</label>
-                                        <input id="name" name="user name" type="text" placeholder="Your name" required>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                               value="{{old('name')}}"
+                                               placeholder="Your Name" name="name" id="name">
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                                        @enderror
                                     </div>
 
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
                                         <label for="email">Your Email (required)</label>
-                                        <input id="email" name="user email" type="email" placeholder="Your email" required>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                               placeholder="Email" name="email" id="email" value="{{old('email')}}">
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                                        @enderror
                                     </div>
 
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
                                         <label for="subject">Subject (optional)</label>
-                                        <input id="subject" name="user subject" type="text" placeholder="Your subject" required>
+                                        <input type="text" class="form-control @error('subject') is-invalid @enderror"
+                                               placeholder="Subject" name="subject" id="subject"
+                                               value="{{old('subject')}}">
+                                        @error('subject')
+                                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                                        @enderror
                                     </div>
 
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
                                         <label for="details">Project details</label>
-                                        <input id="details" name="user details" class="last-input" type="text" placeholder="Brief project details" required>
+                                        <input id="details" @error('message') is-invalid @enderror name="message"
+                                               class="last-input" type="text" value="{{old('value')}}"
+                                               placeholder="Brief project details">
                                     </div>
 
                                 </div>
 
-                                <a href="#" class="form-btn form-link">Send a message</a>
+                                <button type="submit" id="contactbtn" class="form-btn form-link"
+                                        onclick="successIconMarkup()">Send a message
+                                </button>
+
                             </form>
                         </div>
                         <!-- <div class="form">
@@ -126,7 +155,9 @@
         <div class="container">
             <div class="row">
                 <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d24305.017247604497!2d49.822575!3d40.4060338!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2s!4v1622414329736!5m2!1str!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d24305.017247604497!2d49.822575!3d40.4060338!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2s!4v1622414329736!5m2!1str!2s"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -134,4 +165,23 @@
 
 @endsection
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session()->has('message'))
+
+        <script type="text/javascript" charset="utf-8">function successIconMarkup() {
+
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '{{trans('mail.sent')}}',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+
+            }
+
+        </script>
+    @endif
+
 @endsection

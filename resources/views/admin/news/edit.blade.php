@@ -35,7 +35,7 @@
                     </div>
                 @endif
 
-                <form action="{{route('news.update',$news->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('news.newsUpdate',$news->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="col-md-12">
