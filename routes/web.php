@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\FutureController;
 use App\Http\Controllers\Backend\IndustryController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\OperationalController;
+use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Frontend\FrontConnectController;
 use App\Http\Controllers\Frontend\FrontendIndustryController;
 use App\Http\Controllers\Frontend\FrontEventController;
 use App\Http\Controllers\Frontend\FrontNewsController;
+use App\Http\Controllers\Frontend\FrontPartnerController;
 use App\Http\Controllers\Frontend\FrontServiceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MailController;
@@ -57,6 +59,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::resource('career', CareerController::class);
     Route::resource('connects', ConnectController::class);
     Route::resource('applies', ApplyController::class);
+    Route::resource('partner', PartnerController::class);
     Route::resource('caseStudies', CaseStudyController::class);
     Route::resource('clients',ClientController::class);
     Route::resource('resumeUp',ResumeController::class);
@@ -175,7 +178,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 
     });
-
+    Route::name('partner.')->group(function () {
+        Route::get('/partners/partner/create', [PartnerController::class, 'partnerItemCreate'])->name('item.create');
+        Route::post('/partners/partner/create', [PartnerController::class, 'partnerItemSave'])->name('item.save');
+        Route::get('/partners/{partner}/item/edit', [PartnerController::class, 'partnerItemEdit'])->name('item.edit');
+        Route::get('/partners/{partner}/item/show', [PartnerController::class, 'partnerItemShow'])->name('item.show');
+        Route::post('/partners/{partner}/item/edit', [PartnerController::class, 'partnerItemUpdate'])->name('item.update');
+        Route::delete('/partners/{partner}/destroy', [PartnerController::class, 'partnerItemDestroy'])->name('item.destroy');
+    });
     Route::name('news.')->group(function () {
         Route::get('slider/news/create', [NewsController::class, 'newsCreate'])->name('newsCreate');
         Route::post('slider/news/create', [NewsController::class, 'newsSave'])->name('newsSave');
@@ -228,9 +238,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/event', [FrontEventController::class, 'index'])->name('event');
     Route::get('/connect',[FrontConnectController::class, 'index'])->name('connect');
     Route::get('/apply', [FrontApplyController::class, 'index'])->name('apply');
-    Route::get('/partners', function () {
-        return view('pages.partners');
-    })->name('partners');
+    Route::get('/partners' ,[FrontPartnerController::class, 'index'])->name('partners');
     Route::get('/latest-news', [FrontNewsController::class, 'index'])->name('news');
 });
 Route::get('pages/config/edittranslation{edit?}', [LanguageController::class, 'EditTranslation'])->name('translation.edit');

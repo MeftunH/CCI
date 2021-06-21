@@ -262,6 +262,16 @@
 
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('partner.index')}}"><x-bi-link-45deg style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate"  data-i18n="Languages">{{trans('back.partners')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
         </ul>
     </div>
 </div>
