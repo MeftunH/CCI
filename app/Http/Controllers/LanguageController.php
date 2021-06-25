@@ -62,7 +62,7 @@ class LanguageController extends Controller
             if ($request->hasFile('flag')) {
                 $destination_path = 'public/images/flag_img/';
                 $image = $request->file('flag');
-                $image_name = uniqid('', true) . $image->getClientOriginalName();
+                $image_name = uniqid() . $image->getClientOriginalName();
                 $path = $image->storeAs($destination_path, $image_name);
 
                 $input['flag'] = "/storage/public/images/flag_img/" . $image_name;
@@ -80,23 +80,9 @@ class LanguageController extends Controller
             fwrite($fopen, $info);
             fclose($fopen);
             $files = scandir($temp . '/resources/lang/en');
-            $item=[];
             foreach ($files as $file) {
                 if ($file != '.' && $file !== '..' && $file != 'info.json') {
                     $copy = copy($temp . '/resources/lang/en/' . $file, $temp . '/resources/lang/' . $request->get('locale') . '/' . $file);
-                    $tr = new GoogleTranslate();
-                    $tr->setSource();
-                    $tr->setTarget($request->get('code'));
-                    foreach(file($temp . '/resources/lang/' . $request->get('locale') . '/' . $file) as $line) {
-                        if (str_contains($line,'=>')) {
-
-                            $pieces = explode("=>",$line);
-                            $item[] = $pieces;
-                            $trans=$tr->translate($pieces[1]);
-                            dd($trans);
-                        }
-                    }
-
                 }
             }
 
@@ -208,7 +194,7 @@ class LanguageController extends Controller
         $oldflag = $request->oldflag;
         $image = $request->flag;
         if ($image) {
-            $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            $image_uni = uniqid() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(50, 50)->save('storage/public/images/flag_img/' . $image_uni);
             $language->flag = '/storage/public/images/flag_img/' . $image_uni;
             $language->save();

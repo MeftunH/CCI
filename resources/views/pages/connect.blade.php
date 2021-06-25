@@ -8,6 +8,7 @@
 @section('navbar')
     @include('layouts.navbar.non_index_navbar')
 @stop
+@include('alert::bootstrap')
 
 @section('content')
 
@@ -39,18 +40,14 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="reach-card">
-                                <p class="reach-card_adress">Address</p>
-                                <h3 class="reach-card_city">BAKU</h3>
-                                <h4 class="reach-card_street">60 East 65th Street
-                                    NY 10065</h4>
+                                <p class="reach-card_adress">{{trans('front.address')}}</p>
+                                <h4 class="reach-card_street">{!! $module->address  !!}</h4>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="reach-card">
-                                <p class="reach-card_adress">Get In Touch</p>
-                                <h3 class="reach-card_city">Working hours:</h3>
-                                <h4 class="reach-card_street">Monday - Friday
-                                    9 am to 7 pm EST</h4>
+                                <p class="reach-card_adress">{{trans('front.get_in_touch')}}</p>
+                                <h4 class="reach-card_street">{!! $module->working_hours !!}</h4>
                             </div>
                         </div>
                     </div>
@@ -155,9 +152,7 @@
         <div class="container">
             <div class="row">
                 <div class="map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d24305.017247604497!2d49.822575!3d40.4060338!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2s!4v1622414329736!5m2!1str!2s"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    {!! $module->map !!}
                 </div>
             </div>
         </div>
@@ -166,22 +161,23 @@
 @endsection
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if(session()->has('message'))
-
-        <script type="text/javascript" charset="utf-8">function successIconMarkup() {
-
-
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: '{{trans('mail.sent')}}',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-
-            }
-
-        </script>
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+    @if(Session::has('success'))
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '{{trans('mail.sent')}}',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+        @elseif(Session::has('error'))
+        <script>Swal.fire({
+                title: 'Error!',
+                text: '{{trans('mail.error')}}',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })</script>
     @endif
-
-@endsection
+ @endsection

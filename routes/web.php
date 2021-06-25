@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\AcademyController;
+use App\Http\Controllers\Backend\AjaxUploadMultipleImageController;
 use App\Http\Controllers\Backend\ApplyController;
 use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\CaseStudyController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
+use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Frontend\AboutController;
@@ -34,6 +36,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MailController;
 use App\Models\Academy;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +49,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect',]], function () {
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () {
     Route::get('/home', function () {
         return view('admin.index');
     })->name('admin.index');
@@ -226,6 +229,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/careerConsultingCard/{card}', [CareerController::class, 'careerConsultingCardShow'])->name('card.show');
         Route::delete('/careerConsultingCard/{card}/destroy', [CareerController::class, 'careerConsultingCardDestroy'])->name('card.destroy');
     });
+    Route::name('reach.')->group(function () {
+       Route::get('/reach-module/{module}/edit', [ConnectController::class, 'reachEdit'])->name('edit');
+        Route::post('/reach-module/{module}/edit', [ConnectController::class, 'reachUpdate'])->name('update');
+        Route::get('/reach-module/{module}/show', [ConnectController::class, 'reachShow'])->name('show');
+
+    });
+    Route::name('subscriber.')->group(function () {
+        Route::get('/subs/index', [SubscriberController::class, 'index'])->name('index');
+        Route::post('/subscribe', [SubscriberController::class, 'store'])->name('store');
+
+    });
     Route::get('/', function () {
         return view('pages.index');
     })->name('index');
@@ -245,3 +259,5 @@ Route::get('pages/config/edittranslation{edit?}', [LanguageController::class, 'E
 Route::post('/save/translation', [LanguageController::class, 'SaveTranslation'])->name('translation.save');
 //Route::get('/resume/send',[EmailController::class, 'sendEmailResume'])->name('email.resume.send');
 //Route::get('sendattachmentemail', [MailController::class, 'resume_email']);
+
+Route::post('upload-multiple-image-ajax', [AjaxUploadMultipleImageController::class, 'saveUpload']);

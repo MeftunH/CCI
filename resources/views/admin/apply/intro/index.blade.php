@@ -101,8 +101,8 @@
                                     </thead>
                                     @php($i=1)
                                     <tbody>
-                                    @if(isset($messages))
-                                        @foreach($messages as $row)
+                                    @if(isset($mails))
+                                        @foreach($mails as $row)
 
                                                 <tr>
                                                     <td>{{$i++}}</td>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-{{$messages->links()}}
+{{$mails->links()}}
                 </section>
             </div>
         </div>

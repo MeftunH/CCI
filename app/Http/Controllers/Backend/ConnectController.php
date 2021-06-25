@@ -6,6 +6,7 @@ use App\Helpers\SiteHelper;
 use App\Http\Controllers\Controller;
 use App\Models\ConnectIntro;
 use App\Models\Contact;
+use App\Models\ReachModule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
@@ -17,11 +18,43 @@ class ConnectController extends Controller
     public function index()
     {
         $intro = ConnectIntro::languages(app()->getLocale());
-        $messages = Contact::paginate(10);
-        return view('admin.apply.intro.index', compact('intro','messages'));
+        $messages = Contact::orderBy('id','desc')->paginate(10);
+        $reach = ReachModule::languages(app()->getLocale());
+        return view('admin.connect.intro.index', compact('intro','messages','reach'));
     }
 
+    public function reachEdit($id)
+    {
+        $reach = ReachModule::where('id', $id)->first();
+        $translations = ReachModule::Lang();
+        return view('admin.connect.reach_module.edit', compact('translations', 'reach'));
 
+    }
+
+    public function reachShow($id)
+    {
+        $reach = ReachModule::where('id', $id)->first();
+        $translations = ReachModule::Lang();
+        return view('admin.connect.reach_module.show', compact('translations', 'reach'));
+
+    }
+    public function reachUpdate(Request $request, $id)
+{
+//    dd($request->all());
+    $module= ReachModule::where('id', $id)->first();
+    $translations = ReachModule::langSpecificId($module->id);
+
+    $validateData = $request->validate([
+        'working_hours.1' => ['required', 'max:4999'],
+        'address.1' => ['required'],
+        'map' => ['required'],
+    ]);
+    $module->map = $request->get('map');
+     $module->save();
+    $sh = new SiteHelper();
+    $sh->reach_module_translate_and_save($request, $id);
+    return Redirect::route('connects.index');
+}
 
     public function show($id)
     {

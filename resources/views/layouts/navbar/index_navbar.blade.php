@@ -8,7 +8,7 @@
                         <img class="img-fluid home-logo logo_img" src="{{asset('./frontend/img/logo_white.png')}}" >
                     </div>
                 </div>
-                <div class="col-lg-7  d-lg-block d-md-flex">
+                <div class="col-lg-9  d-lg-block d-md-flex">
                     <div class="navbar">
                         <div class="hamburger-menu d-lg-none d-flex">
                             <div class="line line-1"></div>

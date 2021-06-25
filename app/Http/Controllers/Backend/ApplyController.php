@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ApplyController extends Controller
 {
@@ -50,16 +51,21 @@ class ApplyController extends Controller
             });
         if (Mail::failures()) {
             return back()->with('error', ':(');
+//            Alert::success('Success Title', 'Success Message');
+        } else
+        {
+            return back()->with('success', ':)');
+//            Alert::error('Error Title', 'Success Message');
+
         }
 
-        return back()->with('message', 'Thank you for contact us!');
 
     }
     public function index()
     {
         $intro = ApplyIntro::languages(app()->getLocale());
-        $messages = Apply::paginate(10);
-        return view('admin.apply.intro.index', compact('intro','messages'));
+        $mails = Apply::orderBy('id','desc')->paginate(10);
+        return view('admin.apply.intro.index', compact('intro','mails'));
     }
     public function edit($id)
     {

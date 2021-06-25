@@ -26,7 +26,7 @@
                         <img class="img-fluid logo_img" src="{{asset('./frontend/img/logo_white (1).png')}}">
                     </div>
                 </div>
-                <div class="col-lg-7  d-lg-block d-md-flex">
+                <div class="col-lg-9  d-lg-block d-md-flex">
                     <div class="navbar">
                         <div class="hamburger-menu d-lg-none d-flex">
                             <div class="line line-1"></div>
@@ -48,11 +48,10 @@
                                     <li class="dropdown_items"><a class="down_link down_link-home"
                                                                   href="{{route('industries')}}">Industries</a></li>
                                     <li class="dropdown_items"><a class="down_link down_link-home"
-                                                                  href="{{route('services')}}">Services and
-                                            Solutions</a></li>
+                                                                  href="{{route('services')}}">Services and Solutions</a></li>
                                 </ul>
                             </li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">Vacancies</a></li>
+                            <li class="nav_items"><a class="nav_link"  href="{{route('careers')}}">Vacancies</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('news')}}">News</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('event')}}">Events</a></li>
                             <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">Connect</a></li>

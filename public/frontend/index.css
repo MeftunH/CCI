@@ -354,6 +354,16 @@ body, ul, li,p,a {
     background-attachment: fixed;
     margin-top: 48px;
 }
+.intro::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+}
 .home{
     margin-top: 0;
 }
@@ -414,6 +424,7 @@ body, ul, li,p,a {
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: 99;
     background: linear-gradient(0deg ,rgba(0,0,0,.6) 0%,rgba(0,0,0,.5) 60%,rgba(0,0,0,0) 100%);
 }
 .long-term{

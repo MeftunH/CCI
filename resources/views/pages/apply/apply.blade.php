@@ -113,22 +113,23 @@
 @endsection
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if(session()->has('message'))
-
-        <script type="text/javascript" charset="utf-8">function successIconMarkup() {
-
-
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: '{{trans('mail.sent')}}',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-
-            }
-
+    @if(Session::has('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{trans('mail.sent')}}',
+                showConfirmButton: false,
+                timer: 1500
+            })
         </script>
+    @elseif(Session::has('error'))
+        <script>Swal.fire({
+                title: 'Error!',
+                text: '{{trans('mail.error')}}',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })</script>
     @endif
 
 @endsection

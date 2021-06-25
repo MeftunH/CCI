@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
@@ -32,18 +33,21 @@ class ContactController extends Controller
                 'email' => $request->get('email'),
                 'subject' => $request->get('subject'),
                 'user_message' => $request->get('message'),
-            ), function($message) use ($request)
-            {
+            ), function ($message) use ($request) {
                 $message->from($request->email);
                 $message->to('stfincos@gmail.com')->subject
-            (trans('mail.connect_request'));
+                (trans('mail.connect_request'));
 
             });
         if (Mail::failures()) {
             return back()->with('error', ':(');
-        }
+            Alert::success('Success Title', 'Success Message');
+        } else
+        {
+            return back()->with('success', ':)');
+            Alert::success('Success Title', 'Success Message');
 
-        return back()->with('message', 'Thank you for contact us!');
+        }
 
     }
 }

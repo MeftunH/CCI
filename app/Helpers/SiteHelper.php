@@ -38,6 +38,8 @@ use App\Models\NewsIntroTranslation;
 use App\Models\NewsTranslation;
 use App\Models\OperationalTranslation;
 use App\Models\PartnerIntroTranslation;
+use App\Models\ReachModule;
+use App\Models\ReachModuleTranslation;
 use App\Models\ServiceCard;
 use App\Models\ServiceCardTranslation;
 use App\Models\ServiceTranslation;
@@ -392,6 +394,62 @@ class SiteHelper
             }
             $translation->title = $title;
             $translation->description = $description;
+            if ($translation->isDirty()) {
+                $translation->save();
+            }
+        }
+    }
+    public function reach_module_translate_and_save($request, $id)
+    {
+        foreach ($request->working_hours as $language => $working_hours) {
+            $translation = ReachModuleTranslation::where('module_id', $id)->where('language_id', $language)->first();
+
+
+            $currLang = Language::where('id', $language)->first();
+            $address = ($request->address[$language]);
+            $init_description = ($request->input("address.1"));
+            $result = "";
+            //Google translate API max limit is 4999 characters
+            if (strlen($request->input("address.1")) > 2999) {
+                $init_description = str_split($request->input("address.1"), 2999);
+            }
+
+//            dd($description);
+            $tr = new GoogleTranslate();
+            $tr->setSource();
+            $tr->setTarget($currLang->code);
+            $tr->setUrl('http://translate.google.cn/translate_a/t');
+            ////title
+
+
+            if ($working_hours == null && $address != null) {
+                $working_hours = $tr->translate($request->input("working_hours.1"));
+            } else if ($working_hours != null && $address == null) {
+                if (is_array($init_description)) {
+
+                    foreach ($init_description as $key => $item) {
+                        $result .= ($tr->translate($item));
+                    }
+                    $address = $result;
+
+                } else {
+                    $address = ($tr->translate($init_description));
+                }
+            } else if ($working_hours == null && $address == null) {
+                $working_hours = $tr->translate($request->input("working_hours.1"));
+                if (is_array($init_description)) {
+
+                    foreach ($init_description as $key => $item) {
+                        $result .= $tr->translate($item);
+                    }
+                    $address = $result;
+                } else {
+                    $address = $tr->translate($init_description);
+                }
+            }
+
+            $translation->address = $address;
+            $translation->working_hours = $working_hours;
             if ($translation->isDirty()) {
                 $translation->save();
             }

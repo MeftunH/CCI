@@ -10,6 +10,8 @@ use App\Models\NewsIntro;
 use App\Models\NewsTranslation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +22,11 @@ class NewsController extends Controller
 
     public function index()
     {
+
         $intro = NewsIntro::languages(app()->getLocale());
         $news = News::languages(app()->getLocale());
-        return view('admin.news.intro.index', compact('intro','news'));
+        $images = DB::table('images')->get();
+        return view('admin.news.intro.index', compact('intro','news','images'));
     }
 
     public function newsCreate()
@@ -36,6 +40,8 @@ class NewsController extends Controller
             'background_image' => 'mimes:jpeg,jpg,png,gif,svg|max:8192|required',
             'title.1' => ['required', 'max:255'],
             'description.1' => ['required', 'min:1'],
+            'filenames' => 'required',
+            'filenames.*' => 'mimes:jpeg,png,jpg'
         ]);
 
             $news = new News();
@@ -56,6 +62,29 @@ class NewsController extends Controller
                 $sh = new SiteHelper();
                 $sh->news_translate_and_save($request, $news->id);
             }
+
+
+
+
+
+        if($request->hasfile('filenames'))
+        {
+            foreach($request->file('filenames') as $file)
+            {
+                $name = time().'.'.$file->extension();
+                $name_uni = uniqid('news', true) . '.' . $name;
+                Image::make($image)->save('storage/public/images/news_multiple_images/' . $name_uni);
+                $data[] = '/storage/public/images/news_multiple_images/' . $name_uni;
+
+            }
+        }
+
+
+        $file= new \App\Models\Image();
+        $file->image_path=json_encode($data);
+        $file->news_id =json_encode($news->id);
+        $file->save();
+
         return Redirect::route('news.index');
     }
 

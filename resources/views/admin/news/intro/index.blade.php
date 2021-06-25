@@ -99,6 +99,7 @@
                                         <th>{{trans('back.title')}}</th>
                                         <th>{{trans('back.description')}}</th>
                                         <th>{{trans('back.image')}}</th>
+                                        <th>{{trans('back.album')}}</th>
                                         <th>{{trans('back.action')}}</th>
                                         <th>{{trans('back.status')}}</th>
                                     </tr>
@@ -108,41 +109,53 @@
                                     @if(isset($news))
                                         @foreach($news as $row)
 
-                                                <tr>
-                                                    <td>{{$i++}}</td>
-                                                    <td>{{$row->title}}</td>
-                                                    <td>{!! $row->limit($row->description) !!}</td>
-                                                    <td><img src="{{$row->image}}" class="img-fluid"
-                                                             style="width: 30px"></td>
-                                                    <td>
-                                                        <div class="demo-inline-spacing">
-                                                            <a href="{{ URL::route('news.newsEdit',$row->news_id) }}"
-                                                               class="btn btn-primary"
-                                                               style="position: relative;"> {{trans('back.edit')}} </a>
+                                            <tr>
+                                                <td>{{$i++}}</td>
+                                                <td>{{$row->title}}</td>
+                                                <td>{!! $row->limit($row->description) !!}</td>
+                                                <td><img src="{{$row->image}}" class="img-fluid"
+                                                         style="width: 30px"></td>
+                                                <td>
 
-                                                            <a href="{{ URL::route('news.newsShow',$row->news_id) }}"
-                                                               class="btn btn-warning"
-                                                               style="position: relative;"> {{trans('back.show')}} </a>
+                                                    @foreach($images as $image)
+                                                        @if($image->news_id == $row->news_id)
+                                                            @foreach(json_decode($image->image_path) as $item)
+                                                                <img src="{{$item}}" class="img-fluid"
+                                                                     style="width: 30px">
 
-                                                            <form method="POST" class="buttons-group"
-                                                                  onclick="return confirm('{{trans('back.r_u_sure')}}')"
-                                                                  action="{{ URL::route('news.newsDestroy',$row->news_id) }}">
-                                                                {{ csrf_field() }}
-                                                                {{ method_field('DELETE') }}
-                                                                <button type="submit"
-                                                                        class="btn btn-gradient-danger delete-item"
-                                                                        style="position: relative;"> {{trans('back.delete')}} </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                    <td>@if($row->status == 1) <span
-                                                            class="badge badge-light-success"> {{trans('back.active')}} </span>
-                                                        @else<span
-                                                                class="badge badge-light-danger"> {{trans('back.passive')}} </span>@endif
-                                                    </td>
-                                                </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <div class="demo-inline-spacing">
+                                                        <a href="{{ URL::route('news.newsEdit',$row->news_id) }}"
+                                                           class="btn btn-primary"
+                                                           style="position: relative;"> {{trans('back.edit')}} </a>
 
-                                            @endforeach
+                                                        <a href="{{ URL::route('news.newsShow',$row->news_id) }}"
+                                                           class="btn btn-warning"
+                                                           style="position: relative;"> {{trans('back.show')}} </a>
+
+                                                        <form method="POST" class="buttons-group"
+                                                              onclick="return confirm('{{trans('back.r_u_sure')}}')"
+                                                              action="{{ URL::route('news.newsDestroy',$row->news_id) }}">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('DELETE') }}
+                                                            <button type="submit"
+                                                                    class="btn btn-gradient-danger delete-item"
+                                                                    style="position: relative;"> {{trans('back.delete')}} </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                <td>@if($row->status == 1) <span
+                                                        class="badge badge-light-success"> {{trans('back.active')}} </span>
+                                                    @else<span
+                                                            class="badge badge-light-danger"> {{trans('back.passive')}} </span>@endif
+                                                </td>
+                                            </tr>
+
+                                        @endforeach
 
                                     @endif
                                     </tbody>

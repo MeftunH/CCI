@@ -16,6 +16,8 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "alertify.js": "^1.0.12",
+        "alertifyjs": "^1.13.1",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.0.17"
     }

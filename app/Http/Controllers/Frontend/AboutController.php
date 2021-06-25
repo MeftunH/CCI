@@ -33,7 +33,7 @@ class AboutController extends Controller
         $operational = Operational::all()->first();
         $future = Future::all()->first();
         $future_items = FutureItem::select('*')->get();
-        $future_list_items = FutureList::select('*')->get();
+        $future_list_items = FutureList::get();
         return view('pages.about',compact('future_list_items','future_items','future','operational','time_line_translations','time_line','about_us_translations','about_us','long_term','long_term_translations','long_term_item','long_term_item_translations'));
     }
 }

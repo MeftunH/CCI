@@ -17,12 +17,15 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-8">
+                        <div class="col-6">
                             <h2 class="content-header-title float-left mb-0">{{trans('back.show_intro')}}</h2>
+                        </div>
+                        <div class="col-6">
+                            <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
+
                         </div>
                     </div>
                 </div>
-                <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
 
             </div>
             <div class="col-12 grid-margin strecth  stretch-card">
