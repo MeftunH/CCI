@@ -22,7 +22,9 @@
         "mckenziearts/laravel-notify": "^2.2",
         "realrashid/sweet-alert": "^4.0",
         "stichoza/google-translate-php": "^4.1",
+        "unisharp/laravel-filemanager": "~1.8",
         "wulfheart/pretty_routes": "^0.3.0",
+        "yajra/laravel-datatables-oracle": "~9.0",
         "yak0d3/mirza_yandex_translator": "^1.0"
     },
     "require-dev": {

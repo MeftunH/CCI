@@ -13,10 +13,10 @@ class LatestNewsAction
     {
     }
 
-    public function run($limit = 2)
+    public function run($locale,$limit = 10)
     {
-        return Cache::remember('latestNews', 60 * 60 * 24, function () use ($limit) {
-            return News::latest()->languages(app()->getLocale())->take($limit)->get();
-        });
+
+            $news =  News::languages($locale)->take($limit);
+             return $news;
     }
 }

@@ -35,17 +35,14 @@ class SendSummary extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle(GetActiveSubscribers $getActiveSubscribers,LatestNewsAction $latestNewsAction)
+
+    public function handle(GetActiveSubscribers $getActiveSubscribers, LatestNewsAction $latestNewsAction)
     {
         $subscribers = $getActiveSubscribers->run();
-        $news = $latestNewsAction->run();
+
         foreach ($subscribers as $subscriber) {
-            Mail::to([$subscriber])->send(new Summary($subscriber,$news));
+            $news = $latestNewsAction->run($subscriber->locale);
+            Mail::to([$subscriber])->locale($subscriber->locale)->send(new Summary($subscriber,$news));
         }
 
     }

@@ -257,6 +257,18 @@
 
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
+
+
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('settings.index')}}"><x-bi-gear style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate"  data-i18n="Languages">{{trans('back.website_settings')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
         </ul>
     </div>
 </div>

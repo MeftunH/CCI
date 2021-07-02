@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <table class="datatables-basic table"  id="resumes">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -123,7 +123,6 @@
                                     @endif
                                     </tbody>
                                 </table>
-                                {{$resumes->links()}}
                             </div>
                         </div>
                     </div>
@@ -150,4 +149,9 @@
         });
     </script>
     <script src="{{asset('./edit.js')}}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#resumes').DataTable();
+        });
+    </script>
 @endsection

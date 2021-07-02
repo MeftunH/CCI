@@ -4,7 +4,7 @@
 @endsection
 @section('css')
 @endsection
-
+<link rel="stylesheet" type="text/css" href="{{asset('./backend/app-assets/vendors/css/vendors.min.css')}}">
 @section('content')
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -26,30 +26,30 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <table class="datatables-basic table" id="sub">
                                     <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>{{trans('back.email')}}</th>
-                                        <th>{{trans('back.action')}}</th>
+                                        <th>{{trans('back.is_subscriber_now')}}</th>
+                                        <th>{{trans('back.sub_prefer_lang')}}</th>
+                                        <th>{{trans('back.sub_date')}}</th>
                                     </tr>
                                     </thead>
                                     @php($i=1)
+
                                     <tbody>
                                     <tr>
                                         @foreach($subscribers as $sub)
                                         <td>{{$i++}}</td>
                                         <td>{{$sub->email}}</td>
                                         <td>{{$sub->subscribed ? trans('back.yes') : trans('back.no')}}</td>
-{{--                                            <td>--}}
-{{--                                                <a href="{{ URL::route('aboutUs.edit',$au->aboutUs_id) }}"--}}
-{{--                                                   class="btn btn-primary" style="position: relative;"> {{trans('back.edit')}} </a>--}}
-{{--                                                <a href="{{ URL::route('aboutUs.show',$au->aboutUs_id) }}"--}}
-{{--                                                   class="btn btn-primary" style="position: relative;"> {{trans('back.show')}} </a>--}}
-{{--                                            </td>--}}
+                                        <td>{{$sub->locale}}</td>
+                                        <td>{{$sub->created_at}}</td>
+                                    </tr>
                                         @endforeach
 
-                                    </tr>
+
 
                                     </tbody>
                                 </table>
@@ -65,18 +65,15 @@
 
 @endsection
 @section('js')
-    @push('script')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
-        <script>
-            $(document).ready(function () {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-            });
-        </script>
-        <script src="{{asset('./edit.js')}}" type="text/javascript"></script>
-    @endpush
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
+    <script>
+        $(document).ready(function () {
+            $('#sub').DataTable();
+        });
+    </script>
+
 @endsection

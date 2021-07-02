@@ -28,41 +28,78 @@
     <section class="news">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-12">
-                    <div class=" swiper-container" id="swiper_container">
-                        <div class="swiper-wrapper">
-                            @foreach($news as $row)
-                                <div class="swiper-slide">
-
-                                    <div class="news-card">
-                                        <div class="news_card_01" style="background-image: url('{{$row->image}}');">
-                                        </div>
-                                        <div class="studies_card_text">
-                                            <h3 class="studies_coping studies_consulting-news">{!! $row->title !!}</h3>
-                                            <span class="studies_bottom_text"><a class="studies_link" href="{{route('news.read_more',$row->news_id)}}">{{trans('back.read_more')}} <i
-                                                        class="fas fa-arrow-circle-right studies_icon"></i></a></span>
-                                        </div>
+                <div class="col-lg-8  col-12">
+                    <div class="news-left">
+                        @foreach($news as $row)
+                            <div class="future-news" style="background-image: url({{$row->image}})"></div>
+                            <div class="news-left_text">
+                                <h3 class="studies_coping studies_coping_news">{{$row->title}}</h3>
+                                <p>{!! $row->limit($row->description) !!}
+                                </p>
+                            </div>
+                            <div class="row card-bottom-text">
+                                <div class="col-lg-6">
+                                    <div class="social">
+                                        <a class="social_link social_link-news" href="#"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="social_link social_link-news" href="#"><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="social_link social_link-news" href="#"><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="news-card_bottom">
+                                        <span class="studies_bottom_text"><a class="studies_link studies_link_news"
+                                                                             href="{{route('news.read_more',$row->news_id)}}">{{trans('front.read_more')}} <i
+                                                    class="fas fa-arrow-circle-right studies_icon"></i></a></span>
                                     </div>
 
                                 </div>
-                            @endforeach
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-
-                    <div class="row card-bottom-text">
-                        <div class="col-lg-6">
-                            <div class="social">
-                                <a class="social_link social_link-news" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="social_link social_link-news" href="#"><i class="fab fa-instagram"></i></a>
-                                <a class="social_link social_link-news" href="#"><i class="fab fa-linkedin-in"></i></a>
                             </div>
-                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4  col-12">
+                    <div class="row news-right ">
+                        <form action="{{ route('news.search') }}" method="GET">
+                            @csrf
+                            <input class="news-input" type="text" placeholder="{{trans('front.looking_for')}}"
+                                   name="search">
+
+                            <button class="news_icon" type="submit"><i class="fas fa-search"></i></button>
+
+
+                        </form>
+                    </div>
+                    <div class=" news-posts">
+                        <h4>{{trans('front.popular_posts')}}</h4>
+                        @foreach($popular_posts as $post)
+                            <div class="news-post">
+                                <div class="post-img">
+                                    <img class="img-fluid post_img" src="{{url($post->image)}}">
+                                </div>
+                                <div class="post-text">
+                                <span
+                                    class="card-month card-month-post">{{\App\Helpers\LanguageHelper::DateTranslateWithDay($post->created_at)}}</span>
+                                    <h3 class="card-office card-office-post">
+                                        <a href="{{route('news.read_more',$post->news_id)}}"> {!! $post->title !!}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                {{$news->links()}}
+            </div>
+        </div>
+
     </section>
 @endsection
 @section('js')

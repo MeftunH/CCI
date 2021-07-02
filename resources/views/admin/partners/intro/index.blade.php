@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <table class="datatables-basic table" id="partners">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -157,4 +157,9 @@
 
 @endsection
 @section('js')
+    <script>
+        $(document).ready(function () {
+            $('#partners').DataTable();
+        });
+    </script>
 @endsection

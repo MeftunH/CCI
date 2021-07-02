@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\ResumeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\StudyController;
 use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Bakcend\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Frontend\AboutController;
@@ -48,11 +49,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () {
     Route::get('/home', function () {
         return view('admin.index');
     })->name('admin.index');
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('/send-email', [MailController::class, 'sendEmail']);
     Route::post('contact-us', [ContactController::class,'saveContact']);
     Route::post('apply-mail', [ApplyController::class,'saveApply']);
@@ -77,6 +80,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/readService/{id}',[FrontServiceController::class,'read_more'])->name('services.read_more');
     Route::get('/readCareer/{id}',[FrontCareerController::class,'read_more'])->name('career.read_more');
     Route::get('/readNews/{id}',[FrontNewsController::class,'read_more'])->name('news.read_more');
+    Route::get('/news-search/', [FrontNewsController::class,'search'])->name('news.search');
     Route::get('/readEvent/{id}',[FrontEventController::class,'read_more'])->name('events.read_more');
     Route::get('/academyDetails/{id}',[FrontAcademyController::class,'read_more'])->name('academy.read_more');
     Route::get('/industryDetails/{id}',[FrontendIndustryController::class,'read_more'])->name('industry.read_more');
@@ -178,6 +182,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/service/{card}/card/show', [ServiceController::class, 'serviceCardShow'])->name('services.card.show');
         Route::post('/service/{card}/card/edit', [ServiceController::class, 'serviceCardUpdate'])->name('services.card.update');
         Route::delete('/service/{card}/destroy', [ServiceController::class, 'serviceCardDestroy'])->name('services.card.destroy');
+        Route::get('news/get-news/', [NewsController::class, "getNews"])->name('news.getNews');
 
 
     });
@@ -196,6 +201,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('slider/news/show/{id}', [NewsController::class, 'newsShow'])->name('newsShow');
         Route::post('slider/news/edit/{id}', [NewsController::class, 'newsUpdate'])->name('newsUpdate');
         Route::delete('slider/news/delete/{id}', [NewsController::class, 'newsDestroy'])->name('newsDestroy');
+
     });
     Route::name('events.')->group(function () {
         Route::get('slider/events/create', [EventController::class, 'eventCreate'])->name('eventCreate');
@@ -238,6 +244,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::name('subscriber.')->group(function () {
         Route::get('/subs/index', [SubscriberController::class, 'index'])->name('index');
         Route::post('/subscribe', [SubscriberController::class, 'store'])->name('store');
+        Route::get('/unsubscribe', [SubscriberController::class, 'destroy'])->name('destroy');
 
     });
     Route::get('/', function () {

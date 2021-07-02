@@ -19,7 +19,7 @@ class ResumeController extends Controller
     public function index()
     {
         $resume_intro = UploadResume::languages(app()->getLocale());
-        $resumes = Resume::paginate(5);
+        $resumes = Resume::all();
         return view('admin.career.resume.index', compact('resume_intro','resumes'));
     }
 

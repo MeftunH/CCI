@@ -88,7 +88,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <table class="datatables-basic table" id="apply">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -122,7 +122,6 @@
                             </div>
                         </div>
                     </div>
-{{$mails->links()}}
                 </section>
             </div>
         </div>
@@ -130,4 +129,9 @@
 
 @endsection
 @section('js')
+    <script>
+        $(document).ready(function () {
+            $('#apply').DataTable();
+        });
+    </script>
 @endsection

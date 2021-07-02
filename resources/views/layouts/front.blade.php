@@ -64,7 +64,7 @@
 
                         <img src="{{asset('./frontend/img/footer_logo.png')}}" class="img-fluid">
                         <div class="footer_connection">
-                            <a class="footer_links" href="#"><i class="fas fa-envelope footer-icon"></i> <span
+                            <a class="footer_links" href="mailto:foo@bar.com"><i class="fas fa-envelope footer-icon"></i> <span
                                     class="icon_text">info@bold-themes.com</span>
                             </a>
                             <a class="footer_links" href="#"><i class="fas fa-map-marker-alt footer-icon"></i> <span

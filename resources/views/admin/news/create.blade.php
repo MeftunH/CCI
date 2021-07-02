@@ -1,9 +1,12 @@
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css"/>
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
 @extends('layouts.backend.master')
 
 @section('title')
-{{trans('back.create_news')}}
+    {{trans('back.create_news')}}
 @endsection
 
 @section('css')
@@ -118,52 +121,74 @@
 
                                                 <img id="preview-image-before-upload"
                                                      src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                                     alt="preview image" class="img-fluid"   value="{{old('image') }}"
+                                                     alt="preview image" class="img-fluid" value="{{old('image') }}"
                                                      style="max-height: 100px;">
 
                                             </div>
 
 
                                         </div>
-                                            <br>
-                                            <div class="col-lg-12">
-                                                <label>{{trans('back.album')}}</label>
-                                            <div class="input-group hdtuto control-group lst increment" >
-                                                <input type="file" name="filenames[]" class="myfrm form-control">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
-                                                </div>
-                                            </div>
-                                            <div class="clone hide">
-                                                <div class="hdtuto control-group lst input-group" style="margin-top:10px">
-                                                    <input type="file" name="filenames[]" class="myfrm form-control">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
+                                        <br>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                    <br> <span class="text-center">Album</span><br>
+                                    <div class="form-group">
+                                        <label for="title">Image/file</label>
+                                        <input id="gallery-photo-add" type="file" name="images[]" class="form-control" multiple accept="image/*">
+
+                                        <div class="gallery">
+                                            <div class="col md-6"></div>
+
+                                        </div>
+
+                                        @if($errors->has('images'))
+                                            <span class="help-block text-danger">{{ $errors->first('images') }}</span>
+                                        @endif
+
+                                        <script>
+
+                                            $(function () {
+                                                // Multiple images preview in browser
+                                                var imagesPreview = function (input, placeToInsertImagePreview) {
+                                                    if (input.files) {
+                                                        var filesAmount = input.files.length;
+                                                        for (i = 0; i < filesAmount; i++) {
+                                                            var reader = new FileReader();
+                                                            reader.onload = function (event) {
+                                                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview).style().padding="10px";
+                                                            }
+                                                            reader.readAsDataURL(input.files[i]);
+                                                        }
+                                                    }
+                                                };
+
+                                                $('#gallery-photo-add').on('change', function () {
+                                                    imagesPreview(this, 'div.gallery');
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="text-right">
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </form>
+
             </div>
+
         </div>
     </div>
 
 @endsection
 @section('js')
+
     <script src="{{asset('./backend/assets/js/summernote-bs4.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -204,16 +229,7 @@
         });
 
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".btn-success").click(function(){
-                var lsthmtl = $(".clone").html();
-                $(".increment").after(lsthmtl);
-            });
-            $("body").on("click",".btn-danger",function(){
-                $(this).parents(".hdtuto control-group lst").remove();
-            });
-        });
-    </script>
+
+
 
 @endsection

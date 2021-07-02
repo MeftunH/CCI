@@ -24,5 +24,5 @@ return [
     'home'=>'Home',
     'Our Clients'=>'Our Clients',
     'We explore some of the latest trends and strategies'=>'We explore some of the latest trends and strategies',
-    'read_more'=>'Read More',
+    'read_more'=>'READ MORE',
 ];

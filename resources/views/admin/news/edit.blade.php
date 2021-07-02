@@ -133,7 +133,8 @@
 
                                                     <label>Old Image: </label>
 
-                                                    <img src="{{$news->image}}"  alt="{{$news->image}}" class="img-fluid" >
+                                                    <img src="{{$news->image}}" alt="{{$news->image}}"
+                                                         class="img-fluid">
                                                     <input type="hidden" name="old_image" value="{{ $news->image }}">
                                                 </div>
                                             </div>
@@ -150,6 +151,76 @@
                                             </select>
                                         </label>
                                     </div>
+                                    <div class="form-group col-md-12">
+
+                                        <br> <span class="text-center">Album</span><br>
+                                        <div class="form-group">
+                                            <label for="title">Image/file</label>
+                                            <input id="gallery-photo-add" type="file" name="images[]"
+                                                   class="form-control"
+                                                   multiple accept="image/*">
+                                            <div class="gallery">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if($errors->has('images'))
+                                                <span
+                                                    class="help-block text-danger">{{ $errors->first('images') }}</span>
+                                            @endif
+                                        </div>
+                                        <script>
+                                            $(function () {
+                                                // Multiple images preview in browser
+                                                var imagesPreview = function (input, placeToInsertImagePreview) {
+                                                    if (input.files) {
+                                                        var filesAmount = input.files.length;
+                                                        for (i = 0; i < filesAmount; i++) {
+                                                            var reader = new FileReader();
+                                                            reader.onload = function (event) {
+                                                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                                                            }
+                                                            reader.readAsDataURL(input.files[i]);
+                                                        }
+                                                    }
+                                                };
+
+                                                $('#gallery-photo-add').on('change', function () {
+                                                    imagesPreview(this, 'div.gallery');
+                                                });
+                                            });
+                                        </script>
+
+
+                                        <div class="row">
+                                            @if(isset($images))
+                                                <div class="col-sm">
+                                                    <label><input type="checkbox" class="sub_chk" name="checkAll"
+                                                                  id="checkAll">Delete
+                                                        All</label><label for="exampleInputName1">Old Images</label>
+                                                    @foreach($images as $ph)
+
+
+                                                        <img src="{{ $ph->image_path }}"
+                                                             style="width: 70px; height: 50px;">
+                                                        <input type="hidden" name="old_photos[]"
+                                                               value="{{ $ph->image_path }}">
+                                                        <input type="checkbox" value="{{$ph->id}}" id="albumCheck"
+                                                               class="checkSingle" name="checked[]">Delete
+                                                    @endforeach
+                                                    @endif
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $("#checkAll").click(function () {
+                                            $(".checkSingle").each(function () {
+                                                this.checked = true;
+                                            });
+                                        });
+                                    </script>
                                     <br>
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -171,7 +242,36 @@
 @endsection
 @section('js')
     <script src="{{asset('./backend/assets/js/summernote-ext-addclass.js')}}"></script>
+    <script>
+        $('.summernote').summernote({
+            height: ($(window).height() - 300),
+            callbacks: {
+                onImageUpload: function (image) {
+                    uploadImage(image[0]);
+                }
+            }
+        });
 
+        function uploadImage(image) {
+            var data = new FormData();
+            data.append("image", image);
+            $.ajax({
+                url: {{'news.newsUpdate',$news->id}},
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: "post",
+                success: function (url) {
+                    var image = $('<img>').attr('src', 'http://' + url);
+                    $('#summernote').summernote("insertNode", image[0]);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
     <script src="{{asset('./backend/assets/js/summernote-bs4.min.js')}}"></script>
     <script type="text/javascript">
 

@@ -178,8 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
-        Mckenziearts\Notify\LaravelNotifyServiceProvider::class
-
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -194,7 +196,7 @@ return [
     */
 
     'aliases' => [
-
+        'Image' => Intervention\Image\Facades\Image::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -234,6 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'LanguageHelper' => App\Helpers\LanguageHelper::class,
          'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
     ],
 

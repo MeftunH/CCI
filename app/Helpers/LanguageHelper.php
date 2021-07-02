@@ -17,6 +17,11 @@ class LanguageHelper
         $translatedDate=Carbon::parse($date)->translatedFormat('F Y');
         return $translatedDate;
     }
+    public static function DateTranslateWithDay($date)
+    {
+        $translatedDate=Carbon::parse($date)->translatedFormat('F d Y');
+        return $translatedDate;
+    }
     public function translate_and_save_long_term($code, $language_first,$new_lang)
     {
         $tr = new GoogleTranslate();
