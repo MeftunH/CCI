@@ -16,12 +16,12 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li>{{ trans($error) }}</li>
                         @endforeach
                     </ul>
                 </div>
             @endif
-
+{{app()->getLocale()}}
             <form wire:submit.prevent="updateProfileInformation" role="form">
 
                 <div class="form-group">
