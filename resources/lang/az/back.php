@@ -26,4 +26,5 @@ return [
     'codes'=>'Olke kodlari:',
     'read_more'=>'Daha cox oxu',
     'locales'=>'Lokallar:',
+    'required' => 'mecburidir',
 ];

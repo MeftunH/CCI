@@ -40,7 +40,11 @@ class AppServiceProvider extends ServiceProvider
         });
         Paginator::useBootstrap();
         $languages = \Illuminate\Support\Facades\DB::table('languages')->where('status',1)->get();
+        $settings = \Illuminate\Support\Facades\DB::table('settings')->first();
+        $socials = \Illuminate\Support\Facades\DB::table('socials');
         View::share('languages',$languages);
+        View::share('settings',$settings);
+        View::share('socials',$socials);
         Fortify::loginView('auth.login');
     }
 }

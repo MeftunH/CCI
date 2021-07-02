@@ -25,7 +25,7 @@
             </div>
         </div>
         </div>
-        <div class="header_bottom_img">
+        <div class="header_bottom_img" style="z-index:2">
             <img class="img-fluid" src="{{asset('./frontend/img/bottom_left_grey.png')}}" >
         </div>
     </section>

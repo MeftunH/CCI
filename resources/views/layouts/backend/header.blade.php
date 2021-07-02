@@ -16,18 +16,22 @@
                 <li class="nav-item dropdown dropdown-language">
                     @foreach($languages as $key=>$lang)
                         @if($lang->locale == app()->getLocale())
-                    <a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <img src="{{$lang->flag}}" class="img-fluid" style="width: 16px"><span class="selected-language">  {{app()->getLocale()}}</span></a>
+                            <a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);"
+                               data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img src="{{$lang->flag}}" class="img-fluid" style="width: 16px"><span
+                                    class="selected-language">  {{app()->getLocale()}}</span></a>
                         @endif
-                         @endforeach
+                    @endforeach
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag">
                         @foreach($languages as $key=>$lang)
                             @if($lang->locale != app()->getLocale())
-                        <a class="dropdown-item" href="{{LaravelLocalization::getLocalizedURL($lang->locale, null, [], true)}}"
-                           data-language="{{$lang->locale}}">
-                            <img src="{{$lang->flag}}" class="img-fluid" style="width: 16px">  {{$lang->code}}</a>
+                                <a class="dropdown-item"
+                                   href="{{LaravelLocalization::getLocalizedURL($lang->locale, null, [], true)}}"
+                                   data-language="{{$lang->locale}}">
+                                    <img src="{{$lang->flag}}" class="img-fluid" style="width: 16px"> {{$lang->code}}
+                                </a>
                             @endif
                         @endforeach
                     </div>
@@ -47,9 +51,18 @@
                                               src="{{asset('./backend/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
                                               alt="avatar" height="40" width="40"><span
                             class="avatar-status-online"></span></span></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user"><a class="dropdown-item"
-                                                                                                  href="javascript:void(0);"><i
-                            class="mr-50" data-feather="user"></i> Profile</a><a class="dropdown-item"
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+
+                <a class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Home') }}</a>
+                </a>
+                <a class="nav-item {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('profile') }}">{{ __('Profile') }}</a>
+                </a>
+                    <a class="dropdown-item"
+                       href="javascript:void(0);"><i
+                            class="mr-50" data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item"
                                                                                  href="javascript:void(0);"><i
                             class="mr-50" data-feather="mail"></i> Inbox</a><a class="dropdown-item"
                                                                                href="javascript:void(0);"><i
@@ -68,6 +81,7 @@
                     <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none">
                         @csrf
                     </form>
+
                 </div>
             </li>
         </ul>

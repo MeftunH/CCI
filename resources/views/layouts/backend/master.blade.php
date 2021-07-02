@@ -12,8 +12,8 @@
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>@yield('title')</title>
-    <link rel="apple-touch-icon" href="{{asset('./backend/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('./backend/app-assets/images/ico/favicon.ico')}}">
+    <link rel="icon" href= {{$settings->admin_panel_icon}}"">
+    <link rel="shortcut icon" type="image/x-icon" href=" {{$settings->admin_panel_icon}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -51,6 +51,7 @@
           href="{{asset('./backend/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css"
           href="{{asset('./backend/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css')}}">
+    <livewire:styles />
 
 @yield('css')
 <!-- BEGIN: Page CSS-->
@@ -109,6 +110,8 @@
 
 
 <!-- BEGIN: Vendor JS-->
+<livewire:scripts />
+
 <script src="{{asset('./backend/app-assets/vendors/js/vendors.min.js')}}"></script>
 <script src="{{asset('./backend/app-assets/js/core/app-menu.js')}}"></script>
 <script src="{{asset('./backend/app-assets/js/core/app.js')}}"></script>

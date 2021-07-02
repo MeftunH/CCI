@@ -40,12 +40,10 @@
                             <div class="row card-bottom-text">
                                 <div class="col-lg-6">
                                     <div class="social">
-                                        <a class="social_link social_link-news" href="#"><i
-                                                class="fab fa-facebook-f"></i></a>
-                                        <a class="social_link social_link-news" href="#"><i
-                                                class="fab fa-instagram"></i></a>
-                                        <a class="social_link social_link-news" href="#"><i
-                                                class="fab fa-linkedin-in"></i></a>
+                                        <a class="social_link social_link-news" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="social_link social_link-news" href="{{$socials->skip(1)->first()->link}}"><i class="fab fa-instagram"></i></a>
+                                        <a class="social_link social_link-news" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -62,15 +60,19 @@
                 </div>
 
 
+
+
                 <div class="col-lg-4  col-12">
                     <div class="row news-right ">
-                        <form action="{{ route('news.search') }}" method="GET">
+                        <form action="{{ route('news.search') }}" method="GET" style="display: flex">
                             @csrf
-                            <input class="news-input" type="text" placeholder="{{trans('front.looking_for')}}"
-                                   name="search">
 
-                            <button class="news_icon" type="submit"><i class="fas fa-search"></i></button>
+                                <input class="news-input" type="text" placeholder="{{trans('front.looking_for')}}"
+                                       name="search">
 
+
+                                    <button style="background: transparent;border: none" class="news_icon"
+                                            type="submit"><i class="fas fa-search"></i></button>
 
                         </form>
                     </div>

@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="reach-text">
-                        <p class="reach-text_help">HOW CAN WE HELP YOU OUT?</p>
+                        <p class="reach-text_help">{{trans('connect.how_can_we_help_you_out')}}</p>
                         <h1 class="reach-text_out">Reach out to us in the nearest office.</h1>
                         <!-- <span class="reach-text_number">1-800-700-600</span> -->
                     </div>
@@ -60,9 +60,11 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="social">
-                                <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-                                <a class="social-link" href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                                <a class="social-link" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-link" href="{{$socials->skip(1)->first()->link}}"><i class="fab fa-instagram"></i></a>
+                                <a class="social-link" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
+
                             </div>
                         </div>
 
@@ -74,15 +76,15 @@
                 <div class="col-lg-6">
                     <div class="reach-form">
                         <div class="form-text">
-                            <p>CONTACT US</p>
-                            <h1 class="form_leave">Leave us a little info, and we'll be in touch.</h1>
+                            <p>{{trans('connect.contact_us')}}</p>
+                            <h1 class="form_leave">{{trans('connect.form_leave')}}</h1>
                         </div>
                         <div class="row">
                             <form method="post" action="contact-us">
                                 {{csrf_field()}}
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="name">Name (required)</label>
+                                        <label for="name">{{trans('connect.name')}}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                value="{{old('name')}}"
                                                placeholder="Your Name" name="name" id="name">
@@ -96,7 +98,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="email">Your Email (required)</label>
+                                        <label for="email">{{trans('connect.your_email')}}</label>
                                         <input type="text" class="form-control @error('email') is-invalid @enderror"
                                                placeholder="Email" name="email" id="email" value="{{old('email')}}">
                                         @error('email')
@@ -109,7 +111,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="subject">Subject (optional)</label>
+                                        <label for="subject">{{trans('connect.subject')}}</label>
                                         <input type="text" class="form-control @error('subject') is-invalid @enderror"
                                                placeholder="Subject" name="subject" id="subject"
                                                value="{{old('subject')}}">
@@ -123,7 +125,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="details">Project details</label>
+                                        <label for="details">{{trans('connect.project_details')}}</label>
                                         <input id="details" @error('message') is-invalid @enderror name="message"
                                                class="last-input" type="text" value="{{old('value')}}"
                                                placeholder="Brief project details">
@@ -132,7 +134,7 @@
                                 </div>
 
                                 <button type="submit" id="contactbtn" class="form-btn form-link"
-                                        onclick="successIconMarkup()">Send a message
+                                        onclick="successIconMarkup()">{{trans('connect.send_a_message')}}
                                 </button>
 
                             </form>

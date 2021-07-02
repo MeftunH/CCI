@@ -50,10 +50,31 @@ use App\Models\UploadResume;
 use App\Models\UploadResumeTranslation;
 use App\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class SiteHelper
 {
+
+
+    public function image_update($image,$obj,$old_image,$arr_data,$item)
+    {
+        if (isset($image)) {
+            $image_uni = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('storage/public/images/setting_images/' . $image_uni);
+            $data[$arr_data] = '/storage/public/images/setting_images/' . $image_uni;
+            $obj->$item = $data[$arr_data];
+            $obj->save();
+            $old_path = 'storage/public/images/setting_images/'.$old_image;
+            if (File::exists($old_path)) {
+                File::delete($old_path);
+            }
+        } else {
+            $data[$arr_data] = $old_image;
+        }
+    }
+
     //at least delete
     public function translate_and_save($request, $id)
     {

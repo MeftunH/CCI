@@ -12,6 +12,9 @@
     <script src="https://kit.fontawesome.com/c0b38f19a0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('frontend/index.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/media.css')}}">
+    <link rel="icon" href="{{$settings->frontend_icon}}">
+    <link rel="shortcut icon" href="{{$settings->frontend_icon}}">
+
     @yield('css')
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -42,7 +45,7 @@
                 </div>
             @endif
             <div class="col-lg-7 col-12">
-                <h1 class="subscribe-text">Subscribe to our Newsletter</h1>
+                <h1 class="subscribe-text">{{trans('front.subscribe_our_newsletter')}}</h1>
             </div>
 
 
@@ -62,37 +65,37 @@
                 <div class="footer_services">
                     <div class="footer_logo">
 
-                        <img src="{{asset('./frontend/img/footer_logo.png')}}" class="img-fluid">
+                        <img src="{{asset($settings->non_index_footer_logo)}}" class="img-fluid">
                         <div class="footer_connection">
-                            <a class="footer_links" href="mailto:foo@bar.com"><i class="fas fa-envelope footer-icon"></i> <span
-                                    class="icon_text">info@bold-themes.com</span>
+                            <a class="footer_links" href="mailto:{{$settings->mail}}"><i class="fas fa-envelope footer-icon"></i> <span
+                                    class="icon_text">{{$settings->mail}}</span>
                             </a>
-                            <a class="footer_links" href="#"><i class="fas fa-map-marker-alt footer-icon"></i> <span
-                                    class="icon_text">60 East 65th Street, New York</span></a>
+                            <a class="footer_links" href="https://maps.google.com/maps?q={{trans('footer.footer_mini_address')}}"><i class="fas fa-map-marker-alt footer-icon"></i> <span
+                                    class="icon_text">{{trans('front.footer_mini_address')}}</span></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer_services">
-                    <li class="footer-link">Site map</li>
-                    <a class="footer_link" href="#">Academy</a>
-                    <a class="footer_link" href="#">Events</a>
-                    <a class="footer_link" href="#">News</a>
-                    <a class="footer_link" href="#">Industries</a>
+                    <li class="footer-link">{{trans('front.sitemap')}}</li>
+                    <a class="footer_link" href="{{route('academy')}}">{{trans('front.academy')}}</a>
+                    <a class="footer_link" href="{{route('event')}}">{{trans('front.events')}}</a>
+                    <a class="footer_link" href="{{route('news')}}">{{trans('front.news')}}</a>
+                    <a class="footer_link" href="{{route('industries')}}">{{trans('front.industries')}}</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer_services">
-                    <li class="footer-link">Connect</li>
+                    <li class="footer-link">{{trans('front.connect')}}</li>
                     <div class="social">
-                        <a class="social_link" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="social_link" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="social_link" href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                        <a class="social_link" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
+                        <a class="social_link" href="{{$socials->skip(1)->first()->link}}"><i class="fab fa-instagram"></i></a>
+                        <a class="social_link" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="footer_text">
-                        We bring the years, global experience, and stamina to guide our clients through new and often
-                        disruptive realities.
+                        {{trans('front.footer_social_text')}}
                     </div>
                 </div>
             </div>
@@ -102,13 +105,13 @@
         <div class="row footer-black">
             <div class="col-lg-6 col-12">
                 <div class="footer-black_right">
-                    <p class="copy-line">©2020 NIFTY. All rights reserved</p>
+                    <p class="copy-line">{{trans('front.all_rights_reserved')}}</p>
                 </div>
             </div>
             <div class="col-lg-6 col-12">
                 <div class="footer-black_left">
-                    <a class="footer-black_link" href="#">Privacy Policy</a>
-                    <a class="footer-black_link" href="#">Cookie Policy</a>
+                    <a class="footer-black_link" href="#">{{trans('front.privact_policy')}}</a>
+                    <a class="footer-black_link" href="#">{{trans('front.cookie_policy')}}</a>
                 </div>
             </div>
         </div>

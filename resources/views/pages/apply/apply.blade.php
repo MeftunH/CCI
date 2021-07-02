@@ -15,7 +15,7 @@
                 <div class="col-lg-6 col-12">
                     <div class="intro_text">
                         <h1 class="intro_about">{!! $intro->title !!}</h1>
-                        <p class="intro_work">Together we can create something all inspirational you need to build.</p>
+                        <p class="intro_work">{!! $intro->description !!}</p>
                     </div>
                 </div>
             </div>
@@ -32,14 +32,14 @@
                 <div class="col-lg-12">
                     <div class="reach-form">
                         <div class="form-text">
-                            <h1 class="form_leave">Apply</h1>
+                            <h1 class="form_leave">{{trans('apply.apply')}}</h1>
                         </div>
                         <div class="row">
                             <form method="post" action="apply-mail">
                                 {{csrf_field()}}
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="name">Name (required)</label>
+                                        <label for="name">{{trans('apply.name')}}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                value="{{old('name')}}"
                                                placeholder="Your Name" name="name" id="name">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="surname">Surname (required)</label>
+                                        <label for="surname">{{trans('apply.surname')}}</label>
                                         <input type="text" class="form-control @error('surname') is-invalid @enderror"
                                                value="{{old('surname')}}"
                                                placeholder="Your Name" name="surname" id="surname">
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="email">Your Email (required)</label>
+                                        <label for="email">{{trans('apply.your_name')}}</label>
                                         <input type="text" class="form-control @error('email') is-invalid @enderror"
                                                placeholder="Email" name="email" id="email" value="{{old('email')}}">
                                         @error('email')
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-input">
-                                        <label for="phone_number">Telephone Number (optional)</label>
+                                        <label for="phone_number">{{trans('apply.telephone_number')}}</label>
                                         <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
                                                placeholder="phone number" name="phone_number" id="phone_number" value="{{old('phone_number')}}" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
 
@@ -95,7 +95,7 @@
 
 
                                 <button type="submit" id="applybtn" class="form-btn form-link"
-                                        onclick="successIconMarkup()">Send a message
+                                        onclick="successIconMarkup()">{{trans('apply.send_a_message')}}
                                 </button>
 
                             </form>

@@ -180,7 +180,6 @@ return [
         App\Providers\FortifyServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     ],
 

@@ -26,4 +26,5 @@ return [
     'codes'=>'Country codes:',
     'read_more'=>'Read More',
     'locales'=>'Locales:',
+    'required' => ':attribute is required',
 ];

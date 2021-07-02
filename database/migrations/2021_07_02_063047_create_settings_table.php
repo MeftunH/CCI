@@ -15,6 +15,14 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('admin_panel_logo');
+            $table->string('admin_panel_icon');
+            $table->string('frontend_icon');
+            $table->string('index_footer_logo');
+            $table->string('non_index_footer_logo');
+            $table->string('index_navbar_logo');
+            $table->string('non_index_navbar_logo');
+            $table->string('mail');
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@
             <div class="row header">
                 <div class="col-lg-auto">
                     <div class="header_logo">
-                        <img class="img-fluid home-logo logo_img" src="{{asset('./frontend/img/logo_white.png')}}" >
+                        <img class="img-fluid home-logo logo_img" src="{{asset($settings->index_navbar_logo)}}" >
                     </div>
                 </div>
                 <div class="col-lg-9  d-lg-block d-md-flex">
