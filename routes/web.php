@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\StudyController;
 use App\Http\Controllers\Backend\SubscriberController;
 
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Frontend\AboutController;
@@ -56,6 +57,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::middleware(['auth', 'verified'])->group(function ()  {
         Route::view('/home', 'admin.index')->name('admin.index');
         Route::view('/profile','profile.profile')->name('profile');
+        Route::post('user/updateImage', [UserController::class, 'updateProfileImage'])->name('updateProfileImage');
     });
 //    Route::middleware(['auth', 'verified'])->group(function () {
 //        Route::view('/home', 'admin.index')->name('admin.index');

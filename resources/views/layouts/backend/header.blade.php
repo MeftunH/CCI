@@ -48,7 +48,7 @@
                             class="user-name font-weight-bolder">John Doe</span><span class="user-status">Admin</span>
                     </div>
                     <span class="avatar"><img class="round"
-                                              src="{{asset('./backend/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
+                                              src="{{\Illuminate\Support\Facades\Auth::user()->photo}}"
                                               alt="avatar" height="40" width="40"><span
                             class="avatar-status-online"></span></span></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">

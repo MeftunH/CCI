@@ -22,6 +22,7 @@ class ProfileForm extends Component
     }
     public function render()
     {
+
         return view('livewire.profile-form');
     }
 }

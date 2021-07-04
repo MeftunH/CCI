@@ -26,4 +26,5 @@ return [
     'warn_locales'=>'Rusca You will find all countries locales in this link:',
     'read_more'=>'Rusca Read More',
     'locales'=>'Rusca Locales:',
+    'valid_type_image_error'=>'Plz select a valid type image',
 ];

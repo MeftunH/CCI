@@ -11,9 +11,11 @@
             </div>
             <div class="col-lg-6 d-lg-block d-none">
                 <div class="top_social">
+                    @if(isset($socials))
                     <a class="top_link" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
                     <a class="top_link" href="{{$socials->skip(1)->first()->link}}"><i class="fab fa-instagram"></i></a>
                     <a class="top_link" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
+                    @endif
                 </div>
             </div>
         </div>

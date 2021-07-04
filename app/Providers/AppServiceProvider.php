@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Language;
+use App\Models\Setting;
+use App\Models\Social;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
@@ -39,12 +43,14 @@ class AppServiceProvider extends ServiceProvider
             });
         });
         Paginator::useBootstrap();
-        $languages = \Illuminate\Support\Facades\DB::table('languages')->where('status',1)->get();
-        $settings = \Illuminate\Support\Facades\DB::table('settings')->first();
-        $socials = \Illuminate\Support\Facades\DB::table('socials');
+        $languages = Language::where('status',1)->get();
+        $settings = Setting::first();
+        $socials = Social::all();
+        $authed_user =Auth::user();
         View::share('languages',$languages);
         View::share('settings',$settings);
         View::share('socials',$socials);
+        View::share('authed_user',$authed_user);
         Fortify::loginView('auth.login');
     }
 }

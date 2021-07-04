@@ -27,4 +27,5 @@ return [
     'read_more'=>'Read More',
     'locales'=>'Locales:',
     'required' => ':attribute is required',
+    'valid_type_image_error'=>'Plz select a valid type image',
 ];

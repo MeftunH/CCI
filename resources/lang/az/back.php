@@ -27,4 +27,5 @@ return [
     'read_more'=>'Daha cox oxu',
     'locales'=>'Lokallar:',
     'required' => 'mecburidir',
+    'valid_type_image_error'=>'Plz select a valid type image',
 ];
