@@ -40,12 +40,14 @@
                     <div class="row innovation_cards">
                         @foreach($limited_items as $li)
                             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
                                 <div class="tech_card  innovation_card">
                                     <img class="img-fluid" src="{{asset($li->image)}}" width="100" height="100">
                                     <div class="innovation_card_text">
-                                        <p class="card_top_text">{{$li->title}}</p>
+                                        <p class="card_top_text">{!! $li->title !!}</p>
                                     </div>
                                 </div>
+
                             </div>
                         @endforeach
                     </div>
@@ -54,16 +56,17 @@
             </div>
             @if(isset($row_items))
                 <div class="row innovation-cards">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="tech_card  innovation_card">
-                            @foreach($row_items as $ri)
+                    @foreach($row_items as $ri)
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="tech_card  innovation_card">
+
                                 <img src="{{asset($ri->image)}}" width="100" height="100">
                                 <div class="innovation_card_text">
                                     <p class="card_top_text">{{$ri->title}}</p>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
+
+                            </div>
+                        </div> @endforeach
                 </div>
             @endif
         </div>
@@ -81,21 +84,22 @@
             </div>
             <div class="row experience-cards">
                 @foreach($service_cards as $sc)
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="experience-card">
-                        <div class="card-top">
-                            <div class="experience-img-01"
-                                 style="background-image: url({{$sc->image}});">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="experience-card">
+                            <div class="card-top">
+                                <div class="experience-img-01"
+                                     style="background-image: url({{$sc->image}});">
+                                </div>
+                            </div>
+                            <div class="experience-bottom">
+                                <h3>{{$sc->title}}</h3>
+                                <p class="agile">{!! $sc->description!!}</p>
+                                <span class="card_bottom_text"><a class="innovation_link"
+                                                                  href="{{ URL::route('services.read_more',$sc->service_card_id) }}">{{trans('front.read_more')}} <i
+                                            class="fas fa-arrow-circle-right innovation_icon"></i></a></span>
                             </div>
                         </div>
-                        <div class="experience-bottom">
-                            <h3>{{$sc->title}}</h3>
-                            <p class="agile">{!! $sc->description!!}</p>
-                            <span class="card_bottom_text"><a class="innovation_link" href="{{ URL::route('services.read_more',$sc->service_card_id) }}">{{trans('front.read_more')}} <i
-                                        class="fas fa-arrow-circle-right innovation_icon"></i></a></span>
-                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

@@ -49,7 +49,7 @@
             </li>
 
             {{---------------------------------------------------------------------------------------------------------}}
-
+            @can('language-list')
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="flag"></i><span
                         class="menu-title text-truncate" data-i18n="Languages">{{trans('back.languages')}}</span><span
                         class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
@@ -65,6 +65,7 @@
 
                 </ul>
             </li>
+            @endcan
             {{---------------------------------------------------------------------------------------------------------}}
 
             {{---------------------------------------------------------------------------------------------------------}}
@@ -157,7 +158,24 @@
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
 
+            {{---------------------------------------------------------------------------------------------------------}}
 
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-stack style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.homepage')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('homepage.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.services.innovation.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.service_innovation')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
 
             {{---------------------------------------------------------------------------------------------------------}}
 
@@ -201,13 +219,14 @@
             {{---------------------------------------------------------------------------------------------------------}}
 
             {{---------------------------------------------------------------------------------------------------------}}
-
+            @can('news-list')
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('news.index')}}"><x-bi-journal-bookmark-fill style="color: currentColor"/>
                     <span
                         class="menu-title text-truncate" data-i18n="Languages">{{trans('back.news')}}</span><span
                         class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
 
             </li>
+            @endcan
             {{---------------------------------------------------------------------------------------------------------}}
             {{---------------------------------------------------------------------------------------------------------}}
 
@@ -275,6 +294,28 @@
 
             </li>
             {{---------------------------------------------------------------------------------------------------------}}
+            {{---------------------------------------------------------------------------------------------------------}}
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><x-bi-lock-fill style="color: currentColor"/>
+                    <span
+                        class="menu-title text-truncate" data-i18n="Languages">{{trans('back.role_permission')}}</span><span
+                        class="badge badge-light-danger badge-pill ml-auto mr-1"></span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('users.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.manage_users')}}</span></a>
+                    </li>
+                    @can('role-list')
+                    <li><a class="d-flex align-items-center" href="{{route('roles.index')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                                                data-i18n="Collapsed Menu">{{trans('back.manage_roles')}}</span></a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            {{---------------------------------------------------------------------------------------------------------}}
+
+
 
         </ul>
     </div>

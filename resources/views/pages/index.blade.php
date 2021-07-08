@@ -17,16 +17,17 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="intro_text">
-                        <h1 class="intro_IT">IT Consulting Services For Your Business</h1>
-                        <p class="intro_work intro_work-home">Work with a Nifty consultants to plan for future of your business</p>
-                        <a href="file:///Users/cemile/Desktop/VisualStudio%20code/work%20practise/CCI%20Technology/about.html" class="intro_link intro_link-home intro_btn intro_btn-home" >Read More</a>
+                        <h1 class="intro_IT">{!! $intro->title !!}</h1>
+                        <p class="intro_work intro_work-home">{!! $intro->description !!}</p>
+                        <a href="{{route('about')}}" class="intro_link intro_link-home intro_btn intro_btn-home">Read
+                            More</a>
                     </div>
                 </div>
             </div>
         </div>
         </div>
         <div class="header_bottom_img" style="z-index:2">
-            <img class="img-fluid" src="{{asset('./frontend/img/bottom_left_grey.png')}}" >
+            <img class="img-fluid" src="{{asset('./frontend/img/bottom_left_grey.png')}}">
         </div>
     </section>
     <!-- Innovation -->
@@ -38,12 +39,11 @@
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="innovation_left">
-                        <h1 class="innovation_BF"><span class="innovation_color">Be at the forefront of</span>
-                            innovation</h1>
-                        <p class="innovation_inform">We’re here to inform which tactics need funding and which are
-                            drainson resources.</p>
-                        <a href="services.html"
-                           class="innovation_btn innovation-btn">Our Services</a>
+                        <h1 class="innovation_BF">{!! $innovation_module->replace($innovation_module->title) !!}
+                            </h1>
+                        <p class="innovation_inform">{!! $innovation_module->description !!}</p>
+                        <a href="{{route('services')}}"
+                           class="innovation_btn innovation-btn">{{trans('front.our_services')}}</a>
                         <div class="floating_left_img">
                             <img class="floating-left-img img-fluid"
                                  src="{{asset('./frontend/img/floating_image_left.png')}}" width="400"
@@ -52,62 +52,39 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">
+
                     <div class="row innovation_cards">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="tech_card  innovation_card">
-                                <img class="img-fluid" src="{{asset('./frontend/img/solution.svg')}}" width="100"
-                                     height="100">
-                                <div class="innovation_card_text">
-                                    <p class="card_top_text">Strategic Consulting</p>
+                        @foreach($_limited_innovation_items as $li)
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="tech_card  innovation_card">
+                                    <img class="img-fluid" src="{{asset($li->image)}}" width="100" height="100">
+                                    <div class="innovation_card_text">
+                                        <p class="card_top_text">{!! $li->title !!}</p>
+                                    </div>
                                 </div>
+
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="tech_card  innovation_card">
-                                <img class="img-fluid" src="{{asset('./frontend/img/global-services.svg')}}" width="100"
-                                     height="100">
-                                <div class="innovation_card_text">
-                                    <p class="card_top_text">Project Scoping and Planning</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
+
                 </div>
             </div>
-            <div class="row innovation-cards">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="tech_card  innovation_card">
-                        <img src="{{asset('./frontend/img/solution.svg')}}" width="100" height="100">
-                        <div class="innovation_card_text">
-                            <p class="card_top_text">Creative Cloud Solutions</p>
-                        </div>
-                    </div>
+            @if(isset($_row_innovation_items))
+                <div class="row innovation-cards">
+                    @foreach($_row_innovation_items as $ri)
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="tech_card  innovation_card">
+
+                                <img src="{{asset($ri->image)}}" width="100" height="100">
+                                <div class="innovation_card_text">
+                                    <p class="card_top_text">{{$ri->title}}</p>
+                                </div>
+
+                            </div>
+                        </div> @endforeach
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="tech_card  innovation_card">
-                        <img src="{{asset('./frontend/img/solution.svg')}}" width="100" height="100">
-                        <div class="innovation_card_text">
-                            <p class="card_top_text">Infrastructure Capacity Planning</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="tech_card  innovation_card">
-                        <img src="{{asset('./frontend/img/solution.svg')}}" width="100" height="100">
-                        <div class="innovation_card_text">
-                            <p class="card_top_text">Technology Services</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="tech_card  innovation_card">
-                        <img src="{{asset('./frontend/img/solution.svg')}}" width="100" height="100">
-                        <div class="innovation_card_text">
-                            <p class="card_top_text">Help Desk IT Services</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
             <div class="botton_dark">
                 <img class="img-fluid " src="{{asset('./frontend/img/bottom_left_dark.png')}}">
             </div>
@@ -128,16 +105,14 @@
                     <div class="row">
                         <div class="unlocking_text">
                             <div class="col-lg-12">
-                                <h1 class="unlock_unlock"><span class="innovation_color">Unlocking value with</span>
-                                    analytics</h1>
+                                <h1 class="unlock_unlock">{!! $unlock_module->replace($unlock_module->title) !!}</h1>
                             </div>
                             <div class="col-lg-12">
-                                <p class="unlock_bring">We bring the breathe of our experience and industry knowledge to
-                                    help you succeed.</p>
+                                <p class="unlock_bring">{!! $unlock_module->description !!}</p>
                             </div>
                             <div class="col-lg-12">
-                                <a href="file:///Users/cemile/Desktop/VisualStudio%20code/work%20practise/CCI%20Technology/academy.html"
-                                   class="unlocking_btn unlocking-btn">Meet Our Experts</a>
+                                <a href="{{route('academy')}}"
+                                   class="unlocking_btn unlocking-btn">{{trans('front.meet_our_experts')}}</a>
                             </div>
                         </div>
                     </div>
@@ -164,34 +139,16 @@
             </div>
             <div class=" swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="slider">
-                            <div class="swiper-img">
-                                <img class="img-fluid" src="{{asset('./frontend/img/client-logo-triangle.png')}}">
+                    @foreach($_clients as $client)
+                        <div class="swiper-slide">
+                            <div class="slider">
+                                <div class="swiper-img">
+                                    <img class="img-fluid" src="{{asset($client->image)}}">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider">
-                            <div class="swiper-img">
-                                <img class="img-fluid" src="{{asset('./frontend/img/client-logo-limita.png')}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider">
-                            <div class="swiper-img">
-                                <img class="img-fluid" src="{{asset('./frontend/img/client-logo-dorcol.png')}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider">
-                            <div class="swiper-img">
-                                <img class="img-fluid" src="{{asset('./frontend/img/client-logo-skittared.png')}}">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
             <div class="bottom_right">
@@ -215,48 +172,27 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="studies_text">
-                        <h1 class="studies_case">Case <span class="innovation_color">Studies</span></h1>
+                        <h1 class="studies_case">{{trans('front.case')}} <span class="innovation_color">{{trans('front.studies')}}</span></h1>
                         <p class="studies_advice">We are able to give truly independent advice</p>
                     </div>
                 </div>
             </div>
             <div class="row studies_cards">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="studies-card">
-                        <div class="studies_card_01" style="background-image: url('frontend/img/portfolio_01.jpg');">
-                        </div>
-                        <div class="studies_card_text">
-                            <span class="studies_consulting">Consulting </span> <span class="studies_recruitment">Recruitment</span>
-                            <h3 class="studies_coping">Coping Under the Current Climate</h3>
-                            <span class="studies_bottom_text"><a class="studies_link studies_link-home" href="#">READ MORE <i
-                                        class="fas fa-arrow-circle-right studies_icon"></i></a></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="studies-card">
-                        <div class="studies_card_02">
-                        </div>
-                        <div class="studies_card_text">
-                            <span class="studies_consulting">Consulting </span> <span class="studies_recruitment">Recruitment</span>
-                            <h3 class="studies_coping">Coping Under the Current Climate</h3>
-                            <span class="studies_bottom_text"><a class="studies_link studies_link-home" href="#">READ MORE <i
-                                        class="fas fa-arrow-circle-right studies_icon"></i></a></span>
+                @foreach($_last_studies as $ls)
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="studies-card">
+                            <div class="studies_card_01" style="background-image: url('{{url($ls->image)}}');">
+                            </div>
+                            <div class="studies_card_text">
+                                <a href="{{ URL::route('caseStudies.read_more',$ls->study_id) }}"><h3
+                                        class="studies_coping studies_coping-case">{{$ls->title}}</h3></a>
+                                <span class="studies_bottom_text"><a class="studies_link"
+                                                                     href="{{ URL::route('caseStudies.read_more',$ls->study_id) }}">{{trans('back.read_more')}} <i
+                                            class="fas fa-arrow-circle-right studies_icon"></i></a></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="studies-card">
-                        <div class="studies_card_03">
-                        </div>
-                        <div class="studies_card_text">
-                            <span class="studies_consulting">Consulting </span> <span class="studies_recruitment">Recruitment</span>
-                            <h3 class="studies_coping">Coping Under the Current Climate</h3>
-                            <span class="studies_bottom_text"><a class="studies_link studies_link-home" href="#">READ MORE <i
-                                        class="fas fa-arrow-circle-right studies_icon"></i></a></span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="img-fluid" class="studies_bottom_img">

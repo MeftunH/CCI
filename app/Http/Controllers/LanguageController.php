@@ -24,6 +24,14 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class LanguageController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:language-list|language-create|language-edit|language-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:language-create', ['only' => ['create','store']]);
+        $this->middleware('permission:language-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:language-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:edit-translations', ['only' => ['EditTranslation']]);
+    }
     public function index()
     {
         $languages = Language::paginate(5);
@@ -43,6 +51,7 @@ class LanguageController extends Controller
     public function store(Request $request)
     {
 
+
         $request->validate([
             'name' => 'required',
             'code' => 'required',
@@ -55,6 +64,9 @@ class LanguageController extends Controller
         if ($request->get('status') == null) {
             $input['status'] = 1;
         }
+        $tr = new GoogleTranslate();
+        $tr->setSource();
+        $tr->setUrl('http://translate.google.cn/translate_a/t');
         $arr_locales = new LaravelLocalization();
         if (in_array($request->get('locale'), $arr_locales->getSupportedLanguagesKeys())) {
 
@@ -77,12 +89,40 @@ class LanguageController extends Controller
             }
             $info = json_encode(['name' => $request->get('name'), 'locale' => $request->get('locale')]);
             $fopen = fopen($temp . '/resources/lang/' . $request->get('locale') . '/info.json', 'w+');
+            $tr->setTarget($request->get('locale'));
             fwrite($fopen, $info);
             fclose($fopen);
             $files = scandir($temp . '/resources/lang/en');
             foreach ($files as $file) {
                 if ($file != '.' && $file !== '..' && $file != 'info.json') {
                     $copy = copy($temp . '/resources/lang/en/' . $file, $temp . '/resources/lang/' . $request->get('locale') . '/' . $file);
+                  $copied_file = $temp . '/resources/lang/' . $request->get('locale') . '/' . $file;
+                   $members = array();
+                   $exploded=array();
+                   $read_file = fopen($copied_file,"r");
+                   while (!feof($read_file)){
+                     $members[] = fgets($read_file);
+
+                   }
+                   fclose($read_file);
+                   foreach ($members as $member) {
+                       $exploded[] = explode("=>", $member);
+                   }
+                   $keys_arr = array();
+                   $vals_arr = array();
+                   $transated_vals = array();
+                   foreach ($exploded as $exp)
+                   {
+                       if (count($exp)==2) {
+
+//                               $translated_item = $tr->translate($v);
+                               $vals_arr[] = $exp[1];
+
+                       }
+                   }
+                    $vals_together = implode(",", $vals_arr);
+                    $translated_string = $tr->translate($vals_together);
+                    dd($translated_string);
                 }
             }
 
@@ -124,6 +164,45 @@ class LanguageController extends Controller
                 $lh->translate_and_save_long_term($code, $language_first,$new_lang);
                 $lh->translate_and_save_long_term_items($code, $language_first,$new_lang);
                 $lh->translate_and_save_time_line($code, $language_first,$new_lang);
+                $lh->industry_translate_and_save($code, $language_first,$new_lang);
+                $lh->translate_and_save_resume_intro($code, $language_first,$new_lang);
+                $lh->news_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->homepage_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->events_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->connect_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->reach_module_translate_and_save($code, $language_first,$new_lang);
+                $lh->partner_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->apply_intro_translate_and_save($code, $language_first,$new_lang);
+                $lh->innovation_translate_and_save($code, $language_first,$new_lang);
+                $lh->industry_client_translate_and_save($code, $language_first,$new_lang);
+                $lh->service_translate_and_save($code, $language_first,$new_lang);
+                $lh->academy_translate_and_save($code, $language_first,$new_lang);
+                $lh->career_translate_and_save($code, $language_first,$new_lang);
+                $lh->academy_career_translate_and_save($code, $language_first,$new_lang);
+                $lh->career_consulting_translate_and_save($code, $language_first,$new_lang);
+                $lh->case_study_translate_and_save($code, $language_first,$new_lang);
+                $lh->operational_translate_and_save($code, $language_first,$new_lang);
+                $lh->academy_card_translate_and_save($code, $language_first,$new_lang);
+                $lh->career_consulting_card_translate_and_save($code, $language_first,$new_lang);
+                $lh->industry_experience_translate_and_save($code, $language_first,$new_lang);
+                $lh->news_translate_and_save($code, $language_first,$new_lang);
+                $lh->events_translate_and_save($code, $language_first,$new_lang);
+                $lh->service_card_translate_and_save($code, $language_first,$new_lang);
+                $lh->future_translate_and_save($code, $language_first,$new_lang);
+                $lh->industry_client_item_translate_and_save($code, $language_first,$new_lang);
+                $lh->innovation_item_translate_and_save($code, $language_first,$new_lang);
+                $lh->future_item_translate_and_save($code, $language_first,$new_lang);
+                $lh->study_translate_and_save($code, $language_first,$new_lang);
+
+                $lh->unlock_translate_and_save($code, $language_first,$new_lang);
+                $lh->innovation_module_translate_and_save($code, $language_first,$new_lang);
+
+
+                $lh->future_list_translate_and_save($code, $language_first,$new_lang);
+                $lh->academy_career_item_translate_and_save($code, $language_first,$new_lang);
+                $lh->career_consulting_item_translate_and_save($code, $language_first,$new_lang);
+
+
 //            $post = PostTranslation::where('language_id', $defaultLanguage->id)->get();
 //            $category = CategoryTranslation::where('language_id', $defaultLanguage->id)->get();
 //            $subcategory = SubCategoryTranslation::where('language_id', $defaultLanguage->id)->get();
@@ -150,7 +229,7 @@ class LanguageController extends Controller
 //                $rep->save();
 //            }
             } else {
-                return Redirect::back()->withErrors(['This language already exist']);
+                return Redirect::back()->withErrors([trans('back.this_language_already_exists')]);
             }
         }
         else

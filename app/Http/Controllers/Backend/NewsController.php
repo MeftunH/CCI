@@ -22,7 +22,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class NewsController extends Controller
 {
-    private $news_id;
+    function __construct()
+    {
+        $this->middleware('permission:news-list|news-create|news-edit|news-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:news-create', ['only' => ['create','store']]);
+        $this->middleware('permission:news-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:news-delete', ['only' => ['destroy']]);
+    }
 
     public function index()
     {

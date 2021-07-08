@@ -46,7 +46,7 @@
                 </div>
             @endif
             <div class="col-lg-7 col-12">
-                <h1 class="subscribe-text">{{trans('front.subscribe_our_newsletter')}}</h1>
+                <h1 class="subscribe-text">{{trans('footer.subscribe_our_newsletter')}}</h1>
             </div>
 
 
@@ -54,8 +54,8 @@
                 <form method="POST" action="{{route('subscriber.store')}}">
 
                     {{csrf_field()}}
-                    <input class="email" type="email" name="email" placeholder="{{trans('front.your_email')}}">
-                    <button type="submit" class="subscribe">{{trans('front.subscribe_btn')}}</button>
+                    <input class="email" type="email" name="email" placeholder="{{trans('footer.your_email')}}">
+                    <button type="submit" class="subscribe">{{trans('footer.subscribe_btn')}}</button>
                 </form>
             </div>
 
@@ -72,23 +72,23 @@
                                     class="icon_text">{{$settings->mail}}</span>
                             </a>
                             <a class="footer_links" href="https://maps.google.com/maps?q={{trans('footer.footer_mini_address')}}"><i class="fas fa-map-marker-alt footer-icon"></i> <span
-                                    class="icon_text">{{trans('front.footer_mini_address')}}</span></a>
+                                    class="icon_text">{{trans('footer.footer_mini_address')}}</span></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer_services">
-                    <li class="footer-link">{{trans('front.sitemap')}}</li>
-                    <a class="footer_link" href="{{route('academy')}}">{{trans('front.academy')}}</a>
-                    <a class="footer_link" href="{{route('event')}}">{{trans('front.events')}}</a>
-                    <a class="footer_link" href="{{route('news')}}">{{trans('front.news')}}</a>
-                    <a class="footer_link" href="{{route('industries')}}">{{trans('front.industries')}}</a>
+                    <li class="footer-link">{{trans('footer.sitemap')}}</li>
+                    <a class="footer_link" href="{{route('academy')}}">{{trans('footer.academy')}}</a>
+                    <a class="footer_link" href="{{route('event')}}">{{trans('footer.events')}}</a>
+                    <a class="footer_link" href="{{route('news')}}">{{trans('footer.news')}}</a>
+                    <a class="footer_link" href="{{route('industries')}}">{{trans('footer.industries')}}</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer_services">
-                    <li class="footer-link">{{trans('front.connect')}}</li>
+                    <li class="footer-link">{{trans('footer.connect')}}</li>
                     <div class="social">
 
                         <a class="social_link" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
@@ -96,7 +96,7 @@
                         <a class="social_link" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="footer_text">
-                        {{trans('front.footer_social_text')}}
+                        {{trans('footer.footer_social_text')}}
                     </div>
                 </div>
             </div>
@@ -106,13 +106,13 @@
         <div class="row footer-black">
             <div class="col-lg-6 col-12">
                 <div class="footer-black_right">
-                    <p class="copy-line">{{trans('front.all_rights_reserved')}}</p>
+                    <p class="copy-line">{{trans('footer.all_rights_reserved')}}</p>
                 </div>
             </div>
             <div class="col-lg-6 col-12">
                 <div class="footer-black_left">
-                    <a class="footer-black_link" href="#">{{trans('front.privact_policy')}}</a>
-                    <a class="footer-black_link" href="#">{{trans('front.cookie_policy')}}</a>
+                    <a class="footer-black_link" href="#">{{trans('footer.privacy_policy')}}</a>
+                    <a class="footer-black_link" href="#">{{trans('footer.cookie_policy')}}</a>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
                     </div>
                 @endif
                 <div class="col-lg-7 col-12">
-                    <h1 class="subscribe-text">{{trans('front.subscribe_our_newsletter')}}</h1>
+                    <h1 class="subscribe-text">{{trans('footer.subscribe_our_newsletter')}}</h1>
                 </div>
 
 
@@ -140,8 +140,8 @@
                     <form method="POST" action="{{route('subscriber.store')}}">
 
                         {{csrf_field()}}
-                        <input class="email" type="email" name="email" placeholder="{{trans('front.your_email')}}">
-                        <button type="submit" class="subscribe">{{trans('front.subscribe_btn')}}</button>
+                        <input class="email" type="email" name="email" placeholder="{{trans('footer.your_email')}}">
+                        <button type="submit" class="subscribe">{{trans('footer.subscribe_btn')}}</button>
                     </form>
                 </div>
 
@@ -158,23 +158,23 @@
                                         class="icon_text">{{$settings->mail}}</span>
                                 </a>
                                 <a class="footer_links" href="https://maps.google.com/maps?q={{trans('footer.footer_mini_address')}}"><i class="fas fa-map-marker-alt footer-icon"></i> <span
-                                        class="icon_text">{{trans('front.footer_mini_address')}}</span></a>
+                                        class="icon_text">{{trans('footer.footer_mini_address')}}</span></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="footer_services">
-                        <li class="footer-link">{{trans('front.sitemap')}}</li>
-                        <a class="footer_link" href="{{route('academy')}}">{{trans('front.academy')}}</a>
-                        <a class="footer_link" href="{{route('event')}}">{{trans('front.events')}}</a>
-                        <a class="footer_link" href="{{route('news')}}">{{trans('front.news')}}</a>
-                        <a class="footer_link" href="{{route('industries')}}">{{trans('front.industries')}}</a>
+                        <li class="footer-link">{{trans('footer.sitemap')}}</li>
+                        <a class="footer_link" href="{{route('academy')}}">{{trans('footer.academy')}}</a>
+                        <a class="footer_link" href="{{route('event')}}">{{trans('footer.events')}}</a>
+                        <a class="footer_link" href="{{route('news')}}">{{trans('footer.news')}}</a>
+                        <a class="footer_link" href="{{route('industries')}}">{{trans('footer.industries')}}</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="footer_services">
-                        <li class="footer-link">{{trans('front.connect')}}</li>
+                        <li class="footer-link">{{trans('footer.connect')}}</li>
                         <div class="social">
 
                             <a class="social_link" href="{{$socials->first()->link}}"><i class="fab fa-facebook-f"></i></a>
@@ -182,7 +182,7 @@
                             <a class="social_link" href="{{$socials->skip(2)->first()->link}}"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="footer_text">
-                            {{trans('front.footer_social_text')}}
+                            {{trans('footer.footer_social_text')}}
                         </div>
                     </div>
                 </div>
@@ -192,13 +192,13 @@
             <div class="row footer-black">
                 <div class="col-lg-6 col-12">
                     <div class="footer-black_right">
-                        <p class="copy-line">{{trans('front.all_rights_reserved')}}</p>
+                        <p class="copy-line">{{trans('footer.all_rights_reserved')}}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="footer-black_left">
-                        <a class="footer-black_link" href="#">{{trans('front.privact_policy')}}</a>
-                        <a class="footer-black_link" href="#">{{trans('front.cookie_policy')}}</a>
+                        <a class="footer-black_link" href="#">{{trans('footer.privacy_policy')}}</a>
+                        <a class="footer-black_link" href="#">{{trans('footer.cookie_policy')}}</a>
                     </div>
                 </div>
             </div>

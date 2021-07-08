@@ -100,7 +100,7 @@
                 @endforeach
             </div>
             <div class="studeis-btn">
-                <a href="{{route('caseStudies.all')}}" class="intro_link intro_btn intro_btn-case">All Case Studies</a>
+                <a href="{{route('caseStudies.all')}}" class="intro_link intro_btn intro_btn-case">{{trans('front.all_case_studies')}}</a>
             </div>
 
 

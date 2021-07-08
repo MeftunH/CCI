@@ -11,6 +11,23 @@ use Symfony\Component\HttpFoundation\Response;
 class MailController extends Controller
 {
 
+    public function edit($id)
+    {
+        $mail = \App\Models\Mail::where('id',$id)->first();
+        return view('admin.settings.mails-edit',compact('mail'));
+    }
+
+    public function update(Request $request,$id)
+    {
+
+        $this->validate($request, [
+            'mail' => 'required|email',
+        ]);
+        $mail = \App\Models\Mail::where('id',$id)->first();
+        $mail->mail = $request->mail;
+        $mail->save();
+        return redirect()->route('settings.index');
+    }
     public function sendEmail($file): \Illuminate\Http\RedirectResponse
     {
         $email = 'stfincos@gmail.com';

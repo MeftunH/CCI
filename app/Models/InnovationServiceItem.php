@@ -22,7 +22,8 @@ class InnovationServiceItem extends Model
     {
         return $query
             ->join('innovation_service_item_translations','item_id','innovation_service_items.id')
-            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')->get();
+            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)
+            ->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')->get();
     }
     public function scopeGetOnlyActiveItems($query,$currentLang)
     {
@@ -66,14 +67,18 @@ class InnovationServiceItem extends Model
     {
         return $query
             ->join('innovation_service_item_translations','item_id','innovation_service_items.id')
-            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')
+            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)
+            ->where('innovation_service_items.status','1')
+            ->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')
             ->orderBy('id','desc')->take(2)->get();
     }
     public function scopeRow_items($query,$currentLang)
     {
         return $query
             ->join('innovation_service_item_translations','item_id','innovation_service_items.id')
-            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')
+            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)
+            ->where('innovation_service_items.status','1')
+            ->select('innovation_service_item_translations.*','innovation_service_items.status','innovation_service_items.image')
             ->orderBy('id','desc')->skip(2)->take(4)->get();
     }
 }

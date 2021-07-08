@@ -19,14 +19,16 @@
         "laravel/fortify": "^1.7",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.5",
         "mcamara/laravel-localization": "^1.6",
         "mckenziearts/laravel-notify": "^2.2",
         "realrashid/sweet-alert": "^4.0",
+        "spatie/laravel-permission": "^4.2",
         "stichoza/google-translate-php": "^4.1",
         "unisharp/laravel-filemanager": "~1.8",
         "wulfheart/pretty_routes": "^0.3.0",
-        "yajra/laravel-datatables-oracle": "~9.0",
+        "yajra/laravel-datatables-oracle": "^9.18",
         "yak0d3/mirza_yandex_translator": "^1.0"
     },
     "require-dev": {

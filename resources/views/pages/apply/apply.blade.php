@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('title')
-    Contact
+{{trans('front.apply')}}
 @endsection
 @section('css')
 @endsection

@@ -76,6 +76,7 @@
 
                 </section>
                 <section id="basic-datatable">
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -92,7 +93,7 @@
                                     @php($i=1)
                                     <tbody>
                                     <tr>
-                                        @foreach($socials->get() as $row)
+                                        @foreach($socials as $row)
                                         <td>{{$i++}}</td>
 
                                         <td>{{$row->name}}</td>
@@ -110,6 +111,64 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section id="basic-datatable">
+                    <a href="https://www.oryon.net/knowledge-base/article/how-to-enable-less-secure-apps-to-access-gmail-accounts-via-google-admin-panel/#:~:text=Step%201%3A%20In%20your%20Google,less%20secure%20apps%20radio%20button."> <span data-v-aa799a9e="" class="badge badge-glow badge-danger"> {{trans('back.mail_edit_warning')}} </span></a>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="table-responsive-lg">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{{trans('back.type')}}</th>
+                                            <th>{{trans('back.mail')}}</th>
+                                            <th>{{trans('back.action')}}</th>
+                                        </tr>
+                                        </thead>
+                                        @php($i=1)
+                                        <tbody>
+                                        <tr>
+                                            @foreach($mails as $row)
+                                                <td>{{$i++}}</td>
+
+                                                <td>
+                                                    @switch($row->type)
+                                                        @case(0)
+                                                        {{trans('mail.get_contact_requests_mail')}}
+                                                        @break
+
+                                                        @case(1)
+                                                        {{trans('mail.get_applies_mail')}}
+                                                        @break
+                                                        @case(2)
+                                                        {{trans('mail.send_summary_from_mail')}}
+                                                        @break
+
+
+                                                    @endswitch
+                                                </td>
+                                                <td>{{$row->mail}}</td>
+                                                <td>
+                                                    <div class="demo-inline-spacing">
+                                                        <a href="{{ URL::route('mails.edit',$row->id) }}"
+                                                           class="btn btn-primary" style="position: relative;"> {{trans('back.edit')}} </a>
+
+                                                    </div>
+                                                </td>
+
+
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

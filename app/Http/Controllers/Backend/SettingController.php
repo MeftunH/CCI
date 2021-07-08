@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helpers\SiteHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Mail;
 use App\Models\Setting;
+use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -14,10 +16,11 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::firstOrFail();
-
+        $socials = Social::all();
+        $mails = Mail::all();
 //        dd($aboutUs);
 //        $aboutUs=AboutUsTranslation::languages();
-        return view('admin.settings.index', compact('settings'));
+        return view('admin.settings.index', compact('settings','socials','mails'));
     }
 
     public function edit($id)

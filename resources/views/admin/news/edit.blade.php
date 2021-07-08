@@ -101,12 +101,12 @@
 
                                         @endforeach
                                         <div class="col-md-6 col-6">
-                                            <label>Image</label>
+                                            <label>{{trans('back.image')}}</label>
                                             <div class="form-group">
 
                                                 <label class="btn btn-primary mr-75 mb-0"
                                                        for="image">
-                                                    <span class="d-none d-sm-block">Select Image</span>
+                                                    <span class="d-none d-sm-block">{{trans('back.select_image')}}</span>
                                                     <input
                                                         name="image"
                                                         class="form-control-file"
@@ -141,19 +141,19 @@
                                         </div>
                                         <label>
                                             <select class="form-control" name="status">
-                                                <option>Status</option>
+                                                <option>{{trans('back.status')}}</option>
                                                 <option @if ($news->status ==1) selected @endif value="1">
-                                                    Active
+                                                    {{trans('back.active')}}
                                                 </option>
                                                 <option @if ($news->status ==0)selected @endif  value="0">
-                                                    Passive
+                                                    {{trans('back.passive')}}
                                                 </option>
                                             </select>
                                         </label>
                                     </div>
                                     <div class="form-group col-md-12">
 
-                                        <br> <span class="text-center">Album</span><br>
+                                        <br> <span class="text-center">{{trans('back.album')}}</span><br>
                                         <div class="form-group">
                                             <label for="title">Image/file</label>
                                             <input id="gallery-photo-add" type="file" name="images[]"

@@ -45,7 +45,7 @@ class ApplyController extends Controller
             ), function($message) use ($request)
             {
                 $message->from($request->email);
-                $message->to('stfincos@gmail.com')->subject
+                $message->to(\App\Models\Mail::where('type',1)->first()->mail)->subject
                 (trans('mail.apply_request'));
 
             });

@@ -1,31 +1,86 @@
 <?php
-
 return [
+"reset" => "Sifre yenilendi",
+"sent" => "We have emailed your password reset link!",
+"throttled" => "Please wait before retrying.",
+"token" => "This password reset token is invalid.",
+"user" => "We can't find a user with that email address.",
+"title" => "Basliq",
+"action" => "hereket",
+"description" => "Aciqlama",
+"all_languages" => "Butun Diller",
+"add_languages" => "Dil elave et",
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
-    |
-    */
+    'image' => 'Resim',
+    'edit' => 'Duzenle',
+    'delete' => 'Delete',
+    'name' => 'Name',
+    'code' => 'Code',
+    'locale' => 'Locale',
+    'status' => 'Status',
+    'translations' => 'Translations',
+    'edit_translations' => 'Edit Translations',
+"languages" => "Diller",
+"warn_code" => "Butun dillerin kodlarini bu linkde tapacaqsan:",
+"warn_locales" => "Butun dillerin lokallarini bu linkde tapacaqsan:",
+"codes" => "Olke kodlari:",
+"read_more" => "Daha cox oxu",
+"locales" => "Lokallar:",
+"required" => "mecburidir",
+'mail_edit_warning'=>'Hesabım səhifəmdə olduqdan sonra Təhlükəsizlik düyməsini vurub aşağıya doğru sürüşdürün və ‘Daha az etibarlı tətbiqə giriş’ parametrlərini tapacaqsınız. Yandırmaq üçün radio düyməsini vurun. ',
+    'this_language_already_exists'=>'This Language Already exits',
+"valid_type_image_error" => "Plz select a valid type image",
+'between' => [
+        'numeric' => 'The :attribute must be between :min and :max.',
+        'file' => 'The :attribute must be between :min and :max kilobytes.',
+        'string' => 'The :attribute must be between :min and :max characters.',
+        'array' => 'The :attribute must have between :min and :max items.',
+    ],
+     'gt' => [
+        'numeric' => 'The :attribute must be greater than :value.',
+        'file' => 'The :attribute must be greater than :value kilobytes.',
+        'string' => 'The :attribute must be greater than :value characters.',
+        'array' => 'The :attribute must have more than :value items.',
+    ],
+    'gte' => [
+        'numeric' => 'The :attribute must be greater than or equal :value.',
+        'file' => 'The :attribute must be greater than or equal :value kilobytes.',
+        'string' => 'The :attribute must be greater than or equal :value characters.',
+        'array' => 'The :attribute must have :value items or more.',
+    ],
+     'lt' => [
+        'numeric' => 'The :attribute must be less than :value.',
+        'file' => 'The :attribute must be less than :value kilobytes.',
+        'string' => 'The :attribute must be less than :value characters.',
+        'array' => 'The :attribute must have less than :value items.',
+    ],
+    'lte' => [
+        'numeric' => 'The :attribute must be less than or equal :value.',
+        'file' => 'The :attribute must be less than or equal :value kilobytes.',
+        'string' => 'The :attribute must be less than or equal :value characters.',
+        'array' => 'The :attribute must not have more than :value items.',
+    ],
+    'max' => [
+        'numeric' => 'The :attribute may not be greater than :max.',
+        'file' => 'The :attribute may not be greater than :max kilobytes.',
+        'string' => 'The :attribute may not be greater than :max characters.',
+        'array' => 'The :attribute may not have more than :max items.',
+    ],'min' => [
+        'numeric' => 'The :attribute must be at least :min.',
+        'file' => 'The :attribute must be at least :min kilobytes.',
+        'string' => 'The :attribute must be at least :min characters.',
+        'array' => 'The :attribute must have at least :min items.',
+    ],
+       'size' => [
+        'numeric' => 'The :attribute must be :size.',
+        'file' => 'The :attribute must be :size kilobytes.',
+        'string' => 'The :attribute must be :size characters.',
+        'array' => 'The :attribute must contain :size items.',
+    ],
 
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have emailed your password reset link!',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
-    'all_languages'=> 'Butun Diller',
-    'add_languages'=> 'Dil elave et',
-    'languages'=> 'Diller',
-    'warn_code'=>'Butun dillerin kodlarini bu linkde tapacaqsan:',
-    'warn_locales'=>'Butun dillerin lokallarini bu linkde tapacaqsan:',
-    'codes'=>'Olke kodlari:',
-    'read_more'=>'Daha cox oxu',
-    'locales'=>'Lokallar:',
-    'required' => 'mecburidir',
-    'valid_type_image_error'=>'Plz select a valid type image',
-];
+    'custom' => [
+        'attribute-name' => [
+                'rule-name' => 'custom-message',
+        ],
+    ],
+     'attributes' => [],];

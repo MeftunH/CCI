@@ -32,6 +32,6 @@ class Summary extends Mailable
     public function build()
     {
 
-        return $this->from('stfincos@gmail.com')->view('emails.summary');
+        return $this->from(\App\Models\Mail::where('type',2)->first()->mail)->view('emails.summary');
     }
 }

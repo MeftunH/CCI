@@ -77,17 +77,16 @@
                                 <div class="col-6">
                                     <a type="button" class="btn btn-gradient-success"
                                        href="{{route('aboutUs.services.innovation.item.create')}}">{{trans('backend.add_item')}}</a>
-                                    <span class="badge badge-light-warning">{{trans('active_item count')}} {{$active_count}}/6  </span>
+                                    <span class="badge badge-light-warning">{{trans('back.active_item_count')}} {{$active_count}}/6  </span>
                                     @else
                                         <span
-                                            class="badge badge-light-danger">{{trans('active_item count')}} {{$active_count}}/6 {{trans('back.max_active_item_count')}} </span>
+                                            class="badge badge-light-danger">{{trans('back.active_item_count_max')}} {{$active_count}}/6 </span>
                                     @endif
                                 </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
             <div class="content-body">
                 <!-- Basic table -->
                 <section id="basic-datatable">
@@ -164,7 +163,7 @@
                             <h2 class="content-header-title float-left mb-0">{{trans('back.service_cards')}}</h2>
                         </div>
                         <div class="col-6">
-                            @if($active_count < 6)
+                            @if($service_card_active_count < 3)
                                 <div class="col-6">
                                     <a type="button" class="btn btn-gradient-success"
                                        href="{{route('aboutUs.services.card.create')}}">{{trans('backend.add_item')}}</a>

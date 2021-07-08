@@ -18,9 +18,9 @@ class NewsIntro extends Model
     }
     public function scopeLanguages($query,$currentLang)
     {
-        return $query
-            ->join('news_intro_translations','intro_id','news_intros.id')
-            ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->get();
+                return $query
+                    ->join('news_intro_translations','intro_id','news_intros.id')
+                    ->join('languages','language_id','languages.id')->where('languages.locale',$currentLang)->get();
     }
     public function scopeLang($query)
     {

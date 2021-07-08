@@ -76,10 +76,12 @@
                         <div class="col-6">
                             <h2 class="content-header-title float-left mb-0">{{trans('back.news')}}</h2>
                         </div>
-                        <div class="col-6">
-                            <a type="button" class="btn btn-gradient-success"
-                               href="{{route('news.newsCreate')}}">{{trans('back.create_news')}}</a>
-                        </div>
+                        @can('news-create')
+                            <div class="col-6">
+                                <a type="button" class="btn btn-gradient-success"
+                                   href="{{route('news.newsCreate')}}">{{trans('back.create_news')}}</a>
+                            </div>
+                        @endcan
                     </div>
 
                 </div>
@@ -116,23 +118,26 @@
                                                          style="width: 30px"></td>
                                                 <td>
                                                     <div class="demo-inline-spacing">
-                                                        <a href="{{ URL::route('news.newsEdit',$row->news_id) }}"
-                                                           class="btn btn-primary"
-                                                           style="position: relative;"> {{trans('back.edit')}} </a>
-
+                                                        @can('news-create')
+                                                            <a href="{{ URL::route('news.newsEdit',$row->news_id) }}"
+                                                               class="btn btn-primary"
+                                                               style="position: relative;"> {{trans('back.edit')}} </a>
+                                                        @endcan
                                                         <a href="{{ URL::route('news.newsShow',$row->news_id) }}"
                                                            class="btn btn-warning"
                                                            style="position: relative;"> {{trans('back.show')}} </a>
 
-                                                        <form method="POST" class="buttons-group"
-                                                              onclick="return confirm('{{trans('back.r_u_sure')}}')"
-                                                              action="{{ URL::route('news.newsDestroy',$row->news_id) }}">
-                                                            {{ csrf_field() }}
-                                                            {{ method_field('DELETE') }}
-                                                            <button type="submit"
-                                                                    class="btn btn-gradient-danger delete-item"
-                                                                    style="position: relative;"> {{trans('back.delete')}} </button>
-                                                        </form>
+                                                        @can('news-delete')
+                                                            <form method="POST" class="buttons-group"
+                                                                  onclick="return confirm('{{trans('back.r_u_sure')}}')"
+                                                                  action="{{ URL::route('news.newsDestroy',$row->news_id) }}">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('DELETE') }}
+                                                                <button type="submit"
+                                                                        class="btn btn-gradient-danger delete-item"
+                                                                        style="position: relative;"> {{trans('back.delete')}} </button>
+                                                            </form>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                                 <td>@if($row->status == 1) <span

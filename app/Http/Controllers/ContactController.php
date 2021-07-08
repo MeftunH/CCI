@@ -32,20 +32,18 @@ class ContactController extends Controller
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'subject' => $request->get('subject'),
-                'user_message' => $request->get('message'),
+                'msg' => $request->get('message'),
             ), function ($message) use ($request) {
                 $message->from($request->email);
-                $message->to('stfincos@gmail.com')->subject
+                $message->to(\App\Models\Mail::where('type',0)->first()->mail)->subject
                 (trans('mail.connect_request'));
 
             });
         if (Mail::failures()) {
             return back()->with('error', ':(');
-            Alert::success('Success Title', 'Success Message');
         } else
         {
             return back()->with('success', ':)');
-            Alert::success('Success Title', 'Success Message');
 
         }
 
