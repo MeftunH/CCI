@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeInnovationModule;
 use App\Models\HomeIntro;
 use App\Models\HomeUnlockModule;
+use App\Models\TechnologyCardImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -22,9 +23,10 @@ class HomeController extends Controller
         $intro = HomeIntro::languages(app()->getLocale());
         $innovation_module = HomeInnovationModule::languages(app()->getLocale());
         $unlock_module = HomeUnlockModule::languages(app()->getLocale());
+        $technology_card_image = TechnologyCardImage::first();
 //        $news = News::languages(app()->getLocale());
 //        $images = DB::table('images')->get();
-        return view('admin.home.intro.index', compact('intro','innovation_module','unlock_module'));
+        return view('admin.home.intro.index', compact('intro','technology_card_image','innovation_module','unlock_module'));
     }
 
     public function edit($id)
@@ -99,6 +101,54 @@ class HomeController extends Controller
         return view('admin.home.unlock_module.edit', compact('translations', 'unlock'));
     }
 
+    public function technologyCardImageEdit($id)
+    {
+
+        $tci = TechnologyCardImage::where('id',$id)->first();
+        return view('admin.home.technology_card_image.edit', compact('tci'));
+    }
+    public function technologyCardImageUpdate($id,Request $request)
+    {
+
+        $validateData = $request->validate([
+            'background_image' => 'mimes:jpeg,jpg,png,gif,svg|max:8192',
+            'big_image' => 'mimes:jpeg,jpg,png,gif,svg|max:8192',
+        ]);
+        $tci = TechnologyCardImage::where('id',$id)->first();
+        $image = $request->big_image;
+        $old_image = $request->old_big_image;
+        $old_background_image = $request->old_background_image;
+        $background_image = $request->background_image;
+        if (isset($image)) {
+            $image_uni = uniqid('tci', true) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('storage/public/images/unlock_images/' . $image_uni);
+            $tci->big_image = '/storage/public/images/unlock_images/' . $image_uni;
+
+            if (File::exists(public_path($old_image))) {
+                File::delete(public_path($old_image));
+            }
+
+        }
+        else {
+            $tci->big_image = $old_image;
+        }
+
+        if (isset($background_image)) {
+            $image_uni = uniqid('unlock_background', true) . '.' . $background_image->getClientOriginalExtension();
+            Image::make($background_image)->save('storage/public/images/unlock_images/' . $image_uni);
+
+            if (Storage::delete($tci->background_image)) {
+                File::delete($tci->background_image);
+            }
+            $tci->background_image = '/storage/public/images/unlock_images/' . $image_uni;
+        }
+        else {
+            $tci->background_image = $old_background_image;
+        }
+
+        $tci->save();
+        return Redirect::route('homepage.index');
+    }
     public function unlockModuleShow($id)
     {
         $unlock = HomeUnlockModule::where('id', $id)->first();

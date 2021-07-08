@@ -246,7 +246,7 @@
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="technology_img">
-                        <img class="technology-img img-fluid" src="{{asset('./frontend/img/tc_scheme (1).png')}}">
+                        <img class="technology-img img-fluid" src="{{asset($tci->big_image)}}">
                     </div>
                 </div>
             </div>

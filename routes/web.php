@@ -209,6 +209,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('unlockModule/edit/{id}', [HomeController::class, 'unlockModuleEdit'])->name('unlockModuleEdit');
             Route::get('unlockModule/show/{id}', [HomeController::class, 'unlockModuleShow'])->name('unlockModuleShow');
             Route::post('unlockModule/edit/{id}', [HomeController::class, 'unlockModuleUpdate'])->name('unlockModuleUpdate');
+
+            Route::get('technologyCardImage/edit/{id}', [HomeController::class, 'technologyCardImageEdit'])->name('technologyCardImageEdit');
+            Route::post('technologyCardImage/edit/{id}', [HomeController::class, 'technologyCardImageUpdate'])->name('technologyCardImageUpdate');
+
         });
         Route::name('events.')->group(function () {
             Route::get('slider/events/create', [EventController::class, 'eventCreate'])->name('eventCreate');
