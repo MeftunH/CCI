@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-{{trans('back.edit')}}
+{{trans('back.show')}}
 @endsection
 
 @section('css')
@@ -17,11 +17,12 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">{{trans('back.edit')}}</h2>
+                        <div class="col-8">
+                            <h2 class="content-header-title float-left mb-0">{{trans('back.show')}}</h2>
                         </div>
                     </div>
                 </div>
+                <a  href="{{ url()->previous() }}"  type="button" class="btn btn-gradient-primary"> {{trans('back.back')}} </a>
 
             </div>
             <div class="col-12 grid-margin strecth  stretch-card">
@@ -34,10 +35,6 @@
                         </ul>
                     </div>
                 @endif
-
-                <form action="{{route('homepage.update',$intro->id)}}" method="post" enctype="multipart/form-data">
-                    @method('PUT')
-                    @csrf
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -64,16 +61,21 @@
                                                 aria-labelledby="pills-{{$translation->language_id}}-tab">
 
 
-                                                <label>Title </label>
+                                                <label>{{trans('back.title')}} </label>
                                                 <input type="text" class="form-control" id="exampleInputName1"
                                                        name="title[{{$translation->language_id}}]"
-                                                       value="{{ $translation->title }}">
+                                                       value="{{ $translation->title }}" disabled>
                                                 <br>
-                                                <label>Description </label>
+                                                <label>{{trans('back.footer')}} </label>
+                                                <input type="text" class="form-control" id="exampleInputName1"
+                                                       name="footer[{{$translation->language_id}}]"
+                                                       value="{{ $translation->title }}" disabled>
+                                                <br>
+                                                <label>{{trans('back.description')}} </label>
                                                 <div class="form-group">
                                                     <textarea class="summernote"
                                                               name="description[{{ $translation->language_id}}]"
-                                                              value="{{ $translation->description }}" rows="30"
+                                                              value="{{ $translation->description }}" rows="30" readonly
                                                               id="summernote">{{$translation->description}}</textarea>
                                                 </div>
                                                 <br>
@@ -81,82 +83,32 @@
                                                 <script type="text/javascript">
 
                                                     $(document).ready(function () {
+                                                        $('.summernote').summernote('disable');
 
 
-                                                        $('.summernote').summernote({
-                                                            callbacks: {
-                                                                onPaste: function (e) {
-                                                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-
-                                                                    e.preventDefault();
-
-                                                                    // Firefox fix
-                                                                    setTimeout(function () {
-                                                                        document.execCommand('insertText', false, bufferText);
-                                                                    }, 10);
-                                                                }
-                                                            }
-                                                        });
                                                     });
                                                 </script>
+
                                             </div>
                                         @endforeach
 
                                             <div class="row">
                                                 <div class="col">
-                                                    <label>Image</label>
-                                                    <div class="form-group">
 
-                                                        <label class="btn btn-primary mr-75 mb-0"
-                                                               for="background_image">
-                                                            <span class="d-none d-sm-block">Select Image</span>
-                                                            <input
-                                                                name="background_image"
-                                                                class="form-control-file"
-                                                                type="file"
-                                                                id="background_image"
-                                                                hidden
-                                                                accept="image/png, image/jpeg, image/jpg"
-                                                            />
+                                                    <label>{{trans('back.image')}}: </label>
 
-                                                            <span class="d-block d-sm-none">
-                                                              <i class="mr-0" data-feather="edit"></i>
-                                                                </span>
-                                                        </label>
-
-                                                    </div>
-
-                                                    <img id="preview-image-before-upload"
-                                                         src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                                         alt="preview image" class="img-fluid"
-                                                         style="max-height: 100px;">
-
-
-                                                </div>
-                                                <div class="col">
-
-                                                    <label>Old Image: </label>
-
-                                                    <img name="old_image" src="{{$translation->background_image}}" class="img-fluid"
-                                                         style="width: 150px" alt="{{$translation->background_image}}">
+                                                    <img name="old_image" src="{{$tc->image}}" class="img-fluid"
+                                                         style="width: 150px" alt="{{$tc->image}}">
                                                 </div>
                                             </div>
 
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Update</button>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

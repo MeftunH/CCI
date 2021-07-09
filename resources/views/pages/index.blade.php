@@ -132,7 +132,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="good-company">
-                            <span class="good_company">You'll be in good company</span>
+                            <span class="good_company">{{$unlock_module->footer}}</span>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                 <div class="col-lg-12">
                     <div class="studies_text">
                         <h1 class="studies_case">{{trans('front.case')}} <span class="innovation_color">{{trans('front.studies')}}</span></h1>
-                        <p class="studies_advice">We are able to give truly independent advice</p>
+                        <p class="studies_advice">{{trans('front.case_study_advice')}}</p>
                     </div>
                 </div>
             </div>
@@ -207,41 +207,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <div class="row technology_cards">
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="technology_card">
-                                <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
-                                <h3 class="cards_text"><span class="innovation_color">Product</span> Ideation</h3>
-                                <p class="cards-text">Our expert staff is well experienced, trained and IT industry
-                                    certified.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="technology_card">
-                                <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
-                                <h3 class="cards_text"><span class="innovation_color">System</span> Design</h3>
-                                <p class="cards-text">Our CoE leads work directly with customers in this large and first
-                                    phase.</p>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
+                    @foreach($technology_cards as $tc)
+
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="technology_card">
-                                <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
-                                <h3 class="cards_text"><span class="innovation_color">Technology</span> Services</h3>
-                                <p class="cards-text">Award winning Technology Services to fit and scale with any size
-                                    of your business.</p>
+                                <img src="{{asset($tc->image)}}" width="67" height="88">
+                                <h3 class="cards_text">{!! $tc->replace($tc->title) !!}</h3>
+                                <p class="cards-text">{!! $tc->description !!}</p>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="technology_card">
-                                <img src="{{asset('./frontend/img/lightbulb.svg')}}" width="67" height="88">
-                                <h3 class="cards_text"><span class="innovation_color">Network</span> Infrastructure</h3>
-                                <p class="cards-text">Nifty offers four broad categories of services in its best
-                                    Network.</p>
-                            </div>
-                        </div>
+
+
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">

@@ -12,6 +12,13 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    "experience_text" =>"Capitalizing on the real-world experience",
-    "experience-trends"=>"We explore some of the latest trends and strategies",
+
+   "email"=>"Email",
+   "name"=>"name",
+   "subject_contact"=>"Subject Contact",
+   "unsubscribe"=>"Unsubscribe",
+   "message_contact"=>"Message Contact",
+   "date"=>"date",
+   "newsletter"=>"Newsletter",
+    "read_more"=>"READ MORE",
 ];

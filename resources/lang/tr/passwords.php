@@ -1,7 +1,7 @@
 <?php  return [
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have emailed your password reset link!',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
+    'reset' =>'Şifreniz sıfırlandı!',
+    'sent' => 'Şifre sıfırlama bağlantınızı e-posta ile gönderdik!',
+    'throttled' => 'Lütfen tekrar denemeden önce bekleyin.',
+    'token' => 'Bu parola sıfırlama belirteci geçersiz.',
+    'user' => "Bu e-posta adresine sahip bir kullanıcı bulamıyoruz.",
 ];

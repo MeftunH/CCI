@@ -213,6 +213,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('technologyCardImage/edit/{id}', [HomeController::class, 'technologyCardImageEdit'])->name('technologyCardImageEdit');
             Route::post('technologyCardImage/edit/{id}', [HomeController::class, 'technologyCardImageUpdate'])->name('technologyCardImageUpdate');
 
+            Route::get('technologyCard/edit/{id}', [HomeController::class, 'technologyCardEdit'])->name('technologyCardEdit');
+            Route::get('technologyCard/show/{id}', [HomeController::class, 'technologyCardShow'])->name('technologyCardShow');
+            Route::put('technologyCardUp/edit/{id}', [HomeController::class, 'technologyCardUpdate'])->name('technologyCardUpdate');
+
         });
         Route::name('events.')->group(function () {
             Route::get('slider/events/create', [EventController::class, 'eventCreate'])->name('eventCreate');

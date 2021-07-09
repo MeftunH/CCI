@@ -1,5 +1,5 @@
 <?php  return [
-"failed" => "a",
-"password" => "Theg provided password is incorrect.",
-"throttle" => "Too many login attempts. Please try again in :seconds seconds.",
+"failed" =>"bir",
+"password" => "Verilen parola yanlış.",
+"throttle" => "Çok fazla giriş denemesi var. Lütfen :saniye saniye sonra tekrar deneyin.",
 ];

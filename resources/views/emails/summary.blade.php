@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <title>{{trans('email.newsletter')}}</title>
+    <title>{{trans('mail.newsletter')}}</title>
     <style type="text/css">
         html {
             width: 100%;

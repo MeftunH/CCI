@@ -128,9 +128,9 @@ class LanguageController extends Controller
                        }
                    }
                     $vals_together = implode("\n", $vals_arr);
-//                    $translated_string = $tr->translate($vals_together);
+                    $translated_string = $tr->translate($vals_together);
                     sleep(0.2);
-                    $filtered= array_filter(explode("\n",$vals_together));
+                    $filtered= array_filter(explode("\n",$translated_string));
                     $combined_arr = array_combine($keys_arr,$filtered);
                     $combined_string = implode("\n",$combined_arr);
                     $data_attributes =  array_map(function ($filtered,$keys_arr)
@@ -256,7 +256,7 @@ class LanguageController extends Controller
                 sleep(1);
                 $lh->career_consulting_item_translate_and_save($code, $language_first,$new_lang);
                 sleep(1);
-
+                $lh->tc_translate_and_save($code, $language_first,$new_lang);
             } else {
                 return Redirect::back()->withErrors([trans('back.this_language_already_exists')]);
             }

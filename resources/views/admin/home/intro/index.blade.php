@@ -203,23 +203,77 @@
                                     @php($i=1)
                                     <tbody>
                                     <tr>
-                                            <td>{{$i++}}</td>
+                                        <td>{{$i++}}</td>
 
-                                            <td><img src="{{$technology_card_image->big_image}}" class="img-fluid"
-                                                     style="width: 30px" alt=""></td>
-                                            <td><img src="{{$technology_card_image->background_image}}" class="img-fluid"
-                                                     style="width: 30px" alt=""></td>
-                                            <td>
-                                                <div class="demo-inline-spacing">
-                                                    <a href="{{ URL::route('homepage.technologyCardImageEdit',$technology_card_image->id) }}"
-                                                       class="btn btn-primary"
-                                                       style="position: relative;"> {{trans('back.edit')}} </a>
-                                                </div>
-                                            </td>
+                                        <td><img src="{{$technology_card_image->big_image}}" class="img-fluid"
+                                                 style="width: 30px" alt=""></td>
+                                        <td><img src="{{$technology_card_image->background_image}}" class="img-fluid"
+                                                 style="width: 30px" alt=""></td>
+                                        <td>
+                                            <div class="demo-inline-spacing">
+                                                <a href="{{ URL::route('homepage.technologyCardImageEdit',$technology_card_image->id) }}"
+                                                   class="btn btn-primary"
+                                                   style="position: relative;"> {{trans('back.edit')}} </a>
+                                            </div>
+                                        </td>
 
 
                                     </tr>
 
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <section id="basic-datatable">
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-left mb-0">{{trans('back.technology_cards')}}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <table class="datatables-basic table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{trans('back.title')}}</th>
+                                        <th>{{trans('back.description')}}</th>
+                                        <th>{{trans('back.image')}}</th>
+                                        <th>{{trans('back.action')}}</th>
+                                    </tr>
+                                    </thead>
+                                    @php($i=1)
+                                    <tbody>
+                                    @foreach($technology_cards as $row)
+                                    <tr>
+
+                                        <td>{{$i++}}</td>
+                                        <td>{{$row->title}}</td>
+                                        <td>{{$row->limit(strip_tags($row->description))}}</td>
+                                        <td><img src="{{$row->image}}" class="img-fluid"
+                                                 style="width: 30px" alt=""></td>
+                                        <td>
+                                            <div class="demo-inline-spacing">
+                                                <a href="{{ URL::route('homepage.technologyCardEdit',$row->card_id) }}"
+                                                   class="btn btn-primary"
+                                                   style="position: relative;"> {{trans('back.edit')}} </a>
+                                                <a href="{{ URL::route('homepage.technologyCardShow',$row->card_id) }}"
+                                                   class="btn btn-primary"
+                                                   style="position: relative;"> {{trans('back.show')}} </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 

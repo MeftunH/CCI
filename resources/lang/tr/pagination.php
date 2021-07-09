@@ -1,4 +1,4 @@
 <?php  return [
-"previous" => "&laquo; Preavious",
-"next" => "Next &raquo;",
+"previous" =>"&laquo; Önceki",
+"next" => "Sonraki &raquo;",
 ];

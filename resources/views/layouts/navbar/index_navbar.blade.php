@@ -20,19 +20,19 @@
 
                             <li class="open open-home nav_items"><a class="nav_links nav_open" href="#">{{trans('front.about_us')}}</a>
                                 <ul class="dropdown">
-                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">Our Story</a></li>
-                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('case_studies')}}">Case Studies</a></li>
-                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">Academy</a></li>
-                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">Industries</a></li>
-                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">Services and Solutions</a></li>
+                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('about')}}">{{trans('front.our_story')}}</a></li>
+                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('case_studies')}}">{{trans('front.case_study')}}</a></li>
+                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('academy')}}">{{trans('front.academy')}}</a></li>
+                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('industries')}}">{{trans('front.industries')}}</a></li>
+                                    <li class="dropdown_items"><a class="down_link down_link-home" href="{{route('services')}}">{{trans('front.services_and_solutions')}}</a></li>
                                 </ul>
                             </li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">Vacancies</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('news')}}">News</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('event')}}">Events</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">Connect</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('apply')}}">Apply</a></li>
-                            <li class="nav_items"><a class="nav_link" href="{{route('partners')}}">Partners</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('careers')}}">{{trans('front.vacancies')}}</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('news')}}">{{trans('front.news')}}</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('event')}}">{{trans('front.events')}}</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('connect')}}">{{trans('front.connect')}}</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('apply')}}">{{trans('front.apply')}}</a></li>
+                            <li class="nav_items"><a class="nav_link" href="{{route('partners')}}">{{trans('front.partners')}}</a></li>
                             @foreach($languages as $key=>$lang)
                                 @if($lang->locale == app()->getLocale())
                                     <li class="open open-home nav_items"><a class="nav_links nav_open"

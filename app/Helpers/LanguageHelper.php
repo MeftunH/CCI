@@ -39,6 +39,8 @@ use App\Models\ReachModuleTranslation;
 use App\Models\ServiceCardTranslation;
 use App\Models\ServiceTranslation;
 use App\Models\StudyTranslation;
+use App\Models\TechnologyCard;
+use App\Models\TechnologyCardTranslation;
 use App\Models\TimeLineTranslation;
 use App\Models\UploadResumeTranslation;
 use Carbon\Carbon;
@@ -151,6 +153,7 @@ class LanguageHelper
         $this->translate_and_save($code,$language_first,$new_lang,$model);
     }
 
+
     public function news_intro_translate_and_save($code,$language_first,$new_lang)
     {
         $model = new NewsIntroTranslation();
@@ -204,6 +207,12 @@ class LanguageHelper
 
         $query = HomeInnovationModuleTranslation::where('language_id',$language_first->id)->get();
         $this->translate_and_save_by_casual_field_innovation_module($code,$new_lang,$query);
+    }
+    public function tc_translate_and_save($code,$language_first,$new_lang): void
+    {
+
+        $query = TechnologyCardTranslation::where('language_id',$language_first->id)->get();
+        $this->translate_and_save_by_field_tc($code,$new_lang,$query);
     }
 
 
@@ -388,6 +397,25 @@ class LanguageHelper
             $translation->description = $description;
             $translation->language_id = $new_lang->id;
             $translation->intro_id = $item->intro_id;
+            $translation->save();
+        }
+    }
+    private function translate_and_save_by_field_tc($code,$new_lang,$query): void
+    {
+        $data = $query;
+        foreach ($data as $item) {
+            $tr = new GoogleTranslate();
+            $tr->setSource();
+            $tr->setTarget($code);
+            $tr->setUrl('http://translate.google.cn/translate_a/t');
+            $title = $tr->translate($item->title);
+            $description = $tr->translate($item->description);
+
+            $translation = $item->replicate();
+            $translation->title = $title;
+            $translation->description = $description;
+            $translation->language_id = $new_lang->id;
+            $translation->card_id = $item->card_id;
             $translation->save();
         }
     }

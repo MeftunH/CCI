@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeInnovationModule;
 use App\Models\HomeIntro;
 use App\Models\HomeUnlockModule;
+use App\Models\TechnologyCard;
 use App\Models\TechnologyCardImage;
+use App\Models\TechnologyCardTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -24,9 +26,10 @@ class HomeController extends Controller
         $innovation_module = HomeInnovationModule::languages(app()->getLocale());
         $unlock_module = HomeUnlockModule::languages(app()->getLocale());
         $technology_card_image = TechnologyCardImage::first();
+        $technology_cards = TechnologyCard::languages(app()->getLocale());
 //        $news = News::languages(app()->getLocale());
 //        $images = DB::table('images')->get();
-        return view('admin.home.intro.index', compact('intro','technology_card_image','innovation_module','unlock_module'));
+        return view('admin.home.intro.index', compact('technology_cards','intro','technology_card_image','innovation_module','unlock_module'));
     }
 
     public function edit($id)
@@ -72,6 +75,49 @@ class HomeController extends Controller
 
         $translations = HomeInnovationModule::Lang();
         return view('admin.home.innovation_module.edit', compact('translations', 'innovation'));
+    }
+
+    public function technologyCardEdit($id)
+    {
+        $tc = TechnologyCard::where('id', $id)->first();
+
+        $translations = TechnologyCardTranslation::where('card_id',$id)->get();
+        return view('admin.home.technology_card.edit', compact('translations', 'tc'));
+    }
+    public function technologyCardShow($id)
+    {
+        $tc = TechnologyCard::where('id', $id)->first();
+
+        $translations = TechnologyCard::Lang();
+        return view('admin.home.technology_card.show', compact('translations', 'tc'));
+    }
+
+    public function technologyCardUpdate($id,Request $request)
+    {
+        $intro = TechnologyCard::where('id', $id)->first();
+        $data = array();
+        $image = $request->image;
+        $old_image = $request->old_image;
+        $validateData = $request->validate([
+            'image' => 'mimes:jpeg,jpg,png,gif,svg|max:8192',
+            'title.1' => ['required', 'max:255'],
+            'description.1' => ['required'],
+        ]);
+
+        if (isset($image)) {
+            $image_uni = uniqid('tc_image', true) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('storage/public/images/technology_card_images/' . $image_uni);
+            $intro->image = '/storage/public/images/technology_card_images/' . $image_uni;
+            $intro->save();
+            if (File::exists(public_path($old_image))) {
+                File::delete(public_path($old_image));
+            }
+        } else {
+            $data['image'] = $old_image;
+        }
+        $sh = new SiteHelper();
+        $sh->tc_translate_and_save($request, $id);
+        return Redirect::route('homepage.index');
     }
     public function innovationModuleShow($id)
     {

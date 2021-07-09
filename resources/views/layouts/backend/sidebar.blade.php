@@ -45,7 +45,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li @if (Route::current()->getName() === 'admin.index')class="active"@endif><a
                     class="d-flex align-items-center" href="{{route('admin.index')}}"><i
-                        data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
+                        data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">{{trans('back.home')}}</span></a>
             </li>
 
             {{---------------------------------------------------------------------------------------------------------}}
@@ -168,10 +168,6 @@
                     <li><a class="d-flex align-items-center" href="{{route('homepage.index')}}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="Collapsed Menu">{{trans('back.intro')}}</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="{{route('aboutUs.services.innovation.index')}}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="Collapsed Menu">{{trans('back.service_innovation')}}</span></a>
                     </li>
                 </ul>
             </li>

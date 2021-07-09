@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-{{trans('back.edit')}}
+    {{trans('back.edit')}}
 @endsection
 
 @section('css')
@@ -35,7 +35,7 @@
                     </div>
                 @endif
 
-                <form action="{{route('homepage.update',$intro->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('homepage.technologyCardUpdate',$tc->id)}}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="col-md-12">
@@ -64,12 +64,12 @@
                                                 aria-labelledby="pills-{{$translation->language_id}}-tab">
 
 
-                                                <label>Title </label>
+                                                <label>{{trans('back.title')}} </label>
                                                 <input type="text" class="form-control" id="exampleInputName1"
                                                        name="title[{{$translation->language_id}}]"
                                                        value="{{ $translation->title }}">
                                                 <br>
-                                                <label>Description </label>
+                                                <label>{{trans('back.description')}} </label>
                                                 <div class="form-group">
                                                     <textarea class="summernote"
                                                               name="description[{{ $translation->language_id}}]"
@@ -102,55 +102,56 @@
                                             </div>
                                         @endforeach
 
-                                            <div class="row">
-                                                <div class="col">
-                                                    <label>Image</label>
-                                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Image</label>
+                                                <div class="form-group">
 
-                                                        <label class="btn btn-primary mr-75 mb-0"
-                                                               for="background_image">
-                                                            <span class="d-none d-sm-block">Select Image</span>
-                                                            <input
-                                                                name="background_image"
-                                                                class="form-control-file"
-                                                                type="file"
-                                                                id="background_image"
-                                                                hidden
-                                                                accept="image/png, image/jpeg, image/jpg"
-                                                            />
+                                                    <label class="btn btn-primary mr-75 mb-0"
+                                                           for="image">
+                                                        <span class="d-none d-sm-block">{{trans('back.select_image')}}</span>
+                                                        <input
+                                                            name="image"
+                                                            class="form-control-file"
+                                                            type="file"
+                                                            id="image"
+                                                            hidden
+                                                            accept="image/png, image/jpeg, image/jpg"
+                                                        />
 
-                                                            <span class="d-block d-sm-none">
+                                                        <span class="d-block d-sm-none">
                                                               <i class="mr-0" data-feather="edit"></i>
                                                                 </span>
-                                                        </label>
-
-                                                    </div>
-
-                                                    <img id="preview-image-before-upload"
-                                                         src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                                         alt="preview image" class="img-fluid"
-                                                         style="max-height: 100px;">
-
+                                                    </label>
 
                                                 </div>
-                                                <div class="col">
 
-                                                    <label>Old Image: </label>
+                                                <img id="preview-image-before-upload"
+                                                     src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
+                                                     alt="preview image" class="img-fluid"
+                                                     style="max-height: 100px;">
 
-                                                    <img name="old_image" src="{{$translation->background_image}}" class="img-fluid"
-                                                         style="width: 150px" alt="{{$translation->background_image}}">
-                                                </div>
+
                                             </div>
+                                            <div class="col">
+
+                                                <label>Old Image: </label>
+
+                                                <img name="old_image" src="{{$tc->image}}" class="img-fluid"
+                                                     style="width: 150px" alt="{{$tc->image}}">
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Update</button>
+                                                <button type="submit" class="btn btn-primary">{{trans('back.update')}}</button>
                                             </div>
                                         </div>
                                     </div>
+                                    **{{trans('back.use_brackets')}}
                                 </div>
 
                             </div>
@@ -170,7 +171,7 @@
         $(document).ready(function (e) {
 
 
-            $('#background_image').change(function () {
+            $('#image').change(function () {
 
                 let reader = new FileReader();
 

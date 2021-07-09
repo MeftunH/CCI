@@ -1,17 +1,4 @@
-<?php
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
-    |
-    */
-    'experience_text' =>'Ru Capitalizing on the real-world experience',
-    'experience-trends'=>'Ru We explore some of the latest trends and strategies',
+<?php  return [
+    'experience_text' =>"«Используя реальный опыт»",
+    'experience-trends'=>"«Мы исследуем некоторые из последних тенденций и стратегий»",
 ];
