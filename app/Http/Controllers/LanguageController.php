@@ -74,7 +74,7 @@ class LanguageController extends Controller
             if ($request->hasFile('flag')) {
                 $destination_path = 'public/images/flag_img/';
                 $image = $request->file('flag');
-                $image_name = uniqid() . $image->getClientOriginalName();
+                $image_name = uniqid('', true) . $image->getClientOriginalName();
                 $path = $image->storeAs($destination_path, $image_name);
 
                 $input['flag'] = "/storage/public/images/flag_img/" . $image_name;
@@ -129,7 +129,7 @@ class LanguageController extends Controller
                    }
                     $vals_together = implode("\n", $vals_arr);
 //                    $translated_string = $tr->translate($vals_together);
-
+                    sleep(0.2);
                     $filtered= array_filter(explode("\n",$vals_together));
                     $combined_arr = array_combine($keys_arr,$filtered);
                     $combined_string = implode("\n",$combined_arr);
@@ -149,79 +149,113 @@ class LanguageController extends Controller
             if ($copy) {
                 $language_first = Language::all()->first();
                 $new_lang = Language::create($input);
-//                $about_us_intro = AboutUsTranslation::where('language_id', $language_first->id)->first();
+                $about_us_intro = AboutUsTranslation::where('language_id', $language_first->id)->first();
                 $code = $request->get('code');
-//                $tr = new GoogleTranslate();
-//                $tr->setSource();
-//                $tr->setTarget($code);
-//
-//                $title = $tr->translate($about_us_intro->title);
-//                $init_description = $about_us_intro->descipriton;
-//                $result = "";
-//                if (strlen($about_us_intro->descipriton) > 2999) {
-//                    $init_description = str_split($about_us_intro->descipriton, 2999);
-//                    if (is_array($init_description)) {
-//                        foreach ($init_description as $key => $val) {
-//                            $result .= strip_tags($tr->translate($val));
-//                        }
-//                        $description = $result;
-//
-//                    } else {
-//                        $description = $tr->translate($init_description);
-//
-//                    }
-//                } else {
-//                    $description = $tr->translate($about_us_intro->description);
-//
-//                }
-//
-//                $translation = $about_us_intro->replicate();
-//                $translation->title = $title;
-//                $translation->description = $description;
-//                $translation->language_id = $new_lang->id;
-//                $translation->save();
+                $tr = new GoogleTranslate();
+                $tr->setSource();
+                $tr->setTarget($code);
+
+                $title = $tr->translate($about_us_intro->title);
+                $init_description = $about_us_intro->descipriton;
+                $result = "";
+                if (strlen($about_us_intro->descipriton) > 2999) {
+                    $init_description = str_split($about_us_intro->descipriton, 2999);
+                    if (is_array($init_description)) {
+                        foreach ($init_description as $key => $val) {
+                            $result .= strip_tags($tr->translate($val));
+                        }
+                        $description = $result;
+
+                    } else {
+                        $description = $tr->translate($init_description);
+
+                    }
+                } else {
+                    $description = $tr->translate($about_us_intro->description);
+
+                }
+
+                $translation = $about_us_intro->replicate();
+                $translation->title = $title;
+                $translation->description = $description;
+                $translation->language_id = $new_lang->id;
+                $translation->save();
+                sleep(1);
                 $lh = New LanguageHelper();
                 $lh->translate_and_save_long_term($code, $language_first,$new_lang);
-//                $lh->translate_and_save_long_term_items($code, $language_first,$new_lang);
-//                $lh->translate_and_save_time_line($code, $language_first,$new_lang);
-//                $lh->industry_translate_and_save($code, $language_first,$new_lang);
-//                $lh->translate_and_save_resume_intro($code, $language_first,$new_lang);
-//                $lh->news_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->homepage_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->events_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->connect_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->reach_module_translate_and_save($code, $language_first,$new_lang);
-//                $lh->partner_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->apply_intro_translate_and_save($code, $language_first,$new_lang);
-//                $lh->innovation_translate_and_save($code, $language_first,$new_lang);
-//                $lh->industry_client_translate_and_save($code, $language_first,$new_lang);
-//                $lh->service_translate_and_save($code, $language_first,$new_lang);
-//                $lh->academy_translate_and_save($code, $language_first,$new_lang);
-//                $lh->career_translate_and_save($code, $language_first,$new_lang);
-//                $lh->academy_career_translate_and_save($code, $language_first,$new_lang);
-//                $lh->career_consulting_translate_and_save($code, $language_first,$new_lang);
-//                $lh->case_study_translate_and_save($code, $language_first,$new_lang);
-//                $lh->operational_translate_and_save($code, $language_first,$new_lang);
-//                $lh->academy_card_translate_and_save($code, $language_first,$new_lang);
-//                $lh->career_consulting_card_translate_and_save($code, $language_first,$new_lang);
-//                $lh->industry_experience_translate_and_save($code, $language_first,$new_lang);
-//                $lh->news_translate_and_save($code, $language_first,$new_lang);
-//                $lh->events_translate_and_save($code, $language_first,$new_lang);
-//                $lh->service_card_translate_and_save($code, $language_first,$new_lang);
-//                $lh->future_translate_and_save($code, $language_first,$new_lang);
-//                $lh->industry_client_item_translate_and_save($code, $language_first,$new_lang);
-//                $lh->innovation_item_translate_and_save($code, $language_first,$new_lang);
-//                $lh->future_item_translate_and_save($code, $language_first,$new_lang);
-//                $lh->study_translate_and_save($code, $language_first,$new_lang);
-//
-//                $lh->unlock_translate_and_save($code, $language_first,$new_lang);
-//                $lh->innovation_module_translate_and_save($code, $language_first,$new_lang);
-//
-//
-//                $lh->future_list_translate_and_save($code, $language_first,$new_lang);
-//                $lh->academy_career_item_translate_and_save($code, $language_first,$new_lang);
-//                $lh->career_consulting_item_translate_and_save($code, $language_first,$new_lang);
-
+                sleep(1);
+                $lh->translate_and_save_long_term_items($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->translate_and_save_time_line($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->industry_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->translate_and_save_resume_intro($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->news_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->homepage_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->events_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->connect_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->reach_module_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->partner_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->apply_intro_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->innovation_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->industry_client_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->service_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->academy_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->career_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->academy_career_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->career_consulting_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->case_study_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->operational_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->academy_card_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->career_consulting_card_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->industry_experience_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->news_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->events_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->service_card_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->future_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->industry_client_item_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->innovation_item_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->future_item_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->study_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->unlock_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->innovation_module_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->future_list_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->academy_career_item_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
+                $lh->career_consulting_item_translate_and_save($code, $language_first,$new_lang);
+                sleep(1);
 
             } else {
                 return Redirect::back()->withErrors([trans('back.this_language_already_exists')]);
