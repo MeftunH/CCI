@@ -44,10 +44,6 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-*.css linguist-detectable=false
-*.js linguist-detectable=false
-*.html linguist-detectable=false
-*.blade.php linguist-detectable=false
 
 # ====== JETBRAINS IDEs ===========================================
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
